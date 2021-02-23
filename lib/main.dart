@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gofoodie/core/route/route.dart';
+import 'package:gofoodie/features/welcome/presentation/blocs/splash_screen/splash_screen_bloc.dart';
+import 'package:gofoodie/features/welcome/presentation/pages/splash_screen.dart';
+import 'injection_container.dart' as di;
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
+
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<SplashScreenBloc>(
+            create: (context) => di.sl<SplashScreenBloc>()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,18 +31,8 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("GoFoodie"),
-      ),
+      onGenerateRoute: AppRouter.onGenerateRoute,
+      home: SplashScreen(),
     );
   }
 }
