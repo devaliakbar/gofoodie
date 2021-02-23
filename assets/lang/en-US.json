@@ -1,4 +1,10 @@
 {
   "app_title": "GoFoodie",
-  "data_storage_failure": "Data Storage Failure"
+  "data_storage_failure": "Data Storage Failure",
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "forgot_password": "Forgot Password ?",
+  "dont_you_have_account": "Don't you have account?",
+  "sign_up": "SignUp"
 }

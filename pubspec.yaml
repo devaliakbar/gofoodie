@@ -31,6 +31,7 @@ flutter:
   assets:
     - assets/lang/en-US.json
     - assets/images/splash_screen.jpg
+    - assets/images/food.png
 
   fonts:
     - family: Poppins
