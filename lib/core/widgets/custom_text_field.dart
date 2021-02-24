@@ -5,16 +5,21 @@ import 'package:gofoodie/core/services/size_config.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
+  final TextInputType inputType;
   final TextEditingController controller;
   final bool obsecure;
 
   CustomTextField(
-      {@required this.label, this.controller, this.obsecure = false});
+      {@required this.label,
+      this.inputType = TextInputType.text,
+      this.controller,
+      this.obsecure = false});
 
   @override
   Widget build(BuildContext context) {
     return EnsureVisibleWhenFocused(
       child: TextFormField(
+        keyboardType: inputType,
         obscureText: obsecure,
         cursorColor: AppColors.lightBlack,
         style: TextStyle(

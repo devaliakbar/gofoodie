@@ -24,4 +24,12 @@ class AppString {
   static String get signUp {
     return tr("sign_up");
   }
+
+  static String get alreadyHaveAnAccount {
+    return tr("already_have_account");
+  }
+
+  static String get fullName {
+    return tr("full_name");
+  }
 }

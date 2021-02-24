@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gofoodie/features/authentication/presentation/pages/login_page.dart';
+import 'package:gofoodie/features/authentication/presentation/pages/signup_page.dart';
 import 'package:gofoodie/features/home/presentation/pages/home.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -9,6 +10,13 @@ class AppRouter {
       case LoginPage.routeName:
         return PageTransition(
           child: LoginPage(),
+          type: PageTransitionType.rightToLeft,
+          settings: settings,
+        );
+
+      case SignUpPage.routeName:
+        return PageTransition(
+          child: SignUpPage(),
           type: PageTransitionType.rightToLeft,
           settings: settings,
         );

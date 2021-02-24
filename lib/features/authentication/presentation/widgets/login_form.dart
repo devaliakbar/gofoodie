@@ -5,6 +5,12 @@ import 'package:gofoodie/core/widgets/custom_text_field.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 
 class LoginForm extends StatelessWidget {
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+
+  LoginForm(
+      {@required this.emailController, @required this.passwordController});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,12 +43,15 @@ class LoginForm extends StatelessWidget {
               children: [
                 CustomTextField(
                   label: AppString.email,
+                  inputType: TextInputType.emailAddress,
+                  controller: emailController,
                 ),
                 SizedBox(
                   height: SizeConfig.height(2),
                 ),
                 CustomTextField(
                   label: AppString.password,
+                  controller: passwordController,
                   obsecure: true,
                 ),
               ],

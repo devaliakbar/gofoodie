@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/custom_button.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 
-class LoginBottomControls extends StatelessWidget {
+class AuthBottomControls extends StatelessWidget {
+  final String buttonText;
+  final Function onButtonClick;
+
+  final String bottomText;
+  final String bottomClickableText;
+  final Function bottomOnClick;
+
+  AuthBottomControls(
+      {@required this.buttonText,
+      @required this.onButtonClick,
+      @required this.bottomText,
+      @required this.bottomClickableText,
+      @required this.bottomOnClick});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -14,8 +27,8 @@ class LoginBottomControls extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             CustomButton(
-              onClick: () {},
-              title: AppString.login,
+              onClick: onButtonClick,
+              title: buttonText,
               width: SizeConfig.width(70),
             ),
             Container(
@@ -25,11 +38,14 @@ class LoginBottomControls extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   NormalText(
-                    AppString.dontYouHaveAccount,
+                    bottomText,
                   ),
-                  NormalText(
-                    " " + AppString.signUp,
-                    boldText: true,
+                  InkWell(
+                    onTap: bottomOnClick,
+                    child: NormalText(
+                      " " + bottomClickableText,
+                      boldText: true,
+                    ),
                   ),
                 ],
               ),

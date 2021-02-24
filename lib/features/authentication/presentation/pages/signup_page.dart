@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
-import 'package:gofoodie/features/authentication/presentation/pages/signup_page.dart';
 import 'package:gofoodie/features/authentication/presentation/widgets/auth_bottom_controls.dart';
 
 import 'package:gofoodie/features/authentication/presentation/widgets/login_food_image.dart';
-import 'package:gofoodie/features/authentication/presentation/widgets/login_form.dart';
+import 'package:gofoodie/features/authentication/presentation/widgets/signup_form.dart';
 
-class LoginPage extends StatefulWidget {
-  static const String routeName = '/login_page';
+class SignUpPage extends StatefulWidget {
+  static const String routeName = '/signup_page';
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
+  final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController rePasswordController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
+    fullNameController.dispose();
     emailController.dispose();
     passwordController.dispose();
+    rePasswordController.dispose();
   }
 
   @override
@@ -34,17 +37,22 @@ class _LoginPageState extends State<LoginPage> {
           child: Stack(
             children: [
               LoginFoodImage(),
-              LoginForm(
-                emailController: emailController,
-                passwordController: passwordController,
+              Container(
+                margin: EdgeInsets.only(top: SizeConfig.height(10)),
+                child: SignUpForm(
+                  fullNameController: fullNameController,
+                  emailController: emailController,
+                  passwordController: passwordController,
+                  rePasswordController: rePasswordController,
+                ),
               ),
               AuthBottomControls(
-                buttonText: AppString.login,
+                buttonText: AppString.signUp,
                 onButtonClick: () {},
-                bottomText: AppString.dontYouHaveAccount,
-                bottomClickableText: AppString.signUp,
+                bottomText: AppString.alreadyHaveAnAccount,
+                bottomClickableText: AppString.login,
                 bottomOnClick: () {
-                  Navigator.pushNamed(context, SignUpPage.routeName);
+                  Navigator.pop(context);
                 },
               ),
             ],

@@ -6,5 +6,7 @@
   "password": "Password",
   "forgot_password": "Forgot Password ?",
   "dont_you_have_account": "Don't you have account?",
-  "sign_up": "SignUp"
+  "sign_up": "SignUp",
+  "already_have_account": "Already have an Account?",
+  "full_name": "Full Name"
 }
