@@ -5,9 +5,11 @@ import 'package:gofoodie/core/services/size_config.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
+  final TextEditingController controller;
   final bool obsecure;
 
-  CustomTextField({@required this.label, this.obsecure = false});
+  CustomTextField(
+      {@required this.label, this.controller, this.obsecure = false});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class CustomTextField extends StatelessWidget {
           labelStyle: TextStyle(color: AppColors.lightBlack),
           contentPadding: EdgeInsets.symmetric(
             horizontal: SizeConfig.width(5),
-            vertical: SizeConfig.width(4),
+            vertical: SizeConfig.height(2),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColors.lightBlack, width: 1.0),
