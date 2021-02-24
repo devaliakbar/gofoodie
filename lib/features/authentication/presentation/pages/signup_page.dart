@@ -40,20 +40,18 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Stack(
             children: [
               LoginFoodImage(),
-              Container(
-                margin: EdgeInsets.only(top: SizeConfig.height(10)),
-                child: Form(
-                    key: _formKey,
-                    child: SignUpForm(
-                      fullNameController: fullNameController,
-                      emailController: emailController,
-                      passwordController: passwordController,
-                      rePasswordController: rePasswordController,
-                      nameValidator: onValidateName,
-                      emailValidator: onValidateEmail,
-                      passwordValidator: onValidatePassword,
-                      rePasswordValidator: onValidateRePassword,
-                    )),
+              Form(
+                key: _formKey,
+                child: SignUpForm(
+                  fullNameController: fullNameController,
+                  emailController: emailController,
+                  passwordController: passwordController,
+                  rePasswordController: rePasswordController,
+                  nameValidator: onValidateName,
+                  emailValidator: onValidateEmail,
+                  passwordValidator: onValidatePassword,
+                  rePasswordValidator: onValidateRePassword,
+                ),
               ),
               AuthBottomControls(
                 buttonText: AppString.signUp,
