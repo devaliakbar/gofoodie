@@ -9,7 +9,8 @@
   "sign_up": "SignUp",
   "already_have_account": "Already have an Account?",
   "full_name": "Full Name",
-  "password_empty": "Password is empty",
-  "email_empty": "Email is empty",
-  "enter_valid_email": "Enter a valid email"
+  "password_length": "Password length must be atleast 6",
+  "password_no_match": "Password does'nt match",
+  "enter_valid_email": "Enter a valid email",
+  "field_empty": "Please enter this field"
 }

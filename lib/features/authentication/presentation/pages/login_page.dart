@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
 
   String onValidateEmail(String value) {
     if (value == "") {
-      return AppString.emailEmpty;
+      return AppString.fieldEmpty;
     }
     if (!Utils.isEmail(value)) {
       return AppString.enterValidEmail;
@@ -73,8 +73,13 @@ class _LoginPageState extends State<LoginPage> {
 
   String onValidatePassword(String value) {
     if (value == "") {
-      return AppString.passwordEmpty;
+      return AppString.fieldEmpty;
     }
+
+    if (value.length < 6) {
+      return AppString.passwordLength;
+    }
+
     return null;
   }
 

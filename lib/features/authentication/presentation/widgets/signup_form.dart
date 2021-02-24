@@ -9,11 +9,20 @@ class SignUpForm extends StatelessWidget {
   final TextEditingController passwordController;
   final TextEditingController rePasswordController;
 
+  final FormFieldValidator<String> nameValidator;
+  final FormFieldValidator<String> emailValidator;
+  final FormFieldValidator<String> passwordValidator;
+  final FormFieldValidator<String> rePasswordValidator;
+
   SignUpForm(
       {@required this.fullNameController,
       @required this.emailController,
       @required this.passwordController,
-      @required this.rePasswordController});
+      @required this.rePasswordController,
+      @required this.nameValidator,
+      @required this.emailValidator,
+      @required this.passwordValidator,
+      @required this.rePasswordValidator});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +48,7 @@ class SignUpForm extends StatelessWidget {
                   CustomTextField(
                     label: AppString.fullName,
                     controller: fullNameController,
+                    validator: nameValidator,
                   ),
                   SizedBox(
                     height: SizeConfig.height(2),
@@ -46,6 +56,7 @@ class SignUpForm extends StatelessWidget {
                   CustomTextField(
                     label: AppString.email,
                     controller: emailController,
+                    validator: emailValidator,
                   ),
                   SizedBox(
                     height: SizeConfig.height(2),
@@ -54,6 +65,7 @@ class SignUpForm extends StatelessWidget {
                     label: AppString.password,
                     controller: passwordController,
                     obsecure: true,
+                    validator: passwordValidator,
                   ),
                   SizedBox(
                     height: SizeConfig.height(2),
@@ -62,6 +74,7 @@ class SignUpForm extends StatelessWidget {
                     label: AppString.password,
                     controller: rePasswordController,
                     obsecure: true,
+                    validator: rePasswordValidator,
                   ),
                 ],
               ),

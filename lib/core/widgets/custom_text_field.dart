@@ -21,6 +21,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return EnsureVisibleWhenFocused(
       child: TextFormField(
+        controller: controller,
         keyboardType: inputType,
         obscureText: obsecure,
         validator: validator,
