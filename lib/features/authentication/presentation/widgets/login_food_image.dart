@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_colors.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 
-class FoodImage extends StatelessWidget {
+class LoginFoodImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

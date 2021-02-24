@@ -26,6 +26,13 @@ class SplashScreen extends StatelessWidget {
           ShowToast(state.message);
         }
       },
+      buildWhen: (previous, current) {
+        if (current is SplashScreenInitialState) {
+          return true;
+        }
+
+        return false;
+      },
       builder: (context, state) {
         return Scaffold(
           backgroundColor: Colors.white,
