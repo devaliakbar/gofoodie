@@ -8,5 +8,8 @@
   "dont_you_have_account": "Don't you have account?",
   "sign_up": "SignUp",
   "already_have_account": "Already have an Account?",
-  "full_name": "Full Name"
+  "full_name": "Full Name",
+  "password_empty": "Password is empty",
+  "email_empty": "Email is empty",
+  "enter_valid_email": "Enter a valid email"
 }

@@ -32,4 +32,16 @@ class AppString {
   static String get fullName {
     return tr("full_name");
   }
+
+  static String get passwordEmpty {
+    return tr("password_empty");
+  }
+
+  static String get emailEmpty {
+    return tr("email_empty");
+  }
+
+  static String get enterValidEmail {
+    return tr("enter_valid_email");
+  }
 }

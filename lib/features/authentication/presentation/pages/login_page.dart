@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
+import 'package:gofoodie/core/utils/utils.dart';
 import 'package:gofoodie/features/authentication/presentation/pages/signup_page.dart';
 import 'package:gofoodie/features/authentication/presentation/widgets/auth_bottom_controls.dart';
 
@@ -15,6 +16,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -34,13 +37,17 @@ class _LoginPageState extends State<LoginPage> {
           child: Stack(
             children: [
               LoginFoodImage(),
-              LoginForm(
-                emailController: emailController,
-                passwordController: passwordController,
-              ),
+              Form(
+                  key: _formKey,
+                  child: LoginForm(
+                    emailController: emailController,
+                    passwordController: passwordController,
+                    emailValidator: onValidateEmail,
+                    passwordValidator: onValidatePassword,
+                  )),
               AuthBottomControls(
                 buttonText: AppString.login,
-                onButtonClick: () {},
+                onButtonClick: onSave,
                 bottomText: AppString.dontYouHaveAccount,
                 bottomClickableText: AppString.signUp,
                 bottomOnClick: () {
@@ -52,5 +59,32 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  String onValidateEmail(String value) {
+    if (value == "") {
+      return AppString.emailEmpty;
+    }
+    if (!Utils.isEmail(value)) {
+      return AppString.enterValidEmail;
+    }
+    return null;
+  }
+
+  String onValidatePassword(String value) {
+    if (value == "") {
+      return AppString.passwordEmpty;
+    }
+    return null;
+  }
+
+  void onSave() {
+    FocusScope.of(context).requestFocus(new FocusNode());
+
+    if (!_formKey.currentState.validate()) {
+      print('Validate Triggered');
+      return;
+    }
+    _formKey.currentState.save();
   }
 }

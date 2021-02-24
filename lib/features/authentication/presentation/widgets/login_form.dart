@@ -8,8 +8,14 @@ class LoginForm extends StatelessWidget {
   final TextEditingController emailController;
   final TextEditingController passwordController;
 
+  final FormFieldValidator<String> emailValidator;
+  final FormFieldValidator<String> passwordValidator;
+
   LoginForm(
-      {@required this.emailController, @required this.passwordController});
+      {@required this.emailController,
+      @required this.passwordController,
+      @required this.emailValidator,
+      @required this.passwordValidator});
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +51,7 @@ class LoginForm extends StatelessWidget {
                   label: AppString.email,
                   inputType: TextInputType.emailAddress,
                   controller: emailController,
+                  validator: emailValidator,
                 ),
                 SizedBox(
                   height: SizeConfig.height(2),
@@ -53,6 +60,7 @@ class LoginForm extends StatelessWidget {
                   label: AppString.password,
                   controller: passwordController,
                   obsecure: true,
+                  validator: passwordValidator,
                 ),
               ],
             ),

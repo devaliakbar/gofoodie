@@ -8,12 +8,14 @@ class CustomTextField extends StatelessWidget {
   final TextInputType inputType;
   final TextEditingController controller;
   final bool obsecure;
+  final FormFieldValidator<String> validator;
 
   CustomTextField(
       {@required this.label,
       this.inputType = TextInputType.text,
       this.controller,
-      this.obsecure = false});
+      this.obsecure = false,
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         keyboardType: inputType,
         obscureText: obsecure,
+        validator: validator,
         cursorColor: AppColors.lightBlack,
         style: TextStyle(
             fontSize: FontSizes.fontSizeM, color: AppColors.lightBlack),
@@ -54,6 +57,12 @@ class CustomTextField extends StatelessWidget {
             ),
           ),
           errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 1.0),
+            borderRadius: BorderRadius.all(
+              Radius.circular(SizeConfig.width(50)),
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red, width: 1.0),
             borderRadius: BorderRadius.all(
               Radius.circular(SizeConfig.width(50)),
