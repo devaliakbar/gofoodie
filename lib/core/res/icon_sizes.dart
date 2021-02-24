@@ -1,4 +1,4 @@
-import 'package:gofoodie/core/services/size_config.dart';
+part of 'app_resources.dart';
 
 class IconSizes {
   static double get iconSizeXXXS {

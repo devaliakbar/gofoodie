@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gofoodie/core/res/app_colors.dart';
+import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 
 class LoginFoodImage extends StatelessWidget {
@@ -25,7 +25,7 @@ class LoginFoodImage extends StatelessWidget {
             margin: EdgeInsets.only(top: 15),
             width: SizeConfig.width(80),
             child: Image.asset(
-              "assets/images/food.png",
+              AppImages.food,
             ),
           )
         ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gofoodie/core/res/app_colors.dart';
-import 'package:gofoodie/core/res/font_sizes.dart';
+import 'package:gofoodie/core/res/app_resources.dart';
 
 class NormalText extends StatelessWidget {
   final String text;

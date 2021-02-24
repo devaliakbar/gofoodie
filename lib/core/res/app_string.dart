@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+part of 'app_resources.dart';
 
 class AppString {
   static String get login {

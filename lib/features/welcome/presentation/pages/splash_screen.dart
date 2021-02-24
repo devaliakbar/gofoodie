@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/features/welcome/presentation/blocs/splash_screen/splash_screen_bloc.dart';
@@ -39,7 +40,7 @@ class SplashScreen extends StatelessWidget {
           body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/splash_screen.jpg"),
+                image: AssetImage(AppImages.splashScreen),
                 fit: BoxFit.cover,
               ),
             ),

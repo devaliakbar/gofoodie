@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:gofoodie/core/utils/hexcolor.dart';
+part of 'app_resources.dart';
 
 class AppColors {
   static final Color yellow = HexColor("#fdedb2");

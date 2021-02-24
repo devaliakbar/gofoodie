@@ -1,4 +1,4 @@
-import 'package:gofoodie/core/services/size_config.dart';
+part of 'app_resources.dart';
 
 class FontSizes {
   static double get fontSizeBSM {

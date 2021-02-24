@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gofoodie/core/res/app_string.dart';
-import 'package:gofoodie/core/res/font_sizes.dart';
+import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/custom_text_field.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
