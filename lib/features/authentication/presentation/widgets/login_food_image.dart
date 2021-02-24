@@ -22,8 +22,10 @@ class LoginFoodImage extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 15),
-            width: SizeConfig.width(80),
+            margin: EdgeInsets.only(
+              top: SizeConfig.heightWithoutSafeArea(1.5),
+            ),
+            height: SizeConfig.heightWithoutSafeArea(28),
             child: Image.asset(
               AppImages.food,
             ),

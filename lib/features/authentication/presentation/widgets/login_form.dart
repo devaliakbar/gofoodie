@@ -31,7 +31,7 @@ class LoginForm extends StatelessWidget {
           child: Container(
             width: SizeConfig.width(80),
             padding: EdgeInsets.all(
-              SizeConfig.width(10),
+              SizeConfig.width(9),
             ),
             child: Column(
               children: [

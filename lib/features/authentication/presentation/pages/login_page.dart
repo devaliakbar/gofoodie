@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/features/authentication/presentation/widgets/login_bottom_controls.dart';
 
 import 'package:gofoodie/features/authentication/presentation/widgets/login_food_image.dart';
@@ -10,12 +11,17 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          LoginFoodImage(),
-          LoginForm(),
-          LoginBottomControls(),
-        ],
+      body: SingleChildScrollView(
+        child: Container(
+          height: SizeConfig.heightWithoutSafeArea(100),
+          child: Stack(
+            children: [
+              LoginFoodImage(),
+              LoginForm(),
+              LoginBottomControls(),
+            ],
+          ),
+        ),
       ),
     );
   }
