@@ -1,6 +1,6 @@
 class DataStorageException implements Exception {}
 
-class NetworkErrorException implements Exception {}
+class UnExpectedException implements Exception {}
 
 class NetworkNotAvaliableException implements Exception {}
 

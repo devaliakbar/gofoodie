@@ -4,7 +4,7 @@ import 'package:gofoodie/core/error/exceptions.dart';
 import 'package:gofoodie/core/error/failures.dart';
 import 'package:gofoodie/features/authentication/data/datasource/authentication_local_data_source.dart';
 import 'package:gofoodie/features/authentication/data/datasource/authentication_remote_data_source.dart';
-import 'package:gofoodie/features/authentication/data/models/login_model.dart';
+import 'package:gofoodie/features/authentication/data/models/auth_model.dart';
 import 'package:gofoodie/features/authentication/domain/repositories/authentication_repository.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
@@ -18,17 +18,42 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   Future<Either<Failure, bool>> login(
       {@required String email, @required String password}) async {
     try {
-      LoginModel loginModel =
+      AuthModel response =
           await remoteDataSource.login(email: email, password: password);
-      await localDataSource.saveToken(loginModel.token);
+      await localDataSource.saveToken(response.token);
       await localDataSource.setUserLoginStatus();
       return Right(true);
     } on NetworkNotAvaliableException {
       return Left(NetworkNotAvaliableFailure());
     } on IncorrectCredentialsException {
       return Left(IncorrectCredentialsFailure());
-    } on NetworkErrorException {
-      return Left(NetworkErrorFailure());
+    } on UnExpectedException {
+      return Left(UnExpectedFailure());
+    } catch (e) {
+      return Left(DataStorageFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> signUp(
+      {String fullName, String email, String password}) async {
+    try {
+      AuthModel response = await remoteDataSource.signUp(
+          fullName: fullName, email: email, password: password);
+
+      if (response.error != null) {
+        return Left(RequiredFieldFailure(response.error));
+      }
+
+      await localDataSource.saveToken(response.token);
+      await localDataSource.setUserLoginStatus();
+      return Right(true);
+    } on NetworkNotAvaliableException {
+      return Left(NetworkNotAvaliableFailure());
+    } on IncorrectCredentialsException {
+      return Left(IncorrectCredentialsFailure());
+    } on UnExpectedException {
+      return Left(UnExpectedFailure());
     } catch (e) {
       return Left(DataStorageFailure());
     }

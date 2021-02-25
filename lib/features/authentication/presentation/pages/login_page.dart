@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
       return AppString.fieldEmpty;
     }
 
-    if (value.length < 6) {
+    if (value.length < 8) {
       return AppString.passwordLength;
     }
 

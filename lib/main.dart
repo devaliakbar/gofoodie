@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gofoodie/core/route/route.dart';
 import 'package:gofoodie/core/services/data_storage/data_storage.dart';
 import 'package:gofoodie/features/authentication/presentation/blocs/login/login_bloc.dart';
+import 'package:gofoodie/features/authentication/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:gofoodie/features/welcome/presentation/blocs/splash_screen/splash_screen_bloc.dart';
 import 'package:gofoodie/features/welcome/presentation/pages/splash_screen.dart';
 import 'injection_container.dart' as di;
@@ -20,6 +21,7 @@ void main() async {
         BlocProvider<SplashScreenBloc>(
             create: (context) => di.sl<SplashScreenBloc>()),
         BlocProvider<LoginBloc>(create: (context) => di.sl<LoginBloc>()),
+        BlocProvider<SignUpBloc>(create: (context) => di.sl<SignUpBloc>()),
       ],
       child: EasyLocalization(
         child: MyApp(),

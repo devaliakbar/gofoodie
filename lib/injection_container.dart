@@ -7,7 +7,9 @@ import 'package:gofoodie/features/authentication/data/datasource/authentication_
 import 'package:gofoodie/features/authentication/data/repositories/authentication_repository.dart';
 import 'package:gofoodie/features/authentication/domain/repositories/authentication_repository.dart';
 import 'package:gofoodie/features/authentication/domain/usecases/login.dart';
+import 'package:gofoodie/features/authentication/domain/usecases/sign_up.dart';
 import 'package:gofoodie/features/authentication/presentation/blocs/login/login_bloc.dart';
+import 'package:gofoodie/features/authentication/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:gofoodie/features/welcome/data/datasource/splash_screen_local_data_source.dart';
 import 'package:gofoodie/features/welcome/data/repositories/splash_screen_repository.dart';
 import 'package:gofoodie/features/welcome/domain/repositories/splash_screen_repository.dart';
@@ -46,8 +48,12 @@ Future<void> init() async {
   sl.registerFactory<LoginBloc>(
     () => LoginBloc(performLogin: sl()),
   );
+  sl.registerFactory<SignUpBloc>(
+    () => SignUpBloc(performSignUp: sl()),
+  );
   // Use cases
   sl.registerLazySingleton(() => PerformLogin(sl()));
+  sl.registerLazySingleton(() => PerformSignUp(sl()));
   // Repository
   sl.registerLazySingleton<AuthenticationRepository>(
     () => AuthenticationRepositoryImpl(
