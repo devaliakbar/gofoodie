@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
-import 'package:gofoodie/core/services/data_storage/data_storage.dart';
-import 'package:gofoodie/core/services/data_storage/ds_user.dart';
+import 'package:gofoodie/core/services/local_storage/local_storage.dart';
+import 'package:gofoodie/core/services/local_storage/ls_user.dart';
 import 'package:gofoodie/core/services/network/api_helper.dart';
 import 'package:gofoodie/features/authentication/data/datasource/authentication_local_data_source.dart';
 import 'package:gofoodie/features/authentication/data/datasource/authentication_remote_data_source.dart';
@@ -20,8 +20,8 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   //! Core
-  sl.registerSingleton<DataStorage>(DataStorage());
-  sl.registerLazySingleton(() => DSUser());
+  sl.registerSingleton<LocalStorage>(LocalStorage());
+  sl.registerLazySingleton(() => LSUser());
   sl.registerLazySingleton(() => ApiHelper());
   //! External
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gofoodie/core/services/data_storage/ds_user.dart';
+import 'package:gofoodie/core/services/local_storage/ls_user.dart';
 
 abstract class AuthenticationLocalDataSource {
   Future<void> saveToken(String token);
@@ -8,7 +8,7 @@ abstract class AuthenticationLocalDataSource {
 
 class AuthenticationLocalDataSourceImpl
     implements AuthenticationLocalDataSource {
-  final DSUser dataStorage;
+  final LSUser dataStorage;
 
   AuthenticationLocalDataSourceImpl({@required this.dataStorage});
 

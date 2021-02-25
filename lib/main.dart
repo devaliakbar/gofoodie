@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gofoodie/core/route/route.dart';
-import 'package:gofoodie/core/services/data_storage/data_storage.dart';
+import 'package:gofoodie/core/services/local_storage/local_storage.dart';
 import 'package:gofoodie/features/authentication/presentation/blocs/login/login_bloc.dart';
 import 'package:gofoodie/features/authentication/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:gofoodie/features/welcome/presentation/blocs/splash_screen/splash_screen_bloc.dart';
@@ -13,7 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
 
-  await di.sl<DataStorage>().init();
+  await di.sl<LocalStorage>().init();
 
   runApp(
     MultiBlocProvider(

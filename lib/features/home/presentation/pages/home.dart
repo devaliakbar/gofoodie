@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gofoodie/core/services/data_storage/data_storage.dart';
+import 'package:gofoodie/core/services/local_storage/local_storage.dart';
 import 'package:gofoodie/core/widgets/custom_button.dart';
 import 'package:gofoodie/injection_container.dart';
 
@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
       body: Center(
         child: CustomButton(
             onClick: () async {
-              await sl<DataStorage>().clearAllLocalData();
+              await sl<LocalStorage>().clearAllLocalData();
             },
             title: "Logo Out"),
       ),

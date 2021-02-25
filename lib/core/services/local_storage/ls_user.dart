@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive/hive.dart';
 
-class DSUser {
+class LSUser {
   static const String _BOX_NAME = "user_box";
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
