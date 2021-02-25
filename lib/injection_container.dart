@@ -10,9 +10,9 @@ import 'package:gofoodie/features/authentication/domain/usecases/login.dart';
 import 'package:gofoodie/features/authentication/domain/usecases/sign_up.dart';
 import 'package:gofoodie/features/authentication/presentation/blocs/login/login_bloc.dart';
 import 'package:gofoodie/features/authentication/presentation/blocs/sign_up/sign_up_bloc.dart';
-import 'package:gofoodie/features/welcome/data/datasource/splash_screen_local_data_source.dart';
-import 'package:gofoodie/features/welcome/data/repositories/splash_screen_repository.dart';
-import 'package:gofoodie/features/welcome/domain/repositories/splash_screen_repository.dart';
+import 'package:gofoodie/features/welcome/data/datasource/welcome_local_data_source.dart';
+import 'package:gofoodie/features/welcome/data/repositories/welcome_repository.dart';
+import 'package:gofoodie/features/welcome/domain/repositories/welcome_repository.dart';
 import 'package:gofoodie/features/welcome/domain/usecases/get_route.dart';
 import 'package:gofoodie/features/welcome/presentation/blocs/splash_screen/splash_screen_bloc.dart';
 
@@ -34,12 +34,12 @@ Future<void> init() async {
   // Use cases
   sl.registerLazySingleton(() => GetRoute(sl()));
   // Repository
-  sl.registerLazySingleton<SplashScreenRepository>(
-    () => SplashScreenRepositoryImpl(localDataSource: sl()),
+  sl.registerLazySingleton<WelcomeRepository>(
+    () => WelcomeRepositoryImpl(localDataSource: sl()),
   );
   // Data sources
-  sl.registerLazySingleton<SplashScreenLocalDataSource>(
-    () => SplashScreenLocalDataSourceImpl(dataStorage: sl()),
+  sl.registerLazySingleton<WelcomeLocalDataSource>(
+    () => WelcomeLocalDataSourceImpl(dataStorage: sl()),
   );
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////

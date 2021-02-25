@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:gofoodie/core/error/failures.dart';
 import 'package:gofoodie/core/usecases/usecase.dart';
-import 'package:gofoodie/features/welcome/domain/repositories/splash_screen_repository.dart';
+import 'package:gofoodie/features/welcome/domain/repositories/welcome_repository.dart';
 
 class GetRoute implements UseCase<String, NoParams> {
-  final SplashScreenRepository splashScreenRepository;
+  final WelcomeRepository welcomeRepository;
 
-  GetRoute(this.splashScreenRepository);
+  GetRoute(this.welcomeRepository);
 
   @override
   Future<Either<Failure, String>> call(NoParams noParams) async {
-    return await splashScreenRepository.getRoute();
+    return await welcomeRepository.getRoute();
   }
 }

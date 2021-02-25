@@ -21,16 +21,15 @@ class SplashScreen extends StatelessWidget {
         print("Splash Screen State Changed");
 
         if (state is SplashScreenExitState) {
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              state.routeName, (Route<dynamic> route) => false);
+          Future.delayed(
+              const Duration(seconds: 1),
+              () => Navigator.of(context).pushNamedAndRemoveUntil(
+                  state.routeName, (Route<dynamic> route) => false));
         } else if (state is SplashScreenErrorState) {
           ShowToast(state.message);
         }
       },
       buildWhen: (previous, current) {
-        if (current is SplashScreenInitialState) {
-          return true;
-        }
         return false;
       },
       builder: (context, state) {

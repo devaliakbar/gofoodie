@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/services/data_storage/ds_user.dart';
 
-abstract class SplashScreenLocalDataSource {
+abstract class WelcomeLocalDataSource {
   Future<bool> getUserLoginStatus();
 }
 
-class SplashScreenLocalDataSourceImpl implements SplashScreenLocalDataSource {
+class WelcomeLocalDataSourceImpl implements WelcomeLocalDataSource {
   final DSUser dataStorage;
 
-  SplashScreenLocalDataSourceImpl({@required this.dataStorage});
+  WelcomeLocalDataSourceImpl({@required this.dataStorage});
 
   @override
   Future<bool> getUserLoginStatus() async {
