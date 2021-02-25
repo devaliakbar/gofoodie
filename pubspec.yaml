@@ -22,6 +22,8 @@ dependencies:
   easy_localization:
   dio: ^3.0.10
   data_connection_checker: ^0.3.4
+  hive: ^1.4.4+1
+  path_provider: ^1.6.27
 
 dev_dependencies:
   flutter_test:
