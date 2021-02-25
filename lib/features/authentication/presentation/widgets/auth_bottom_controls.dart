@@ -11,12 +11,15 @@ class AuthBottomControls extends StatelessWidget {
   final String bottomClickableText;
   final Function bottomOnClick;
 
+  final bool isLoading;
+
   AuthBottomControls(
       {@required this.buttonText,
       @required this.onButtonClick,
       @required this.bottomText,
       @required this.bottomClickableText,
-      @required this.bottomOnClick});
+      @required this.bottomOnClick,
+      this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +32,7 @@ class AuthBottomControls extends StatelessWidget {
             CustomButton(
               onClick: onButtonClick,
               title: buttonText,
+              isLoading: isLoading,
               width: SizeConfig.width(70),
             ),
             Container(

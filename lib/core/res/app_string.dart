@@ -48,4 +48,16 @@ class AppString {
   static String get fieldEmpty {
     return tr("field_empty");
   }
+
+  static String get noConnection {
+    return tr("no_connection");
+  }
+
+  static String get incorrectCredentials {
+    return tr("incorrect_credentials");
+  }
+
+  static String get somethingWrong {
+    return tr("something_wrong");
+  }
 }

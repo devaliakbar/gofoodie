@@ -7,8 +7,13 @@ class CustomButton extends StatelessWidget {
   final Function onClick;
   final String title;
   final double width;
+  final bool isLoading;
 
-  CustomButton({@required this.onClick, @required this.title, this.width});
+  CustomButton(
+      {@required this.onClick,
+      @required this.title,
+      this.isLoading = false,
+      this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +26,17 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(SizeConfig.width(50)),
         ),
         color: AppColors.yellow,
-        child: NormalText(
-          title,
-          color: AppColors.lightBlack,
-          boldText: true,
-        ),
-        onPressed: onClick,
+        disabledColor: AppColors.yellow,
+        child: isLoading
+            ? CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              )
+            : NormalText(
+                title,
+                color: AppColors.lightBlack,
+                boldText: true,
+              ),
+        onPressed: isLoading ? null : onClick,
       ),
     );
   }

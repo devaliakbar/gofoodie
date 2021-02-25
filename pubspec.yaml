@@ -20,6 +20,8 @@ dependencies:
   page_transition: ^1.1.7+6
   fluttertoast: ^7.1.8
   easy_localization:
+  dio: ^3.0.10
+  data_connection_checker: ^0.3.4
 
 dev_dependencies:
   flutter_test:

@@ -12,5 +12,8 @@
   "password_length": "Password length must be atleast 6",
   "password_no_match": "Password does'nt match",
   "enter_valid_email": "Enter a valid email",
-  "field_empty": "Please enter this field"
+  "field_empty": "Please enter this field",
+  "no_connection": "Please check your network connection",
+  "incorrect_credentials": "Your email or password is invalid",
+  "something_wrong": "Oops! Something went wrong!"
 }

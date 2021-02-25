@@ -31,7 +31,6 @@ class SplashScreen extends StatelessWidget {
         if (current is SplashScreenInitialState) {
           return true;
         }
-
         return false;
       },
       builder: (context, state) {

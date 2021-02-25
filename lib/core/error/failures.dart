@@ -10,3 +10,11 @@ abstract class Failure extends Equatable {
 }
 
 class DataStorageFailure extends Failure {}
+
+class NetworkErrorFailure extends Failure {}
+
+class NetworkNotAvaliableFailure extends Failure {}
+
+class IncorrectCredentialsFailure extends Failure {}
+
+class AuthenticationFailure extends Failure {}
