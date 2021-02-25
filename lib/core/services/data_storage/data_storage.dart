@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
@@ -15,8 +16,11 @@ class DataStorage {
     Hive.init(path);
   }
 
-  Future<void> clearAllBoxex() async {
+  Future<void> clearAllLocalData() async {
     var hiveDb = Directory(path);
-    hiveDb.delete(recursive: true);
+    await hiveDb.delete(recursive: true);
+
+    final storage = new FlutterSecureStorage();
+    await storage.deleteAll();
   }
 }

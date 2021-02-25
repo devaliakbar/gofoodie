@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive/hive.dart';
 
 class DSUser {
@@ -29,20 +30,12 @@ class DSUser {
   ////////////////////////////////////////////////////////////////////////////////////////////////
   static const String _TOKEN_KEY = "token";
   Future<String> getToken() async {
-    Box userBox = await Hive.openBox(_BOX_NAME);
-
-    String token = userBox.get(_TOKEN_KEY);
-
-    await Hive.close();
-
-    return token;
+    final storage = new FlutterSecureStorage();
+    return await storage.read(key: _TOKEN_KEY);
   }
 
   Future<void> saveToken({@required String token}) async {
-    Box userBox = await Hive.openBox(_BOX_NAME);
-
-    await userBox.put(_TOKEN_KEY, token);
-
-    await Hive.close();
+    final storage = new FlutterSecureStorage();
+    await storage.write(key: _TOKEN_KEY, value: token);
   }
 }
