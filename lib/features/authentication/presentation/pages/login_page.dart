@@ -37,10 +37,10 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
     super.initState();
 
     _animationController1 =
-        AnimationController(duration: Duration(milliseconds: 700), vsync: this);
+        AnimationController(duration: Duration(milliseconds: 250), vsync: this);
 
     _animationController2 =
-        AnimationController(duration: Duration(milliseconds: 450), vsync: this);
+        AnimationController(duration: Duration(milliseconds: 500), vsync: this);
   }
 
   @override
@@ -49,6 +49,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
     emailController.dispose();
     passwordController.dispose();
 
+    _animationController1.dispose();
     _animationController2.dispose();
   }
 
@@ -62,6 +63,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             children: [
               CustomAnimation(
                 animationController: _animationController1,
+                opacityEnable: true,
                 widget: LoginFoodImage(),
                 customAnimationType: CustomAnimationType.topToBottom,
                 onAnimationComplete: () {
@@ -69,6 +71,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                 },
               ),
               CustomAnimation(
+                elasticEffect: true,
                 animationController: _animationController2,
                 playAnimation: false,
                 customAnimationType: CustomAnimationType.bottomToTop,
@@ -85,6 +88,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
               BlocConsumer<LoginBloc, LoginState>(
                 builder: (context, state) {
                   return CustomAnimation(
+                    elasticEffect: true,
                     animationController: _animationController2,
                     playAnimation: false,
                     customAnimationType: CustomAnimationType.bottomToTop,
@@ -108,8 +112,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   print("Login Screen State Changed");
 
                   if (state is LoginSuccessState) {
-                    _animationController2.reverse().whenComplete(() =>
-                        _animationController1.reverse().whenComplete(() =>
+                    _animationController1.reverse().whenComplete(() =>
+                        _animationController2.reverse().whenComplete(() =>
                             Navigator.of(context).pushNamedAndRemoveUntil(
                                 Home.routeName,
                                 (Route<dynamic> route) => false)));

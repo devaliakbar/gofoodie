@@ -38,10 +38,10 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
     super.initState();
 
     _animationController1 =
-        AnimationController(duration: Duration(milliseconds: 700), vsync: this);
+        AnimationController(duration: Duration(milliseconds: 250), vsync: this);
 
     _animationController2 =
-        AnimationController(duration: Duration(milliseconds: 450), vsync: this);
+        AnimationController(duration: Duration(milliseconds: 500), vsync: this);
   }
 
   @override
@@ -72,6 +72,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
               ),
               CustomAnimation(
                 animationController: _animationController2,
+                elasticEffect: true,
                 customAnimationType: CustomAnimationType.bottomToTop,
                 widget: Form(
                   key: _formKey,
@@ -91,6 +92,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
                 builder: (context, state) {
                   return CustomAnimation(
                     animationController: _animationController2,
+                    elasticEffect: true,
                     customAnimationType: CustomAnimationType.bottomToTop,
                     widget: AuthBottomControls(
                       buttonText: AppString.signUp,
@@ -110,8 +112,8 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
                   print("SignUp Screen State Changed");
 
                   if (state is SignUpSuccessState) {
-                    _animationController2.reverse().whenComplete(() =>
-                        _animationController1.reverse().whenComplete(() =>
+                    _animationController1.reverse().whenComplete(() =>
+                        _animationController2.reverse().whenComplete(() =>
                             Navigator.of(context).pushNamedAndRemoveUntil(
                                 Home.routeName,
                                 (Route<dynamic> route) => false)));

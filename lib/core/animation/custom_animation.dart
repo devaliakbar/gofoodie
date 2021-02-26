@@ -7,6 +7,8 @@ enum CustomAnimationType { leftToRight, rightToLeft, topToBottom, bottomToTop }
 class CustomAnimation extends StatefulWidget {
   final Widget widget;
   final CustomAnimationType customAnimationType;
+  final bool opacityEnable;
+  final bool elasticEffect;
   final Duration animationDuration;
   final AnimationController animationController;
   final bool playAnimation;
@@ -16,6 +18,8 @@ class CustomAnimation extends StatefulWidget {
   CustomAnimation({
     @required this.widget,
     this.customAnimationType,
+    this.opacityEnable = false,
+    this.elasticEffect = false,
     this.animationDuration = const Duration(milliseconds: 450),
     this.animationController,
     this.playAnimation = true,
@@ -46,8 +50,9 @@ class _CustomAnimationState extends State<CustomAnimation>
           AnimationController(duration: widget.animationDuration, vsync: this);
     }
 
-    Animation _curve =
-        CurvedAnimation(parent: _controller, curve: Curves.elasticInOut);
+    Animation _curve = CurvedAnimation(
+        parent: _controller,
+        curve: widget.elasticEffect ? Curves.elasticInOut : Curves.linear);
 
     Animation _opacityCurve =
         CurvedAnimation(parent: _controller, curve: Curves.linear);
@@ -79,8 +84,11 @@ class _CustomAnimationState extends State<CustomAnimation>
       });
     } else {
       _offset = Tween(begin: offset, end: Offset(0, 0)).animate(_curve);
-      _opacityAnimation =
-          Tween<double>(begin: 0, end: 1).animate(_opacityCurve);
+
+      if (widget.opacityEnable) {
+        _opacityAnimation =
+            Tween<double>(begin: 0, end: 1).animate(_opacityCurve);
+      }
     }
 
     if (widget.playAnimation && !widget.showWidgetWithoutAnimation) {
