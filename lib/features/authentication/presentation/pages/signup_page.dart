@@ -38,7 +38,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
     super.initState();
 
     _animationController1 =
-        AnimationController(duration: Duration(milliseconds: 250), vsync: this);
+        AnimationController(duration: Duration(milliseconds: 400), vsync: this);
 
     _animationController2 =
         AnimationController(duration: Duration(milliseconds: 500), vsync: this);
