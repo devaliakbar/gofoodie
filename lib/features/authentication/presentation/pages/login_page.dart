@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
     super.initState();
 
     _animationController =
-        AnimationController(duration: Duration(milliseconds: 450), vsync: this);
+        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
   }
 
   @override
