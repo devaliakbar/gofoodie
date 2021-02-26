@@ -10,21 +10,21 @@ class AppRouter {
       case LoginPage.routeName:
         return PageTransition(
           child: LoginPage(),
-          type: PageTransitionType.rightToLeft,
+          type: PageTransitionType.fade,
           settings: settings,
         );
 
       case SignUpPage.routeName:
         return PageTransition(
           child: SignUpPage(),
-          type: PageTransitionType.rightToLeft,
+          type: PageTransitionType.fade,
           settings: settings,
         );
 
       case Home.routeName:
         return PageTransition(
           child: Home(),
-          type: PageTransitionType.rightToLeft,
+          type: PageTransitionType.fade,
           settings: settings,
         );
 

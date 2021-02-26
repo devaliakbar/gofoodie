@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gofoodie/core/custom_animation/custom_animation.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/services/size_config.dart';
@@ -18,13 +19,22 @@ class SignUpPage extends StatefulWidget {
   _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();
+
+  AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController =
+        AnimationController(duration: Duration(milliseconds: 450), vsync: this);
+  }
 
   @override
   void dispose() {
@@ -33,6 +43,8 @@ class _SignUpPageState extends State<SignUpPage> {
     emailController.dispose();
     passwordController.dispose();
     rePasswordController.dispose();
+
+    _animationController.dispose();
   }
 
   @override
@@ -44,30 +56,40 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Stack(
             children: [
               LoginFoodImage(),
-              Form(
-                key: _formKey,
-                child: SignUpForm(
-                  fullNameController: fullNameController,
-                  emailController: emailController,
-                  passwordController: passwordController,
-                  rePasswordController: rePasswordController,
-                  nameValidator: onValidateName,
-                  emailValidator: onValidateEmail,
-                  passwordValidator: onValidatePassword,
-                  rePasswordValidator: onValidateRePassword,
+              CustomAnimation(
+                animationController: _animationController,
+                customAnimationType: CustomAnimationType.bottomToTop,
+                widget: Form(
+                  key: _formKey,
+                  child: SignUpForm(
+                    fullNameController: fullNameController,
+                    emailController: emailController,
+                    passwordController: passwordController,
+                    rePasswordController: rePasswordController,
+                    nameValidator: onValidateName,
+                    emailValidator: onValidateEmail,
+                    passwordValidator: onValidatePassword,
+                    rePasswordValidator: onValidateRePassword,
+                  ),
                 ),
               ),
               BlocConsumer<SignUpBloc, SignUpState>(
                 builder: (context, state) {
-                  return AuthBottomControls(
-                    buttonText: AppString.signUp,
-                    onButtonClick: onSave,
-                    bottomText: AppString.alreadyHaveAnAccount,
-                    bottomClickableText: AppString.login,
-                    bottomOnClick: () {
-                      Navigator.pop(context);
-                    },
-                    isLoading: state is SignUpLoadingState,
+                  return CustomAnimation(
+                    animationController: _animationController,
+                    customAnimationType: CustomAnimationType.bottomToTop,
+                    widget: AuthBottomControls(
+                      buttonText: AppString.signUp,
+                      onButtonClick: onSave,
+                      bottomText: AppString.alreadyHaveAnAccount,
+                      bottomClickableText: AppString.login,
+                      bottomOnClick: () {
+                        _animationController
+                            .reverse()
+                            .whenComplete(() => Navigator.pop(context));
+                      },
+                      isLoading: state is SignUpLoadingState,
+                    ),
                   );
                 },
                 listener: (context, state) {

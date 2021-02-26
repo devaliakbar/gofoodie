@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gofoodie/core/custom_animation/custom_animation.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/services/size_config.dart';
@@ -19,17 +20,29 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController =
+        AnimationController(duration: Duration(milliseconds: 450), vsync: this);
+  }
 
   @override
   void dispose() {
     super.dispose();
     emailController.dispose();
     passwordController.dispose();
+
+    _animationController.dispose();
   }
 
   @override
@@ -40,27 +53,48 @@ class _LoginPageState extends State<LoginPage> {
           height: SizeConfig.heightWithoutSafeArea(100),
           child: Stack(
             children: [
-              LoginFoodImage(),
-              Form(
-                key: _formKey,
-                child: LoginForm(
-                  emailController: emailController,
-                  passwordController: passwordController,
-                  emailValidator: onValidateEmail,
-                  passwordValidator: onValidatePassword,
+              CustomAnimation(
+                animationDuration: Duration(milliseconds: 450),
+                widget: LoginFoodImage(),
+                customAnimationType: CustomAnimationType.topToBottom,
+                onAnimationComplete: () {
+                  _animationController.forward();
+                },
+              ),
+              CustomAnimation(
+                animationController: _animationController,
+                playAnimation: false,
+                customAnimationType: CustomAnimationType.bottomToTop,
+                widget: Form(
+                  key: _formKey,
+                  child: LoginForm(
+                    emailController: emailController,
+                    passwordController: passwordController,
+                    emailValidator: onValidateEmail,
+                    passwordValidator: onValidatePassword,
+                  ),
                 ),
               ),
               BlocConsumer<LoginBloc, LoginState>(
                 builder: (context, state) {
-                  return AuthBottomControls(
-                    buttonText: AppString.login,
-                    onButtonClick: onSave,
-                    bottomText: AppString.dontYouHaveAccount,
-                    bottomClickableText: AppString.signUp,
-                    bottomOnClick: () {
-                      Navigator.pushNamed(context, SignUpPage.routeName);
-                    },
-                    isLoading: state is LoginLoadingState,
+                  return CustomAnimation(
+                    animationController: _animationController,
+                    playAnimation: false,
+                    customAnimationType: CustomAnimationType.bottomToTop,
+                    widget: AuthBottomControls(
+                      buttonText: AppString.login,
+                      onButtonClick: onSave,
+                      bottomText: AppString.dontYouHaveAccount,
+                      bottomClickableText: AppString.signUp,
+                      bottomOnClick: () async {
+                        _animationController.reverse().whenComplete(() async {
+                          await Navigator.pushNamed(
+                              context, SignUpPage.routeName);
+                          _animationController.forward();
+                        });
+                      },
+                      isLoading: state is LoginLoadingState,
+                    ),
                   );
                 },
                 listener: (context, state) {
