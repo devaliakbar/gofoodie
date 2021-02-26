@@ -10,6 +10,7 @@ class CustomAnimation extends StatefulWidget {
   final Duration animationDuration;
   final AnimationController animationController;
   final bool playAnimation;
+  final bool showWidgetWithoutAnimation;
   final Function onAnimationComplete;
 
   CustomAnimation({
@@ -18,6 +19,7 @@ class CustomAnimation extends StatefulWidget {
     this.animationDuration = const Duration(milliseconds: 450),
     this.animationController,
     this.playAnimation = true,
+    this.showWidgetWithoutAnimation = false,
     this.onAnimationComplete,
   }) : assert(playAnimation || animationController != null);
 
@@ -63,11 +65,21 @@ class _CustomAnimationState extends State<CustomAnimation>
     } else if (widget.customAnimationType == CustomAnimationType.bottomToTop) {
       offset = Offset(0, 1);
     }
-    _offset = Tween(begin: offset, end: Offset(0, 0)).animate(_curve);
 
-    _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(_curve);
+    if (widget.showWidgetWithoutAnimation) {
+      _offset = Tween(begin: Offset(0, 0), end: Offset(0, 0)).animate(_curve);
 
-    if (widget.playAnimation) {
+      _controller.forward().whenComplete(() {
+        if (widget.showWidgetWithoutAnimation) {
+          _offset = Tween(begin: offset, end: Offset(0, 0)).animate(_curve);
+        }
+      });
+    } else {
+      _offset = Tween(begin: offset, end: Offset(0, 0)).animate(_curve);
+      _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(_curve);
+    }
+
+    if (widget.playAnimation && !widget.showWidgetWithoutAnimation) {
       _controller.forward();
     }
   }
@@ -79,10 +91,12 @@ class _CustomAnimationState extends State<CustomAnimation>
       builder: (BuildContext context, _) {
         return SlideTransition(
           position: _offset,
-          child: Opacity(
-            opacity: _opacityAnimation.value,
-            child: widget.widget,
-          ),
+          child: _opacityAnimation == null
+              ? widget.widget
+              : Opacity(
+                  opacity: _opacityAnimation.value,
+                  child: widget.widget,
+                ),
         );
       },
     );

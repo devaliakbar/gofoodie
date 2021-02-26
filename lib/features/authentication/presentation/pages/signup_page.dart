@@ -38,7 +38,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
     super.initState();
 
     _animationController1 =
-        AnimationController(duration: Duration(milliseconds: 0), vsync: this);
+        AnimationController(duration: Duration(milliseconds: 450), vsync: this);
 
     _animationController2 =
         AnimationController(duration: Duration(milliseconds: 300), vsync: this);
@@ -65,6 +65,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
           child: Stack(
             children: [
               CustomAnimation(
+                showWidgetWithoutAnimation: true,
                 widget: LoginFoodImage(),
                 animationController: _animationController1,
                 customAnimationType: CustomAnimationType.topToBottom,
@@ -109,10 +110,11 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
                   print("SignUp Screen State Changed");
 
                   if (state is SignUpSuccessState) {
-                    _animationController1.reverse();
                     _animationController2.reverse().whenComplete(() =>
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                            Home.routeName, (Route<dynamic> route) => false));
+                        _animationController1.reverse().whenComplete(() =>
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                                Home.routeName,
+                                (Route<dynamic> route) => false)));
                   } else if (state is SignUpErrorState) {
                     ShowToast(state.message);
                   }
