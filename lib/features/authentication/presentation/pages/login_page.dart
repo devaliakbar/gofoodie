@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
             children: [
               CustomAnimation(
                 animationController: _animationController1,
-                opacityEnable: true,
+                opacityEffect: true,
                 widget: LoginFoodImage(),
                 customAnimationType: CustomAnimationType.topToBottom,
                 onAnimationComplete: () {

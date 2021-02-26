@@ -7,7 +7,7 @@ enum CustomAnimationType { leftToRight, rightToLeft, topToBottom, bottomToTop }
 class CustomAnimation extends StatefulWidget {
   final Widget widget;
   final CustomAnimationType customAnimationType;
-  final bool opacityEnable;
+  final bool opacityEffect;
   final bool elasticEffect;
   final Duration animationDuration;
   final AnimationController animationController;
@@ -18,7 +18,7 @@ class CustomAnimation extends StatefulWidget {
   CustomAnimation({
     @required this.widget,
     this.customAnimationType,
-    this.opacityEnable = false,
+    this.opacityEffect = false,
     this.elasticEffect = false,
     this.animationDuration = const Duration(milliseconds: 450),
     this.animationController,
@@ -85,7 +85,7 @@ class _CustomAnimationState extends State<CustomAnimation>
     } else {
       _offset = Tween(begin: offset, end: Offset(0, 0)).animate(_curve);
 
-      if (widget.opacityEnable) {
+      if (widget.opacityEffect) {
         _opacityAnimation =
             Tween<double>(begin: 0, end: 1).animate(_opacityCurve);
       }
