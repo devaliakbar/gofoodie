@@ -112,8 +112,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   print("Login Screen State Changed");
 
                   if (state is LoginSuccessState) {
-                    _animationController1.reverse().whenComplete(() =>
-                        _animationController2.reverse().whenComplete(() =>
+                    _animationController2.reverse().whenComplete(() =>
+                        _animationController1.reverse().whenComplete(() =>
                             Navigator.of(context).pushNamedAndRemoveUntil(
                                 Home.routeName,
                                 (Route<dynamic> route) => false)));

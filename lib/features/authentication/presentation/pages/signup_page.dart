@@ -112,8 +112,8 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
                   print("SignUp Screen State Changed");
 
                   if (state is SignUpSuccessState) {
-                    _animationController1.reverse().whenComplete(() =>
-                        _animationController2.reverse().whenComplete(() =>
+                    _animationController2.reverse().whenComplete(() =>
+                        _animationController1.reverse().whenComplete(() =>
                             Navigator.of(context).pushNamedAndRemoveUntil(
                                 Home.routeName,
                                 (Route<dynamic> route) => false)));
