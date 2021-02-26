@@ -27,12 +27,17 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();
 
-  AnimationController _animationController;
+  AnimationController _animationController1;
+  AnimationController _animationController2;
 
   @override
   void initState() {
     super.initState();
-    _animationController =
+
+    _animationController1 =
+        AnimationController(duration: Duration(milliseconds: 0), vsync: this);
+
+    _animationController2 =
         AnimationController(duration: Duration(milliseconds: 300), vsync: this);
   }
 
@@ -44,7 +49,8 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
     passwordController.dispose();
     rePasswordController.dispose();
 
-    _animationController.dispose();
+    _animationController1.dispose();
+    _animationController2.dispose();
   }
 
   @override
@@ -55,9 +61,13 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
           height: SizeConfig.heightWithoutSafeArea(100),
           child: Stack(
             children: [
-              LoginFoodImage(),
               CustomAnimation(
-                animationController: _animationController,
+                widget: LoginFoodImage(),
+                animationController: _animationController1,
+                customAnimationType: CustomAnimationType.topToBottom,
+              ),
+              CustomAnimation(
+                animationController: _animationController2,
                 customAnimationType: CustomAnimationType.bottomToTop,
                 widget: Form(
                   key: _formKey,
@@ -76,7 +86,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
               BlocConsumer<SignUpBloc, SignUpState>(
                 builder: (context, state) {
                   return CustomAnimation(
-                    animationController: _animationController,
+                    animationController: _animationController2,
                     customAnimationType: CustomAnimationType.bottomToTop,
                     widget: AuthBottomControls(
                       buttonText: AppString.signUp,
@@ -84,7 +94,7 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
                       bottomText: AppString.alreadyHaveAnAccount,
                       bottomClickableText: AppString.login,
                       bottomOnClick: () {
-                        _animationController
+                        _animationController2
                             .reverse()
                             .whenComplete(() => Navigator.pop(context));
                       },
@@ -96,8 +106,10 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
                   print("SignUp Screen State Changed");
 
                   if (state is SignUpSuccessState) {
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        Home.routeName, (Route<dynamic> route) => false);
+                    _animationController1.reverse();
+                    _animationController2.reverse().whenComplete(() =>
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            Home.routeName, (Route<dynamic> route) => false));
                   } else if (state is SignUpErrorState) {
                     ShowToast(state.message);
                   }
