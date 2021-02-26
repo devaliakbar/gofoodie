@@ -26,13 +26,17 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  AnimationController _animationController;
+  AnimationController _animationController1;
+  AnimationController _animationController2;
 
   @override
   void initState() {
     super.initState();
 
-    _animationController =
+    _animationController1 =
+        AnimationController(duration: Duration(milliseconds: 450), vsync: this);
+
+    _animationController2 =
         AnimationController(duration: Duration(milliseconds: 300), vsync: this);
   }
 
@@ -42,7 +46,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
     emailController.dispose();
     passwordController.dispose();
 
-    _animationController.dispose();
+    _animationController2.dispose();
   }
 
   @override
@@ -54,14 +58,15 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
           child: Stack(
             children: [
               CustomAnimation(
+                animationController: _animationController1,
                 widget: LoginFoodImage(),
                 customAnimationType: CustomAnimationType.topToBottom,
                 onAnimationComplete: () {
-                  _animationController.forward();
+                  _animationController2.forward();
                 },
               ),
               CustomAnimation(
-                animationController: _animationController,
+                animationController: _animationController2,
                 playAnimation: false,
                 customAnimationType: CustomAnimationType.bottomToTop,
                 widget: Form(
@@ -77,7 +82,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
               BlocConsumer<LoginBloc, LoginState>(
                 builder: (context, state) {
                   return CustomAnimation(
-                    animationController: _animationController,
+                    animationController: _animationController2,
                     playAnimation: false,
                     customAnimationType: CustomAnimationType.bottomToTop,
                     widget: AuthBottomControls(
@@ -86,10 +91,10 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       bottomText: AppString.dontYouHaveAccount,
                       bottomClickableText: AppString.signUp,
                       bottomOnClick: () async {
-                        _animationController.reverse().whenComplete(() async {
+                        _animationController2.reverse().whenComplete(() async {
                           await Navigator.pushNamed(
                               context, SignUpPage.routeName);
-                          _animationController.forward();
+                          _animationController2.forward();
                         });
                       },
                       isLoading: state is LoginLoadingState,
@@ -100,8 +105,11 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                   print("Login Screen State Changed");
 
                   if (state is LoginSuccessState) {
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        Home.routeName, (Route<dynamic> route) => false);
+                    _animationController2.reverse().whenComplete(() =>
+                        _animationController1.reverse().whenComplete(() =>
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                                Home.routeName,
+                                (Route<dynamic> route) => false)));
                   } else if (state is LoginErrorState) {
                     ShowToast(state.message);
                   }
