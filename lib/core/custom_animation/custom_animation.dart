@@ -6,18 +6,16 @@ enum CustomAnimationType { leftToRight, rightToLeft, topToBottom, bottomToTop }
 
 class CustomAnimation extends StatefulWidget {
   final Widget widget;
-  final Duration animationDuration;
   final CustomAnimationType customAnimationType;
-  final Curve curve;
+  final Duration animationDuration;
   final AnimationController animationController;
   final bool playAnimation;
   final Function onAnimationComplete;
 
   CustomAnimation({
     @required this.widget,
-    this.animationDuration = const Duration(milliseconds: 500),
     this.customAnimationType,
-    this.curve = Curves.linear,
+    this.animationDuration = const Duration(milliseconds: 450),
     this.animationController,
     this.playAnimation = true,
     this.onAnimationComplete,
@@ -47,7 +45,7 @@ class _CustomAnimationState extends State<CustomAnimation>
           AnimationController(duration: widget.animationDuration, vsync: this);
     }
 
-    _curve = CurvedAnimation(parent: _controller, curve: widget.curve);
+    _curve = CurvedAnimation(parent: _controller, curve: Curves.linear);
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {

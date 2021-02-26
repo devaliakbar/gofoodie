@@ -54,7 +54,6 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
           child: Stack(
             children: [
               CustomAnimation(
-                animationDuration: Duration(milliseconds: 450),
                 widget: LoginFoodImage(),
                 customAnimationType: CustomAnimationType.topToBottom,
                 onAnimationComplete: () {
