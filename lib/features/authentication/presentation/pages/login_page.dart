@@ -26,7 +26,10 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  /// [_animationController1] is for TopImage and red background
   AnimationController _animationController1;
+
+  /// [_animationController2] is for Form,Button and bottom text
   AnimationController _animationController2;
 
   @override

@@ -27,7 +27,10 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();
 
+  /// [_animationController1] is for TopImage and red background
   AnimationController _animationController1;
+
+  /// [_animationController2] is for Form,Button and bottom text
   AnimationController _animationController2;
 
   @override
