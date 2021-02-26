@@ -35,12 +35,10 @@ class SplashScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           backgroundColor: Colors.white,
-          body: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(AppImages.splashScreen),
-                fit: BoxFit.cover,
-              ),
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: SizeConfig.width(6)),
+            child: Center(
+              child: Image.asset(AppImages.splashScreen),
             ),
           ),
         );

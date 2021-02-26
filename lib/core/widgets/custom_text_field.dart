@@ -29,6 +29,7 @@ class CustomTextField extends StatelessWidget {
         style: TextStyle(
             fontSize: FontSizes.fontSizeM, color: AppColors.lightBlack),
         decoration: new InputDecoration(
+          errorStyle: TextStyle(fontSize: FontSizes.fontSizeM),
           filled: true,
           isDense: true,
           fillColor: Colors.white,
