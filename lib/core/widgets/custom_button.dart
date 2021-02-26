@@ -25,15 +25,15 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(SizeConfig.width(50)),
         ),
-        color: AppColors.yellow,
-        disabledColor: AppColors.yellow,
+        color: AppColors.red,
+        disabledColor: AppColors.red,
         child: isLoading
             ? CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               )
             : NormalText(
                 title,
-                color: AppColors.lightBlack,
+                color: Colors.white,
                 boldText: true,
               ),
         onPressed: isLoading ? null : onClick,

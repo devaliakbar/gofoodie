@@ -31,6 +31,7 @@ class LoginForm extends StatelessWidget {
             AppString.login.toUpperCase(),
             boldText: true,
             size: FontSizes.fontSizeL,
+            color: Colors.white,
           ),
         ),
         Card(

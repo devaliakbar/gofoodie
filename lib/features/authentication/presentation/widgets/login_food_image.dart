@@ -9,7 +9,7 @@ class LoginFoodImage extends StatelessWidget {
       width: SizeConfig.width(100),
       height: SizeConfig.heightWithoutSafeArea(50),
       decoration: BoxDecoration(
-        color: AppColors.yellow,
+        color: AppColors.red,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(
             SizeConfig.width(35),
