@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gofoodie/core/custom_animation/custom_animation.dart';
+import 'package:gofoodie/core/animation/custom_animation.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/services/size_config.dart';
@@ -38,10 +38,10 @@ class _SignUpPageState extends State<SignUpPage> with TickerProviderStateMixin {
     super.initState();
 
     _animationController1 =
-        AnimationController(duration: Duration(milliseconds: 450), vsync: this);
+        AnimationController(duration: Duration(milliseconds: 700), vsync: this);
 
     _animationController2 =
-        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
+        AnimationController(duration: Duration(milliseconds: 450), vsync: this);
   }
 
   @override

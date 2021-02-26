@@ -34,7 +34,6 @@ class _CustomAnimationState extends State<CustomAnimation>
   Animation<Offset> _offset;
   Animation<double> _opacityAnimation;
   AnimationController _controller;
-  Animation _curve;
 
   @override
   void initState() {
@@ -47,7 +46,11 @@ class _CustomAnimationState extends State<CustomAnimation>
           AnimationController(duration: widget.animationDuration, vsync: this);
     }
 
-    _curve = CurvedAnimation(parent: _controller, curve: Curves.linear);
+    Animation _curve =
+        CurvedAnimation(parent: _controller, curve: Curves.elasticInOut);
+
+    Animation _opacityCurve =
+        CurvedAnimation(parent: _controller, curve: Curves.linear);
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -76,7 +79,8 @@ class _CustomAnimationState extends State<CustomAnimation>
       });
     } else {
       _offset = Tween(begin: offset, end: Offset(0, 0)).animate(_curve);
-      _opacityAnimation = Tween<double>(begin: 0, end: 1).animate(_curve);
+      _opacityAnimation =
+          Tween<double>(begin: 0, end: 1).animate(_opacityCurve);
     }
 
     if (widget.playAnimation && !widget.showWidgetWithoutAnimation) {
