@@ -25,6 +25,7 @@ dependencies:
   hive: ^1.4.4+1
   path_provider: ^1.6.27
   flutter_secure_storage: ^3.3.5
+  cached_network_image: ^2.5.0
 
 dev_dependencies:
   flutter_test:

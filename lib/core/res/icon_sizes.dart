@@ -20,4 +20,12 @@ class IconSizes {
   static double get iconSizeM {
     return SizeConfig.height(2.8);
   }
+
+  static double get iconSizeL {
+    return SizeConfig.height(3);
+  }
+
+  static double get iconSizeXL {
+    return SizeConfig.height(3.2);
+  }
 }
