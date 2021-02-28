@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gofoodie/core/services/local_storage/local_storage.dart';
-import 'package:gofoodie/core/widgets/custom_button.dart';
-import 'package:gofoodie/injection_container.dart';
+import 'package:gofoodie/features/home/presentation/widgets/home_appbar.dart';
+import 'package:gofoodie/features/home/presentation/widgets/home_header.dart';
 
 class Home extends StatelessWidget {
   static const String routeName = '/home';
@@ -9,12 +8,16 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: CustomButton(
-            onClick: () async {
-              await sl<LocalStorage>().clearAllLocalData();
-            },
-            title: "Logo Out"),
+      backgroundColor: Colors.white,
+      appBar: HomeAppbar(),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              HomeHeader(),
+            ],
+          ),
+        ),
       ),
     );
   }

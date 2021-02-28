@@ -1,6 +1,10 @@
 part of 'app_resources.dart';
 
 class FontSizes {
+  static double get fontSizeXS {
+    return SizeConfig.height(1.4);
+  }
+
   static double get fontSizeS {
     return SizeConfig.height(1.6);
   }
@@ -17,9 +21,9 @@ class FontSizes {
     return SizeConfig.height(2);
   }
 
-  // static double get fontSizeXL {
-  //   return SizeConfig.width(5);
-  // }
+  static double get fontSizeXL {
+    return SizeConfig.height(2.2);
+  }
 
   // static double get fontSizeXXL {
   //   return SizeConfig.width(6);
