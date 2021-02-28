@@ -15,5 +15,14 @@
   "field_empty": "Please enter this field",
   "no_connection": "Please check your network connection",
   "incorrect_credentials": "Your email or password is invalid",
-  "something_wrong": "Oops! Something went wrong!"
+  "something_wrong": "Oops! Something went wrong!",
+  "welcome_foodie": "Welcome foodies!",
+  "search": "Search",
+  "nearby_location": "Nearby Location",
+  "weekly_or_monthly_plan": "Weekly or Monthly Plan",
+  "healthy_plan": "Healthy Plan",
+  "go_foodie_kitchen": "Go Foodie Kitchen",
+  "available_offer_right_now": "Available Offer Right Now",
+  "browse_by_category": "Browse By Category",
+  "best_rated_restaurants": "Best Rated Restaurants"
 }

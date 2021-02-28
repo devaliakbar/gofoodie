@@ -60,4 +60,40 @@ class AppString {
   static String get somethingWrong {
     return tr("something_wrong");
   }
+
+  static String get welcomeFoodie {
+    return tr("welcome_foodie");
+  }
+
+  static String get search {
+    return tr("search");
+  }
+
+  static String get nearbyLocation {
+    return tr("nearby_location");
+  }
+
+  static String get weeklyOrMonthlyPlan {
+    return tr("weekly_or_monthly_plan");
+  }
+
+  static String get healthyPlan {
+    return tr("healthy_plan");
+  }
+
+  static String get goFoodieKitchen {
+    return tr("go_foodie_kitchen");
+  }
+
+  static String get availableOfferRightNow {
+    return tr("available_offer_right_now");
+  }
+
+  static String get browseByCategory {
+    return tr("browse_by_category");
+  }
+
+  static String get bestRatedRestaurants {
+    return tr("best_rated_restaurants");
+  }
 }

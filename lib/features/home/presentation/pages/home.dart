@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/features/home/presentation/widgets/best_restaurant.dart';
 
@@ -22,11 +23,11 @@ class Home extends StatelessWidget {
               SizedBox(
                 height: SizeConfig.height(4),
               ),
-              HomeListView(title: "Available Offer Right Now"),
+              HomeListView(title: AppString.availableOfferRightNow),
               SizedBox(
                 height: SizeConfig.height(3),
               ),
-              HomeListView(title: "Browse By Category"),
+              HomeListView(title: AppString.browseByCategory),
               SizedBox(
                 height: SizeConfig.height(3),
               ),

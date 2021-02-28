@@ -31,7 +31,7 @@ class HomeHeader extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 margin: EdgeInsets.only(bottom: 10),
                 child: NormalText(
-                  "Welcome foodies!",
+                  AppString.welcomeFoodie,
                   color: AppColors.black,
                   boldText: true,
                   size: FontSizes.fontSizeXL,
@@ -50,7 +50,7 @@ class HomeHeader extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     NormalText(
-                      "Search",
+                      AppString.search,
                       color: AppColors.black,
                     ),
                     Container(
@@ -80,7 +80,7 @@ class HomeHeader extends StatelessWidget {
                       size: IconSizes.iconSizeS,
                     ),
                     NormalText(
-                      "Nearby Location",
+                      AppString.nearbyLocation,
                       size: FontSizes.fontSizeS,
                     )
                   ],
@@ -99,7 +99,7 @@ class HomeHeader extends StatelessWidget {
                 Expanded(
                   child: HomeSpecialCard(
                     color: AppColors.orange,
-                    text: "Weekly or Monthly Plan",
+                    text: AppString.weeklyOrMonthlyPlan,
                     onClick: () {},
                   ),
                 ),
@@ -109,7 +109,7 @@ class HomeHeader extends StatelessWidget {
                 Expanded(
                   child: HomeSpecialCard(
                     color: AppColors.green,
-                    text: "Healthy Plan",
+                    text: AppString.healthyPlan,
                     onClick: () {},
                   ),
                 ),
@@ -119,7 +119,7 @@ class HomeHeader extends StatelessWidget {
                 Expanded(
                   child: HomeSpecialCard(
                     color: AppColors.lightBlue,
-                    text: "Go Foodie Kitchen",
+                    text: AppString.goFoodieKitchen,
                     onClick: () {},
                   ),
                 ),

@@ -16,7 +16,7 @@ class BestRestaurant extends StatelessWidget {
           ),
           alignment: Alignment.centerLeft,
           child: NormalText(
-            "Best Rated Restaurants",
+            AppString.bestRatedRestaurants,
             color: AppColors.black,
             boldText: true,
             size: FontSizes.fontSizeXL,
