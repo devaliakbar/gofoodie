@@ -14,7 +14,9 @@ import 'package:gofoodie/features/home/data/datasource/home_remote_data_source.d
 import 'package:gofoodie/features/home/data/repositories/home_repository.dart';
 import 'package:gofoodie/features/home/domain/repositories/home_repository.dart';
 import 'package:gofoodie/features/home/domain/usecases/get_home_data.dart';
+import 'package:gofoodie/features/home/domain/usecases/get_vendors.dart';
 import 'package:gofoodie/features/home/presentation/blocs/home/home_bloc.dart';
+import 'package:gofoodie/features/home/presentation/blocs/vendors/vendors_bloc.dart';
 import 'package:gofoodie/features/welcome/data/datasource/welcome_local_data_source.dart';
 import 'package:gofoodie/features/welcome/data/repositories/welcome_repository.dart';
 import 'package:gofoodie/features/welcome/domain/repositories/welcome_repository.dart';
@@ -78,8 +80,12 @@ Future<void> init() async {
   sl.registerFactory<HomeBloc>(
     () => HomeBloc(getHomeData: sl()),
   );
+  sl.registerFactory<VendorsBloc>(
+    () => VendorsBloc(getVendors: sl()),
+  );
   // Use cases
   sl.registerLazySingleton(() => GetHomeData(sl()));
+  sl.registerLazySingleton(() => GetVendors(sl()));
   // Repository
   sl.registerLazySingleton<HomeRepository>(
     () => HomeRepositoryImpl(homeRemoteDataSource: sl()),
