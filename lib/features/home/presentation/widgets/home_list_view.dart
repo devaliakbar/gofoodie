@@ -4,11 +4,14 @@ import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/image_from_network.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
+import 'package:gofoodie/features/home/domain/entities/home_category.dart';
 
 class HomeListView extends StatelessWidget {
   final String title;
 
-  HomeListView({@required this.title});
+  final List<HomeCategory> categories;
+
+  HomeListView({@required this.title, @required this.categories});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class HomeListView extends StatelessWidget {
           height: SizeConfig.width(25) + SizeConfig.height(4),
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 7,
+            itemCount: categories.length,
             itemBuilder: (BuildContext context, int index) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,13 +48,12 @@ class HomeListView extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: ImageFromNetwork(
-                        imageUrl:
-                            "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg",
+                        imageUrl: categories[index].imageUrl,
                       ),
                     ),
                   ),
                   NormalText(
-                    "Chalet Grill",
+                    categories[index].name,
                     size: FontSizes.fontSizeBSM,
                     color: AppColors.black,
                   )

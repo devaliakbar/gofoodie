@@ -4,8 +4,13 @@ import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/image_from_network.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
+import 'package:gofoodie/features/home/domain/entities/home_category.dart';
 
 class BestRestaurant extends StatelessWidget {
+  final List<HomeCategory> categories;
+
+  BestRestaurant({@required this.categories});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,7 +32,7 @@ class BestRestaurant extends StatelessWidget {
           height: SizeConfig.width(30) + SizeConfig.height(4),
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 7,
+            itemCount: categories.length,
             itemBuilder: (BuildContext context, int index) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,13 +46,12 @@ class BestRestaurant extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: ImageFromNetwork(
-                        imageUrl:
-                            "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg",
+                        imageUrl: categories[index].imageUrl,
                       ),
                     ),
                   ),
                   NormalText(
-                    "Chalet Grill",
+                    categories[index].name,
                     size: FontSizes.fontSizeBSM,
                     color: AppColors.black,
                   )

@@ -26,7 +26,25 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         "offeredRestaurants": [
           {
             "id": "1",
-            "name": "Joseph",
+            "name": "AA",
+            "imageUrl":
+                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
+          },
+          {
+            "id": "1",
+            "name": "AA",
+            "imageUrl":
+                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
+          },
+          {
+            "id": "1",
+            "name": "AA",
+            "imageUrl":
+                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
+          },
+          {
+            "id": "1",
+            "name": "AA",
             "imageUrl":
                 "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
           }
@@ -34,7 +52,25 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         "bestRestaurants": [
           {
             "id": "1",
-            "name": "Jabbar",
+            "name": "BB",
+            "imageUrl":
+                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
+          },
+          {
+            "id": "1",
+            "name": "AA",
+            "imageUrl":
+                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
+          },
+          {
+            "id": "1",
+            "name": "AA",
+            "imageUrl":
+                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
+          },
+          {
+            "id": "1",
+            "name": "AA",
             "imageUrl":
                 "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
           }
@@ -42,7 +78,25 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         "categories": [
           {
             "id": "1",
-            "name": "Annamkutty",
+            "name": "XX",
+            "imageUrl":
+                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
+          },
+          {
+            "id": "1",
+            "name": "AA",
+            "imageUrl":
+                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
+          },
+          {
+            "id": "1",
+            "name": "AA",
+            "imageUrl":
+                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
+          },
+          {
+            "id": "1",
+            "name": "AA",
             "imageUrl":
                 "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
           }

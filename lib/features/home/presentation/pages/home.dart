@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gofoodie/core/animation/custom_animation.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
+import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/loading_view.dart';
+import 'package:gofoodie/features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:gofoodie/features/home/presentation/widgets/best_restaurant.dart';
 
 import 'package:gofoodie/features/home/presentation/widgets/home_list_view.dart';
@@ -26,6 +29,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+
+    BlocProvider.of<HomeBloc>(context).add(
+      GetHomeDataEvent(),
+    );
 
     animationController =
         AnimationController(duration: Duration(milliseconds: 550), vsync: this);
@@ -65,31 +72,58 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 opacityEffect: true,
                 playAnimation: false,
                 customAnimationType: CustomAnimationType.bottomToTop,
-                widget: Container(
-                  height: SizeConfig.height(50),
-                  child: LoadingView(),
+                widget: BlocConsumer<HomeBloc, HomeState>(
+                  listener: (context, state) {
+                    print("Home Screen State Changed");
+
+                    if (state is HomeErrorState) {
+                      ShowToast(state.message);
+                    }
+                  },
+                  buildWhen: (previous, current) {
+                    if (current is HomeErrorState) {
+                      return false;
+                    }
+
+                    return true;
+                  },
+                  builder: (context, state) {
+                    if (state is HomeLoadedState) {
+                      return Column(
+                        children: [
+                          SizedBox(
+                            height: SizeConfig.height(3),
+                          ),
+                          HomeListView(
+                            title: AppString.availableOfferRightNow,
+                            categories: state.homeData.offeredRestaurants,
+                          ),
+                          SizedBox(
+                            height: SizeConfig.height(3),
+                          ),
+                          HomeListView(
+                            title: AppString.browseByCategory,
+                            categories: state.homeData.categories,
+                          ),
+                          SizedBox(
+                            height: SizeConfig.height(3),
+                          ),
+                          BestRestaurant(
+                            categories: state.homeData.bestRestaurants,
+                          ),
+                          SizedBox(
+                            height: SizeConfig.height(3),
+                          ),
+                        ],
+                      );
+                    }
+                    return Container(
+                      height: SizeConfig.height(50),
+                      child: LoadingView(),
+                    );
+                  },
                 ),
               ),
-
-              // Column(
-              //               children: [
-              //                 SizedBox(
-              //                   height: SizeConfig.height(3),
-              //                 ),
-              //                 HomeListView(title: AppString.availableOfferRightNow),
-              //                 SizedBox(
-              //                   height: SizeConfig.height(3),
-              //                 ),
-              //                 HomeListView(title: AppString.browseByCategory),
-              //                 SizedBox(
-              //                   height: SizeConfig.height(3),
-              //                 ),
-              //                 BestRestaurant(),
-              //                 SizedBox(
-              //                   height: SizeConfig.height(3),
-              //                 ),
-              //               ],
-              //             )
             ],
           ),
         ),
