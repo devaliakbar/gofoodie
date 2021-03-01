@@ -12,7 +12,7 @@ part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
-  PerformSignUp _performSignUp;
+  final PerformSignUp _performSignUp;
 
   SignUpBloc({@required PerformSignUp performSignUp})
       : assert(performSignUp != null),
@@ -37,7 +37,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
 
       yield result.fold(
         (failure) => SignUpErrorState(message: _mapFailureToMessage(failure)),
-        (trivia) => SignUpSuccessState(),
+        (success) => SignUpSuccessState(),
       );
     }
   }

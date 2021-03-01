@@ -12,7 +12,7 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  PerformLogin _performLogin;
+  final PerformLogin _performLogin;
 
   LoginBloc({@required PerformLogin performLogin})
       : assert(performLogin != null),
@@ -34,7 +34,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       yield result.fold(
         (failure) => LoginErrorState(message: _mapFailureToMessage(failure)),
-        (trivia) => LoginSuccessState(),
+        (success) => LoginSuccessState(),
       );
     }
   }

@@ -10,6 +10,11 @@ import 'package:gofoodie/features/authentication/domain/usecases/login.dart';
 import 'package:gofoodie/features/authentication/domain/usecases/sign_up.dart';
 import 'package:gofoodie/features/authentication/presentation/blocs/login/login_bloc.dart';
 import 'package:gofoodie/features/authentication/presentation/blocs/sign_up/sign_up_bloc.dart';
+import 'package:gofoodie/features/home/data/datasource/home_remote_data_source.dart';
+import 'package:gofoodie/features/home/data/repositories/home_repository.dart';
+import 'package:gofoodie/features/home/domain/repositories/home_repository.dart';
+import 'package:gofoodie/features/home/domain/usecases/get_home_data.dart';
+import 'package:gofoodie/features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:gofoodie/features/welcome/data/datasource/welcome_local_data_source.dart';
 import 'package:gofoodie/features/welcome/data/repositories/welcome_repository.dart';
 import 'package:gofoodie/features/welcome/domain/repositories/welcome_repository.dart';
@@ -65,5 +70,22 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<AuthenticationLocalDataSource>(
     () => AuthenticationLocalDataSourceImpl(dataStorage: sl()),
+  );
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 3 HOME
+  // Bloc
+  sl.registerFactory<HomeBloc>(
+    () => HomeBloc(getHomeData: sl()),
+  );
+  // Use cases
+  sl.registerLazySingleton(() => GetHomeData(sl()));
+  // Repository
+  sl.registerLazySingleton<HomeRepository>(
+    () => HomeRepositoryImpl(homeRemoteDataSource: sl()),
+  );
+  // Data sources
+  sl.registerLazySingleton<HomeRemoteDataSource>(
+    () => HomeRemoteDataSourceImpl(apiHelper: sl()),
   );
 }
