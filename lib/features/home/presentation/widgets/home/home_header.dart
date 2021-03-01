@@ -3,7 +3,7 @@ import 'package:gofoodie/core/animation/custom_animation.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
-import 'package:gofoodie/features/home/presentation/widgets/home_special_card.dart';
+import 'package:gofoodie/features/home/presentation/widgets/home/home_special_card.dart';
 
 class HomeHeader extends StatelessWidget {
   final AnimationController animationController;

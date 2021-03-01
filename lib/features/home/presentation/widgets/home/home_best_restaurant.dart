@@ -6,10 +6,10 @@ import 'package:gofoodie/core/widgets/image_from_network.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/home/domain/entities/home_category.dart';
 
-class BestRestaurant extends StatelessWidget {
+class HomeBestRestaurant extends StatelessWidget {
   final List<HomeCategory> categories;
 
-  BestRestaurant({@required this.categories});
+  HomeBestRestaurant({@required this.categories});
 
   @override
   Widget build(BuildContext context) {

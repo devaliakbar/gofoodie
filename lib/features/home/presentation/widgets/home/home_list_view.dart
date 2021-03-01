@@ -5,6 +5,7 @@ import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/image_from_network.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/home/domain/entities/home_category.dart';
+import 'package:gofoodie/features/home/presentation/pages/vendors.dart';
 
 class HomeListView extends StatelessWidget {
   final String title;
@@ -36,28 +37,33 @@ class HomeListView extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: categories.length,
             itemBuilder: (BuildContext context, int index) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                        bottom: SizeConfig.height(1),
-                        right: SizeConfig.height(1)),
-                    width: SizeConfig.width(25),
-                    height: SizeConfig.width(25),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: ImageFromNetwork(
-                        imageUrl: categories[index].imageUrl,
+              return InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, Vendors.routeName);
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                          bottom: SizeConfig.height(1),
+                          right: SizeConfig.height(1)),
+                      width: SizeConfig.width(25),
+                      height: SizeConfig.width(25),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: ImageFromNetwork(
+                          imageUrl: categories[index].imageUrl,
+                        ),
                       ),
                     ),
-                  ),
-                  NormalText(
-                    categories[index].name,
-                    size: FontSizes.fontSizeBSM,
-                    color: AppColors.black,
-                  )
-                ],
+                    NormalText(
+                      categories[index].name,
+                      size: FontSizes.fontSizeBSM,
+                      color: AppColors.black,
+                    )
+                  ],
+                ),
               );
             },
           ),

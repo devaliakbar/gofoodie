@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/features/authentication/presentation/pages/login_page.dart';
 import 'package:gofoodie/features/authentication/presentation/pages/signup_page.dart';
 import 'package:gofoodie/features/home/presentation/pages/home.dart';
+import 'package:gofoodie/features/home/presentation/pages/vendors.dart';
 import 'package:page_transition/page_transition.dart';
 
 class AppRouter {
@@ -25,6 +26,13 @@ class AppRouter {
         return PageTransition(
           child: Home(),
           type: PageTransitionType.fade,
+          settings: settings,
+        );
+
+      case Vendors.routeName:
+        return PageTransition(
+          child: Vendors(),
+          type: PageTransitionType.rightToLeft,
           settings: settings,
         );
 

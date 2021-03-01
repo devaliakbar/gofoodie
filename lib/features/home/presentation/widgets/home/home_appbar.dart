@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/core/animation/custom_animation.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 
-class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
+class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return CustomAnimation(
