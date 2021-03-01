@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:gofoodie/core/animation/custom_animation.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/home/presentation/widgets/home_special_card.dart';
 
 class HomeHeader extends StatelessWidget {
+  final AnimationController animationController;
+
+  HomeHeader({@required this.animationController});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          margin: EdgeInsets.only(bottom: SizeConfig.height(2.5)),
+          margin: EdgeInsets.only(bottom: SizeConfig.height(6)),
           padding: EdgeInsets.only(
               bottom: SizeConfig.width(15), left: 15, right: 15, top: 15),
           width: SizeConfig.width(100),
@@ -90,40 +95,46 @@ class HomeHeader extends StatelessWidget {
           ),
         ),
         Positioned(
-          bottom: 0,
-          child: Container(
-            width: SizeConfig.width(100),
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Row(
-              children: [
-                Expanded(
-                  child: HomeSpecialCard(
-                    color: AppColors.orange,
-                    text: AppString.weeklyOrMonthlyPlan,
-                    onClick: () {},
+          bottom: SizeConfig.height(2),
+          child: CustomAnimation(
+            playAnimation: false,
+            animationController: animationController,
+            customAnimationType: CustomAnimationType.leftToRight,
+            elasticEffect: true,
+            widget: Container(
+              width: SizeConfig.width(100),
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: HomeSpecialCard(
+                      color: AppColors.orange,
+                      text: AppString.weeklyOrMonthlyPlan,
+                      onClick: () {},
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: HomeSpecialCard(
-                    color: AppColors.green,
-                    text: AppString.healthyPlan,
-                    onClick: () {},
+                  SizedBox(
+                    width: 10,
                   ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: HomeSpecialCard(
-                    color: AppColors.lightBlue,
-                    text: AppString.goFoodieKitchen,
-                    onClick: () {},
+                  Expanded(
+                    child: HomeSpecialCard(
+                      color: AppColors.green,
+                      text: AppString.healthyPlan,
+                      onClick: () {},
+                    ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: HomeSpecialCard(
+                      color: AppColors.lightBlue,
+                      text: AppString.goFoodieKitchen,
+                      onClick: () {},
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         )
