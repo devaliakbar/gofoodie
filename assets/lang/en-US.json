@@ -30,5 +30,6 @@
   "browse_by_cat": "Browse By\nCategory",
   "apply": "Apply",
   "my_profile": "My Profile",
-  "logout": "Logout"
+  "logout": "Logout",
+  "please_login_again": "Please Login Again"
 }

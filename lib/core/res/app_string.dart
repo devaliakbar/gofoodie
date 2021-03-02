@@ -120,4 +120,8 @@ class AppString {
   static String get logout {
     return tr("logout");
   }
+
+  static String get pleaseLoginAgain {
+    return tr("please_login_again");
+  }
 }

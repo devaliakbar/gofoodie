@@ -1,8 +1,14 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:gofoodie/core/error/exceptions.dart';
+import 'package:gofoodie/core/services/local_storage/ls_user.dart';
 
 class ApiHelper {
+  final LSUser user;
+
+  ApiHelper({@required this.user});
+
   static const String _BASE_SERVER_URL = "https://gofoodie.ae/api/";
 
   Future<bool> isNetworkConnected() async {
@@ -17,9 +23,9 @@ class ApiHelper {
     };
 
     if (withToken) {
-      String token = "";
+      String token = await user.getToken();
       if (token == null) {
-        return null;
+        throw AuthenticationException();
       }
       header['Authorization'] = "Bearer $token";
     }
