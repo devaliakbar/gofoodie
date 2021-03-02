@@ -33,7 +33,7 @@ class ProfileSettingsField extends StatelessWidget {
               children: [
                 NormalText(
                   title,
-                  color: AppColors.black,
+                  color: AppColors.blue,
                   size: FontSizes.fontSizeXS,
                 ),
                 NormalText(
@@ -57,7 +57,7 @@ class ProfileSettingsField extends StatelessWidget {
               ),
               child: Icon(
                 Icons.edit_outlined,
-                color: AppColors.blue,
+                color: AppColors.red,
                 size: IconSizes.iconSizeM,
               ),
             ),

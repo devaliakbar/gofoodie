@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/settings/presentation/widgets/profile_appbar.dart';
+import 'package:gofoodie/features/settings/presentation/widgets/profile_edit_dialogue_body/email_edit_dialogue.dart';
+import 'package:gofoodie/features/settings/presentation/widgets/profile_edit_dialogue_body/full_name_edit_dialogue.dart';
+import 'package:gofoodie/features/settings/presentation/widgets/profile_edit_dialogue_body/password_edit_dialogue.dart';
 import 'package:gofoodie/features/settings/presentation/widgets/profile_settings_field.dart';
 
 class Profile extends StatelessWidget {
@@ -31,7 +34,12 @@ class Profile extends StatelessWidget {
                 ProfileSettingsField(
                   title: "Full Name",
                   value: "Ali Akbar",
-                  onEditClick: () {},
+                  onEditClick: () {
+                    showDialog(
+                      context: context,
+                      child: FullNameEditDialogue(),
+                    );
+                  },
                 ),
                 SizedBox(
                   height: 15,
@@ -39,7 +47,12 @@ class Profile extends StatelessWidget {
                 ProfileSettingsField(
                   title: "Email",
                   value: "email@email.com",
-                  onEditClick: () {},
+                  onEditClick: () {
+                    showDialog(
+                      context: context,
+                      child: EmailEditDialogue(),
+                    );
+                  },
                 ),
                 SizedBox(
                   height: 15,
@@ -47,7 +60,12 @@ class Profile extends StatelessWidget {
                 ProfileSettingsField(
                   title: "Password",
                   value: "*********",
-                  onEditClick: () {},
+                  onEditClick: () {
+                    showDialog(
+                      context: context,
+                      child: PasswordEditDialogue(),
+                    );
+                  },
                 )
               ],
             ),

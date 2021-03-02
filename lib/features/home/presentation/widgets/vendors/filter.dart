@@ -121,6 +121,7 @@ class VendorsFilter extends StatelessWidget {
                               child: Icon(
                                 Icons.close,
                                 color: AppColors.lightBlack,
+                                size: IconSizes.iconSizeM,
                               ),
                             ),
                           ),
