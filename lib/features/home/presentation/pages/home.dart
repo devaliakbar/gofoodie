@@ -7,6 +7,7 @@ import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/loading_view.dart';
 import 'package:gofoodie/features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:gofoodie/features/home/presentation/widgets/home/home_best_restaurant.dart';
+import 'package:gofoodie/features/home/presentation/widgets/home/home_drawer.dart';
 
 import 'package:gofoodie/features/home/presentation/widgets/home/home_list_view.dart';
 import 'package:gofoodie/features/home/presentation/widgets/home/home_appbar.dart';
@@ -52,6 +53,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: HomeAppBar(),
+      endDrawer: HomeDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

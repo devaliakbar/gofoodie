@@ -13,6 +13,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: AppColors.lightGrey,
         elevation: 0,
         centerTitle: false,
+        leadingWidth: 0,
+        leading: Container(),
         title: Container(
           height: AppBar().preferredSize.height - 7,
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -34,7 +36,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Scaffold.of(context).openEndDrawer();
+                  },
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                     decoration: BoxDecoration(
