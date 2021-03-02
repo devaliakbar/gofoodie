@@ -24,5 +24,11 @@
   "go_foodie_kitchen": "Go Foodie\nKitchen",
   "available_offer_right_now": "Available Offer Right Now",
   "browse_by_category": "Browse By Category",
-  "best_rated_restaurants": "Best Rated Restaurants"
+  "best_rated_restaurants": "Best Rated Restaurants",
+  "vendors": "Vendors",
+  "select_location": "Select\nLocation",
+  "browse_by_cat": "Browse By\nCategory",
+  "apply": "Apply",
+  "my_profile": "My Profile",
+  "logout": "Logout"
 }

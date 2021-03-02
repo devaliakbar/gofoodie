@@ -37,7 +37,7 @@ class VendorsFilter extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  NormalText("Browse By\nCategory"),
+                                  NormalText(AppString.browseByCat),
                                   SizedBox(
                                     height: 15,
                                   ),
@@ -77,7 +77,7 @@ class VendorsFilter extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  NormalText("Select\nLocation"),
+                                  NormalText(AppString.selectLocation),
                                   SizedBox(
                                     height: 15,
                                   ),
@@ -130,7 +130,7 @@ class VendorsFilter extends StatelessWidget {
                   ),
                   CustomButton(
                     onClick: () {},
-                    title: "Apply",
+                    title: AppString.apply,
                     width: double.infinity,
                   )
                 ],

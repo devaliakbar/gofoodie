@@ -12,7 +12,7 @@ class VendorsAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: false,
       iconTheme: IconThemeData(color: AppColors.black),
       title: NormalText(
-        "Vendors",
+        AppString.vendors,
         color: AppColors.black,
         boldText: true,
       ),

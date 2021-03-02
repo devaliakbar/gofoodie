@@ -14,7 +14,7 @@ class Vendors extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<VendorsBloc>(context).add(
-      GetVendorsEvent(query: "Jso"),
+      GetVendorsEvent(query: "todo"),
     );
 
     return Scaffold(

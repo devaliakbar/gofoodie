@@ -96,4 +96,28 @@ class AppString {
   static String get bestRatedRestaurants {
     return tr("best_rated_restaurants");
   }
+
+  static String get vendors {
+    return tr("vendors");
+  }
+
+  static String get selectLocation {
+    return tr("select_location");
+  }
+
+  static String get browseByCat {
+    return tr("browse_by_cat");
+  }
+
+  static String get apply {
+    return tr("apply");
+  }
+
+  static String get myProfile {
+    return tr("my_profile");
+  }
+
+  static String get logout {
+    return tr("logout");
+  }
 }

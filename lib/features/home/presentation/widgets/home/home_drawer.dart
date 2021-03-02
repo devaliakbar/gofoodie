@@ -43,7 +43,7 @@ class HomeDrawer extends StatelessWidget {
                             width: 15,
                           ),
                           NormalText(
-                            "My Profile",
+                            AppString.myProfile,
                           )
                         ],
                       ),
@@ -71,7 +71,7 @@ class HomeDrawer extends StatelessWidget {
                       width: 15,
                     ),
                     NormalText(
-                      "Logout",
+                      AppString.logout,
                       color: AppColors.black,
                       boldText: true,
                     )
