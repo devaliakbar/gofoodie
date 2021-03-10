@@ -34,8 +34,6 @@ class SettingsRemoteDataSourceImpl extends SettingsRemoteDataSource {
       } else {
         throw UnExpectedException();
       }
-    } catch (e) {
-      throw UnExpectedException();
     }
   }
 }
