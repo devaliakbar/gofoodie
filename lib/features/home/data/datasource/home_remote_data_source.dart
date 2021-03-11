@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/error/exceptions.dart';
 import 'package:gofoodie/core/services/network/api_helper.dart';
@@ -23,94 +24,12 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
     }
 
     try {
-      await Future.delayed(Duration(seconds: 2));
-      return HomeModel.fromJson({
-        "offeredRestaurants": [
-          {
-            "query": "offerable?city_id=2",
-            "name": "AA",
-            "imageUrl":
-                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
-          },
-          {
-            "query": "offerable?city_id=2",
-            "name": "AA",
-            "imageUrl":
-                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
-          },
-          {
-            "query": "offerable?city_id=2",
-            "name": "AA",
-            "imageUrl":
-                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
-          },
-          {
-            "query": "1",
-            "name": "AA",
-            "imageUrl":
-                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
-          }
-        ],
-        "bestRestaurants": [
-          {
-            "query": "1",
-            "name": "BB",
-            "imageUrl":
-                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
-          },
-          {
-            "query": "1",
-            "name": "AA",
-            "imageUrl":
-                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
-          },
-          {
-            "query": "1",
-            "name": "AA",
-            "imageUrl":
-                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
-          },
-          {
-            "query": "1",
-            "name": "AA",
-            "imageUrl":
-                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
-          }
-        ],
-        "categories": [
-          {
-            "query": "1",
-            "name": "XX",
-            "imageUrl":
-                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
-          },
-          {
-            "query": "1",
-            "name": "AA",
-            "imageUrl":
-                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
-          },
-          {
-            "query": "1",
-            "name": "AA",
-            "imageUrl":
-                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
-          },
-          {
-            "query": "1",
-            "name": "AA",
-            "imageUrl":
-                "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
-          }
-        ]
-      });
-      //TODO
-      // Response response = await Dio().get(
-      //   apiHelper.appendPath(path: "lose"),
-      //   options: await apiHelper.getHeaders(withToken: false),
-      // );
+      Response response = await Dio().get(
+        apiHelper.appendPath(path: "landingpage"),
+        options: await apiHelper.getHeaders(withToken: false),
+      );
 
-      // return HomeModel.fromJson(await response.data);
+      return HomeModel.fromJson(await response.data);
     } catch (e) {
       throw UnExpectedException();
     }

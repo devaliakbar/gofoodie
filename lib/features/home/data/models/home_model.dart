@@ -15,20 +15,21 @@ class HomeModel extends HomeData {
   factory HomeModel.fromJson(Map<String, dynamic> json) {
     List<HomeCategoryModel> mOfferedRestaurants = [];
 
-    json['offeredRestaurants'].forEach((element) {
-      mOfferedRestaurants.add(HomeCategoryModel.fromJson(element));
+    json['data']['offer_resturents'].forEach((element) {
+      mOfferedRestaurants
+          .add(HomeCategoryModel.fromOfferResturentsJson(element));
     });
 
     List<HomeCategoryModel> mBestRestaurants = [];
 
-    json['bestRestaurants'].forEach((element) {
-      mBestRestaurants.add(HomeCategoryModel.fromJson(element));
+    json['data']['toprated'].forEach((element) {
+      mBestRestaurants.add(HomeCategoryModel.fromTopRatedJson(element));
     });
 
     List<HomeCategoryModel> mCategories = [];
 
-    json['categories'].forEach((element) {
-      mCategories.add(HomeCategoryModel.fromJson(element));
+    json['data']['categories'].forEach((element) {
+      mCategories.add(HomeCategoryModel.fromCategoryJson(element));
     });
 
     return HomeModel(

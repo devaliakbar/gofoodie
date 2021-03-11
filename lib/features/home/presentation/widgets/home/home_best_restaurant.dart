@@ -50,10 +50,14 @@ class HomeBestRestaurant extends StatelessWidget {
                       ),
                     ),
                   ),
-                  NormalText(
-                    categories[index].name,
-                    size: FontSizes.fontSizeBSM,
-                    color: AppColors.black,
+                  Container(
+                    width: SizeConfig.width(25),
+                    child: NormalText(
+                      categories[index].name,
+                      size: FontSizes.fontSizeBSM,
+                      color: AppColors.black,
+                      truncate: true,
+                    ),
                   )
                 ],
               );
