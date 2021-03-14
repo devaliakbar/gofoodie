@@ -14,4 +14,6 @@ class AppColors {
   static final Color orange = HexColor("#F68E16");
 
   static final Color green = HexColor("#14BA30");
+
+  static final Color yellow = HexColor("#E79213");
 }

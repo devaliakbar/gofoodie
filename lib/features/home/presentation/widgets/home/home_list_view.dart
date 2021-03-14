@@ -6,6 +6,7 @@ import 'package:gofoodie/core/widgets/image_from_network.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/home/domain/entities/home_category.dart';
 import 'package:gofoodie/features/home/presentation/pages/vendors.dart';
+import 'package:gofoodie/features/vendor/presentation/pages/vendor_detail.dart';
 
 class HomeListView extends StatelessWidget {
   final String title;
@@ -43,6 +44,8 @@ class HomeListView extends StatelessWidget {
               return InkWell(
                 onTap: () {
                   if (isRestaurant) {
+                    Navigator.pushNamed(context, VendorDetail.routeName,
+                        arguments: categories[index].id);
                   } else {
                     Navigator.pushNamed(context, Vendors.routeName,
                         arguments: categories[index].id);

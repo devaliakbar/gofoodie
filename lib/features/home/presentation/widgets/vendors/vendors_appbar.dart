@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
-import 'package:gofoodie/features/home/presentation/widgets/vendors/filter.dart';
+import 'package:gofoodie/features/home/presentation/widgets/vendors/vendors_filter.dart';
 
 class VendorsAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override

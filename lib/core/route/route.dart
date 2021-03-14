@@ -4,6 +4,7 @@ import 'package:gofoodie/features/authentication/presentation/pages/signup_page.
 import 'package:gofoodie/features/home/presentation/pages/home.dart';
 import 'package:gofoodie/features/home/presentation/pages/vendors.dart';
 import 'package:gofoodie/features/settings/presentation/pages/profile.dart';
+import 'package:gofoodie/features/vendor/presentation/pages/vendor_detail.dart';
 import 'package:page_transition/page_transition.dart';
 
 class AppRouter {
@@ -42,6 +43,15 @@ class AppRouter {
       case Profile.routeName:
         return PageTransition(
           child: Profile(),
+          type: PageTransitionType.rightToLeft,
+          settings: settings,
+        );
+
+      case VendorDetail.routeName:
+        return PageTransition(
+          child: VendorDetail(
+            vendorId: settings.arguments,
+          ),
           type: PageTransitionType.rightToLeft,
           settings: settings,
         );
