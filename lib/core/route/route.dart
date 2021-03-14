@@ -32,7 +32,9 @@ class AppRouter {
 
       case Vendors.routeName:
         return PageTransition(
-          child: Vendors(),
+          child: Vendors(
+            categoryId: settings.arguments,
+          ),
           type: PageTransitionType.rightToLeft,
           settings: settings,
         );

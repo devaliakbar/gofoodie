@@ -11,6 +11,9 @@ import 'package:gofoodie/features/home/presentation/widgets/vendors/vendors_appb
 class Vendors extends StatelessWidget {
   static const String routeName = '/vendors';
 
+  final int categoryId;
+  Vendors({@required this.categoryId});
+
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<VendorsBloc>(context).add(

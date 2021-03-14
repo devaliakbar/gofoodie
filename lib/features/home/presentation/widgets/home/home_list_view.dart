@@ -9,10 +9,13 @@ import 'package:gofoodie/features/home/presentation/pages/vendors.dart';
 
 class HomeListView extends StatelessWidget {
   final String title;
-
   final List<HomeCategory> categories;
+  final bool isRestaurant;
 
-  HomeListView({@required this.title, @required this.categories});
+  HomeListView(
+      {@required this.title,
+      @required this.categories,
+      this.isRestaurant = false});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,11 @@ class HomeListView extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, Vendors.routeName);
+                  if (isRestaurant) {
+                  } else {
+                    Navigator.pushNamed(context, Vendors.routeName,
+                        arguments: categories[index].id);
+                  }
                 },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

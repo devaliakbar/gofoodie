@@ -99,6 +99,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           HomeListView(
                             title: AppString.availableOfferRightNow,
                             categories: state.homeData.offeredRestaurants,
+                            isRestaurant: true,
                           ),
                           SizedBox(
                             height: SizeConfig.height(3),
