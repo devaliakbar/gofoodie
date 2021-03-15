@@ -62,7 +62,9 @@ class Profile extends StatelessWidget {
                         onEditClick: () {
                           showDialog(
                             context: context,
-                            child: FullNameEditDialogue(),
+                            child: FullNameEditDialogue(
+                              profile: state.profileData,
+                            ),
                           );
                         },
                       ),
@@ -75,7 +77,9 @@ class Profile extends StatelessWidget {
                         onEditClick: () {
                           showDialog(
                             context: context,
-                            child: EmailEditDialogue(),
+                            child: EmailEditDialogue(
+                              profile: state.profileData,
+                            ),
                           );
                         },
                       ),
@@ -88,7 +92,9 @@ class Profile extends StatelessWidget {
                         onEditClick: () {
                           showDialog(
                             context: context,
-                            child: PasswordEditDialogue(),
+                            child: PasswordEditDialogue(
+                              profile: state.profileData,
+                            ),
                           );
                         },
                       )
