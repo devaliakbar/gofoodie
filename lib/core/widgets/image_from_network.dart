@@ -9,10 +9,9 @@ class ImageFromNetwork extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (imageUrl == null) {
-      return Icon(
-        Icons.broken_image_outlined,
-        size: IconSizes.iconSizeXL,
-        color: Colors.black.withOpacity(0.7),
+      return Image.asset(
+        AppImages.noImage,
+        fit: fit,
       );
     }
     return CachedNetworkImage(
@@ -21,10 +20,9 @@ class ImageFromNetwork extends StatelessWidget {
       placeholder: (context, url) => Center(
         child: CircularProgressIndicator(),
       ),
-      errorWidget: (context, url, error) => Icon(
-        Icons.broken_image_outlined,
-        size: IconSizes.iconSizeXL,
-        color: Colors.black.withOpacity(0.7),
+      errorWidget: (context, url, error) => Image.asset(
+        AppImages.noImage,
+        fit: fit,
       ),
     );
   }

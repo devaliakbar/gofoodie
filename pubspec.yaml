@@ -41,6 +41,7 @@ flutter:
     - assets/images/icon.jpg
     - assets/images/loading.gif
     - assets/images/vendor_backgound.png
+    - assets/images/no_image.jpg
 
   fonts:
     - family: Poppins
