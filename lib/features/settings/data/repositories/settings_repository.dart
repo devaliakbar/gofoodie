@@ -23,4 +23,19 @@ class SettingsRepositoryImpl extends SettingsRepository {
       return Left(UnExpectedFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> changeName(
+      {String fullName, String email}) async {
+    try {
+      return Right(
+          await remoteDataSource.changeName(fullName: fullName, email: email));
+    } on NetworkNotAvaliableException {
+      return Left(NetworkNotAvaliableFailure());
+    } on AuthenticationException {
+      return Left(AuthenticationFailure());
+    } catch (e) {
+      return Left(UnExpectedFailure());
+    }
+  }
 }

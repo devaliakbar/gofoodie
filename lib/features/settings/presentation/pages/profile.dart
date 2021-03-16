@@ -35,7 +35,9 @@ class Profile extends StatelessWidget {
               }
             },
             buildWhen: (previous, current) {
-              if (current is ProfileErrorState) {
+              if (current is ProfileErrorState ||
+                  current is ProfileSavingState ||
+                  current is ProfileSavingErrorState) {
                 return false;
               }
 

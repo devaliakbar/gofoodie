@@ -8,6 +8,7 @@ import 'package:gofoodie/core/error/failures.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/usecases/usecase.dart';
 import 'package:gofoodie/features/settings/domain/entities/profile_data.dart';
+import 'package:gofoodie/features/settings/domain/usecases/change_name.dart';
 import 'package:gofoodie/features/settings/domain/usecases/get_profile_detail.dart';
 
 part 'profile_event.dart';
@@ -15,10 +16,15 @@ part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final GetProfileDetail _getProfileDetail;
+  final ChangeName _changeName;
 
-  ProfileBloc({@required GetProfileDetail getProfileDetail})
+  ProfileBloc(
+      {@required GetProfileDetail getProfileDetail,
+      @required ChangeName changeName})
       : assert(getProfileDetail != null),
+        assert(changeName != null),
         _getProfileDetail = getProfileDetail,
+        _changeName = changeName,
         super(ProfileInitialState());
 
   @override
@@ -32,6 +38,17 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
       yield result.fold(
         (failure) => ProfileErrorState(message: _mapFailureToMessage(failure)),
+        (profileData) => ProfileLoadedState(profileData: profileData),
+      );
+    } else if (event is ChangeNameEvent) {
+      yield ProfileSavingState();
+
+      final Either result = await _changeName(
+          Params(fullName: event.fullName, email: event.email));
+
+      yield result.fold(
+        (failure) =>
+            ProfileSavingErrorState(message: _mapFailureToMessage(failure)),
         (profileData) => ProfileLoadedState(profileData: profileData),
       );
     }

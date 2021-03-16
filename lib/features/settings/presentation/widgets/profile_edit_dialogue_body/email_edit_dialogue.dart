@@ -7,9 +7,28 @@ import 'package:gofoodie/core/widgets/custom_text_field.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/settings/domain/entities/profile_data.dart';
 
-class EmailEditDialogue extends StatelessWidget {
+class EmailEditDialogue extends StatefulWidget {
   final ProfileData profile;
   EmailEditDialogue({@required this.profile});
+
+  @override
+  _EmailEditDialogueState createState() => _EmailEditDialogueState();
+}
+
+class _EmailEditDialogueState extends State<EmailEditDialogue> {
+  final TextEditingController emailController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    emailController.text = widget.profile.email;
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +64,7 @@ class EmailEditDialogue extends StatelessWidget {
                     CustomTextField(
                       label: "New Email",
                       inputType: TextInputType.emailAddress,
+                      controller: emailController,
                     ),
                     SizedBox(
                       height: 15,

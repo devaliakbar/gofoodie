@@ -20,6 +20,7 @@ import 'package:gofoodie/features/home/presentation/blocs/vendors/vendors_bloc.d
 import 'package:gofoodie/features/settings/data/datasource/settings_remote_data_source.dart';
 import 'package:gofoodie/features/settings/data/repositories/settings_repository.dart';
 import 'package:gofoodie/features/settings/domain/repositories/settings_repository.dart';
+import 'package:gofoodie/features/settings/domain/usecases/change_name.dart';
 import 'package:gofoodie/features/settings/domain/usecases/get_profile_detail.dart';
 import 'package:gofoodie/features/settings/presentation/blocs/profile/profile_bloc.dart';
 import 'package:gofoodie/features/welcome/data/datasource/welcome_local_data_source.dart';
@@ -104,10 +105,11 @@ Future<void> init() async {
   // 3 Settings
   // Bloc
   sl.registerFactory<ProfileBloc>(
-    () => ProfileBloc(getProfileDetail: sl()),
+    () => ProfileBloc(getProfileDetail: sl(), changeName: sl()),
   );
   // Use cases
   sl.registerLazySingleton(() => GetProfileDetail(repository: sl()));
+  sl.registerLazySingleton(() => ChangeName(repository: sl()));
   // Repository
   sl.registerLazySingleton<SettingsRepository>(
     () => SettingsRepositoryImpl(remoteDataSource: sl()),

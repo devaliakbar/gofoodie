@@ -11,6 +11,8 @@ class ProfileInitialState extends ProfileState {}
 
 class ProfileLoadingState extends ProfileState {}
 
+class ProfileSavingState extends ProfileState {}
+
 class ProfileLoadedState extends ProfileState {
   final ProfileData profileData;
   ProfileLoadedState({@required this.profileData});
@@ -23,6 +25,15 @@ class ProfileErrorState extends ProfileState {
   final String message;
 
   ProfileErrorState({@required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
+class ProfileSavingErrorState extends ProfileState {
+  final String message;
+
+  ProfileSavingErrorState({@required this.message});
 
   @override
   List<Object> get props => [message];

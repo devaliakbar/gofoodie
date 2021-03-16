@@ -6,6 +6,7 @@ import 'package:gofoodie/features/settings/data/models/profile_model.dart';
 
 abstract class SettingsRemoteDataSource {
   Future<ProfileModel> getProfileDetails();
+  Future<bool> changeName({String fullName, String email});
 }
 
 class SettingsRemoteDataSourceImpl extends SettingsRemoteDataSource {
@@ -28,6 +29,29 @@ class SettingsRemoteDataSourceImpl extends SettingsRemoteDataSource {
       );
 
       return ProfileModel.fromJson(await response.data);
+    } on DioError catch (e) {
+      if (e.response.statusCode == 401) {
+        throw AuthenticationException();
+      } else {
+        throw UnExpectedException();
+      }
+    }
+  }
+
+  @override
+  Future<bool> changeName({String fullName, String email}) async {
+    bool result = await apiHelper.isNetworkConnected();
+
+    if (!result) {
+      throw NetworkNotAvaliableException();
+    }
+
+    try {
+      await Dio().post(apiHelper.appendPath(path: "customer/settings"),
+          options: await apiHelper.getHeaders(),
+          data: {"name": fullName, "email": email});
+
+      return true;
     } on DioError catch (e) {
       if (e.response.statusCode == 401) {
         throw AuthenticationException();

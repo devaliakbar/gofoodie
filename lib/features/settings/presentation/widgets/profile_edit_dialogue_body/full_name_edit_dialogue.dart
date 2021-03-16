@@ -1,15 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:gofoodie/core/res/app_resources.dart';
+import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/custom_button.dart';
 import 'package:gofoodie/core/widgets/custom_text_field.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/settings/domain/entities/profile_data.dart';
+import 'package:gofoodie/features/settings/presentation/blocs/profile/profile_bloc.dart';
 
-class FullNameEditDialogue extends StatelessWidget {
+class FullNameEditDialogue extends StatefulWidget {
   final ProfileData profile;
+
   FullNameEditDialogue({@required this.profile});
+
+  @override
+  _FullNameEditDialogueState createState() => _FullNameEditDialogueState();
+}
+
+class _FullNameEditDialogueState extends State<FullNameEditDialogue> {
+  final TextEditingController fullNameController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    fullNameController.text = widget.profile.name;
+  }
+
+  @override
+  void dispose() {
+    fullNameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +65,49 @@ class FullNameEditDialogue extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    CustomTextField(label: "Full Name"),
+                    CustomTextField(
+                      label: "Full Name",
+                      controller: fullNameController,
+                    ),
                     SizedBox(
                       height: 15,
                     ),
-                    CustomButton(
-                      onClick: () {},
-                      title: "Save",
-                      width: double.infinity,
-                    )
+                    BlocConsumer<ProfileBloc, ProfileState>(
+                      listener: (context, state) {
+                        if (state is ProfileSavingErrorState) {
+                          ShowToast(state.message);
+                        }
+
+                        if (state is ProfileLoadedState) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is ProfileLoadedState) {
+                          return CustomButton(
+                            onClick: () {
+                              if (fullNameController.text.trim() != "") {
+                                BlocProvider.of<ProfileBloc>(context).add(
+                                  ChangeNameEvent(
+                                    fullName: fullNameController.text.trim(),
+                                    email: state.profileData.email,
+                                  ),
+                                );
+                              }
+                            },
+                            title: "Save",
+                            width: double.infinity,
+                            isLoading: state is ProfileLoadingState,
+                          );
+                        }
+                        return CustomButton(
+                          onClick: () {},
+                          title: "Save",
+                          width: double.infinity,
+                          isLoading: true,
+                        );
+                      },
+                    ),
                   ],
                 )),
           ),
