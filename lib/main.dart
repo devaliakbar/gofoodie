@@ -50,7 +50,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Poppins',
         splashColor: Colors.transparent,
-        canvasColor: Colors.transparent,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,

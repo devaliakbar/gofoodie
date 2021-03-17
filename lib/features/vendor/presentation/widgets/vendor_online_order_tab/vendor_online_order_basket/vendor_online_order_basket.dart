@@ -9,58 +9,54 @@ class VendorOnlineOrderBasket {
   VendorOnlineOrderBasket(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(
+            SizeConfig.width(5),
+          ),
+          topRight: Radius.circular(
+            SizeConfig.width(5),
+          ),
+        ),
+      ),
       builder: (builder) {
-        return Container(
-          color: Colors.transparent,
-          child: Container(
-            padding: EdgeInsets.all(
-              SizeConfig.width(5),
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(
-                  SizeConfig.width(5),
+        return Padding(
+          padding: EdgeInsets.all(
+            SizeConfig.width(5),
+          ),
+          child: SafeArea(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.access_time_outlined,
+                      color: AppColors.green,
+                    ),
+                    SizedBox(
+                      width: SizeConfig.width(5),
+                    ),
+                    NormalText(
+                      "Delivery in 43 mins",
+                      color: AppColors.black,
+                      size: FontSizes.fontSizeS,
+                    )
+                  ],
                 ),
-                topRight: Radius.circular(
-                  SizeConfig.width(5),
+                Divider(),
+                SizedBox(
+                  height: SizeConfig.height(0.5),
                 ),
-              ),
-            ),
-            child: SafeArea(
-              child: Column(
-                children: [
-                  Row(
+                Expanded(
+                  child: ListView(
                     children: [
-                      Icon(
-                        Icons.access_time_outlined,
-                        color: AppColors.green,
-                      ),
-                      SizedBox(
-                        width: SizeConfig.width(5),
-                      ),
-                      NormalText(
-                        "Delivery in 43 mins",
-                        color: AppColors.black,
-                        size: FontSizes.fontSizeS,
-                      )
+                      _buildItems(),
+                      _buildItems(),
                     ],
                   ),
-                  Divider(),
-                  SizedBox(
-                    height: SizeConfig.height(0.5),
-                  ),
-                  Expanded(
-                    child: ListView(
-                      children: [
-                        _buildItems(),
-                        _buildItems(),
-                      ],
-                    ),
-                  ),
-                  VendorOnlineOrderBasketButton()
-                ],
-              ),
+                ),
+                VendorOnlineOrderBasketButton()
+              ],
             ),
           ),
         );

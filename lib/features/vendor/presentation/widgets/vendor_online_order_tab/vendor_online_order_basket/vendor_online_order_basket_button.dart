@@ -20,6 +20,9 @@ class VendorOnlineOrderBasketButton extends StatelessWidget {
           onTap: () {},
           child: Container(
             decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                SizeConfig.height(1),
+              ),
               boxShadow: [
                 BoxShadow(
                   color: AppColors.red.withOpacity(0.2),
