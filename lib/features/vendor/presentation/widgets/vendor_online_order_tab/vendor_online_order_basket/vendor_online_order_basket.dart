@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
+import 'package:gofoodie/features/vendor/presentation/widgets/vendor_online_order_tab/vendor_online_order_basket/delivery_mode_switch.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/core/widgets/quantity_button.dart';
 import 'package:gofoodie/features/vendor/presentation/widgets/vendor_online_order_tab/vendor_online_order_basket/vendor_online_order_basket_button.dart';
@@ -27,11 +28,14 @@ class VendorOnlineOrderBasket {
           child: SafeArea(
             child: Column(
               children: [
+                DeliveryModeSwitch(),
+                Divider(),
                 Row(
                   children: [
                     Icon(
                       Icons.access_time_outlined,
                       color: AppColors.green,
+                      size: IconSizes.iconSizeM,
                     ),
                     SizedBox(
                       width: SizeConfig.width(5),
