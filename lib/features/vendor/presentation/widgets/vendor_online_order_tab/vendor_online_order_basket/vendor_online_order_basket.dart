@@ -97,7 +97,9 @@ class VendorOnlineOrderBasket {
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              QuantityButton(),
+              QuantityButton(
+                qty: 1,
+              ),
               SizedBox(
                 height: SizeConfig.height(0.5),
               ),
