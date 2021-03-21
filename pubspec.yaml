@@ -26,6 +26,7 @@ dependencies:
   path_provider: ^1.6.27
   flutter_secure_storage: ^3.3.5
   cached_network_image: ^2.5.0
+  vibration: ^1.7.3
 
 dev_dependencies:
   flutter_test:
