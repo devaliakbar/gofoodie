@@ -25,6 +25,7 @@ class _VendorDetailState extends State<VendorDetail> {
           VendorHeader(),
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 VendorTabs(
                   selectedTab: selectedTab,

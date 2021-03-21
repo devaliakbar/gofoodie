@@ -9,18 +9,23 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final bool obsecure;
   final FormFieldValidator<String> validator;
+  final int maxLine;
+  final double borderRadius;
 
   CustomTextField(
       {@required this.label,
       this.inputType = TextInputType.text,
       this.controller,
       this.obsecure = false,
-      this.validator});
+      this.validator,
+      this.maxLine,
+      this.borderRadius});
 
   @override
   Widget build(BuildContext context) {
     return EnsureVisibleWhenFocused(
       child: TextFormField(
+        maxLines: maxLine,
         controller: controller,
         keyboardType: inputType,
         obscureText: obsecure,
@@ -42,32 +47,37 @@ class CustomTextField extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColors.lightBlack, width: 1.0),
             borderRadius: BorderRadius.all(
-              Radius.circular(SizeConfig.width(50)),
+              Radius.circular(
+                  borderRadius == null ? SizeConfig.width(50) : borderRadius),
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: AppColors.lightBlack.withOpacity(0.5), width: 1.0),
             borderRadius: BorderRadius.all(
-              Radius.circular(SizeConfig.width(50)),
+              Radius.circular(
+                  borderRadius == null ? SizeConfig.width(50) : borderRadius),
             ),
           ),
           disabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColors.lightBlack, width: 1.0),
             borderRadius: BorderRadius.all(
-              Radius.circular(SizeConfig.width(50)),
+              Radius.circular(
+                  borderRadius == null ? SizeConfig.width(50) : borderRadius),
             ),
           ),
           errorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red, width: 1.0),
             borderRadius: BorderRadius.all(
-              Radius.circular(SizeConfig.width(50)),
+              Radius.circular(
+                  borderRadius == null ? SizeConfig.width(50) : borderRadius),
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red, width: 1.0),
             borderRadius: BorderRadius.all(
-              Radius.circular(SizeConfig.width(50)),
+              Radius.circular(
+                  borderRadius == null ? SizeConfig.width(50) : borderRadius),
             ),
           ),
         ),

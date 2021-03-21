@@ -27,6 +27,8 @@ dependencies:
   flutter_secure_storage: ^3.3.5
   cached_network_image: ^2.5.0
   vibration: ^1.7.3
+  percent_indicator:
+  flutter_rating_bar:
 
 dev_dependencies:
   flutter_test:

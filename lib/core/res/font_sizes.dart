@@ -25,11 +25,7 @@ class FontSizes {
     return SizeConfig.height(2.2);
   }
 
-  // static double get fontSizeXXL {
-  //   return SizeConfig.width(6);
-  // }
-
-  // static double get fontSizeXXXL {
-  //   return SizeConfig.width(7);
-  // }
+  static double get ratingFontSize {
+    return SizeConfig.height(3);
+  }
 }

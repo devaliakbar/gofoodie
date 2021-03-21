@@ -1,6 +1,10 @@
 part of 'app_resources.dart';
 
 class IconSizes {
+  static double get iconSizeXXXXS {
+    return SizeConfig.height(1.8);
+  }
+
   static double get iconSizeXXXS {
     return SizeConfig.height(2.0);
   }
