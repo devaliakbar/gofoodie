@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
-import 'package:gofoodie/features/vendor/presentation/widgets/vendor_online_order_tab/vendor_online_order_basket/vendor_online_order_basket.dart';
+import 'package:gofoodie/features/order/presentation/pages/check_out_page.dart';
 
-class VendorOnlineOrderBasketBadge extends StatelessWidget {
+class OrderBasketButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(
-        SizeConfig.width(5),
+      margin: EdgeInsets.symmetric(
+        vertical: SizeConfig.width(5),
       ),
       height: SizeConfig.height(7.5),
       child: Material(
@@ -18,7 +18,9 @@ class VendorOnlineOrderBasketBadge extends StatelessWidget {
           SizeConfig.height(1),
         ),
         child: InkWell(
-          onTap: () => VendorOnlineOrderBasket(context),
+          onTap: () {
+            Navigator.pushNamed(context, CheckOutPage.routeName);
+          },
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(
@@ -44,29 +46,21 @@ class VendorOnlineOrderBasketBadge extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     NormalText(
-                      "2 ITEMS",
+                      "₹1660",
+                      color: Colors.white,
+                      boldText: true,
+                    ),
+                    NormalText(
+                      "TOTAL",
                       color: Colors.white,
                       size: FontSizes.fontSizeS,
                     ),
-                    Row(
-                      children: [
-                        NormalText(
-                          "₹1660",
-                          color: Colors.white,
-                        ),
-                        NormalText(
-                          " plux taxes",
-                          color: Colors.white,
-                          size: FontSizes.fontSizeS,
-                        ),
-                      ],
-                    )
                   ],
                 ),
                 Row(
                   children: [
                     NormalText(
-                      "View Cart",
+                      "Place Order",
                       color: Colors.white,
                     ),
                     Icon(

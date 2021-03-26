@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
-import 'package:gofoodie/features/vendor/presentation/widgets/vendor_online_order_tab/vendor_online_order_basket/delivery_mode_switch.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/core/widgets/quantity_button.dart';
-import 'package:gofoodie/features/vendor/presentation/widgets/vendor_online_order_tab/vendor_online_order_basket/vendor_online_order_basket_button.dart';
+import 'package:gofoodie/features/order/presentation/widgets/order_basket/delivery_mode_switch.dart';
+import 'package:gofoodie/features/order/presentation/widgets/order_basket/order_basket_button.dart';
 
-class VendorOnlineOrderBasket {
-  VendorOnlineOrderBasket(BuildContext context) {
+class OrderBasket {
+  OrderBasket(BuildContext context) {
     showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(
@@ -59,7 +59,7 @@ class VendorOnlineOrderBasket {
                     ],
                   ),
                 ),
-                VendorOnlineOrderBasketButton()
+                OrderBasketButton()
               ],
             ),
           ),
