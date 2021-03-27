@@ -82,7 +82,6 @@ class DeliveryDetails extends StatelessWidget {
               height: SizeConfig.height(1),
             ),
             CustomTextField(
-              label: "Order Note",
               borderRadius: SizeConfig.width(2),
               maxLine: 3,
             )

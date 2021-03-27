@@ -13,7 +13,7 @@ class CustomTextField extends StatelessWidget {
   final double borderRadius;
 
   CustomTextField(
-      {@required this.label,
+      {this.label,
       this.inputType = TextInputType.text,
       this.controller,
       this.obsecure = false,
