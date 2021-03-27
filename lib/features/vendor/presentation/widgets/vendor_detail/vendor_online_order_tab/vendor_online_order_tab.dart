@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/features/order/presentation/widgets/order_basket/order_basket_badge.dart';
-import 'package:gofoodie/features/vendor/presentation/widgets/vendor_online_order_tab/vendor_online_order_body.dart';
-import 'package:gofoodie/features/vendor/presentation/widgets/vendor_online_order_tab/vendor_online_order_filter.dart';
+import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_online_order_tab/vendor_online_order_body.dart';
+import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_online_order_tab/vendor_online_order_filter.dart';
 
 class VendorOnlineOrderTab extends StatelessWidget {
   @override

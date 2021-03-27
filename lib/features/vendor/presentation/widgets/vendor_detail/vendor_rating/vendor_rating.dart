@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/services/size_config.dart';
-import 'package:gofoodie/features/vendor/presentation/widgets/vendor_rating/vendor_rating_overall.dart';
-import 'package:gofoodie/features/vendor/presentation/widgets/vendor_rating/vendor_rating_tile.dart';
+import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_rating/vendor_rating_overall.dart';
+import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_rating/vendor_rating_tile.dart';
 
 class VendorRating extends StatelessWidget {
   @override

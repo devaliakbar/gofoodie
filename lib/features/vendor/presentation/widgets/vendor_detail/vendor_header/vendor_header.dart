@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
-import 'package:gofoodie/features/vendor/presentation/widgets/vendor_header/vendor_header_actions.dart';
+import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_header/vendor_header_actions.dart';
 
 class VendorHeader extends StatelessWidget {
   @override

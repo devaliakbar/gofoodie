@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gofoodie/features/vendor/presentation/widgets/vendor_body.dart';
-import 'package:gofoodie/features/vendor/presentation/widgets/vendor_header/vendor_header.dart';
-import 'package:gofoodie/features/vendor/presentation/widgets/vendor_tabs.dart';
+import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_body.dart';
+import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_header/vendor_header.dart';
+import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_tabs.dart';
 
 class VendorDetail extends StatefulWidget {
   static const String routeName = '/vendor_detail';
