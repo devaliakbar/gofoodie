@@ -115,7 +115,7 @@ class AmountDetails extends StatelessWidget {
           ),
           CustomButton(
             onClick: () {},
-            title: "Payment Method",
+            title: "Select Payment Method",
             width: double.infinity,
             borderRadius: SizeConfig.width(2),
           )
