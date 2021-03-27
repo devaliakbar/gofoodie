@@ -8,12 +8,14 @@ class CustomButton extends StatelessWidget {
   final String title;
   final double width;
   final bool isLoading;
+  final double borderRadius;
 
   CustomButton(
       {@required this.onClick,
       @required this.title,
       this.isLoading = false,
-      this.width});
+      this.width,
+      this.borderRadius});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,8 @@ class CustomButton extends StatelessWidget {
       child: RaisedButton(
         elevation: 1,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(SizeConfig.width(50)),
+          borderRadius:
+              BorderRadius.circular(borderRadius ?? SizeConfig.width(50)),
         ),
         color: AppColors.red,
         disabledColor: AppColors.red,
