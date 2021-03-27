@@ -3,6 +3,7 @@ import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/custom_button.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
+import 'package:gofoodie/features/order/presentation/pages/payment_method.dart';
 import 'package:gofoodie/features/order/presentation/widgets/checkout/coupon_apply.dart';
 
 class AmountDetails extends StatelessWidget {
@@ -114,7 +115,9 @@ class AmountDetails extends StatelessWidget {
             height: SizeConfig.height(2),
           ),
           CustomButton(
-            onClick: () {},
+            onClick: () {
+              Navigator.pushNamed(context, PaymentMethod.routeName);
+            },
             title: "Select Payment Method",
             width: double.infinity,
             borderRadius: SizeConfig.width(2),
