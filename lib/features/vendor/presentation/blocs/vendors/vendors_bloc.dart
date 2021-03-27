@@ -6,8 +6,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/error/failures.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
-import 'package:gofoodie/features/home/domain/entities/vendor.dart';
-import 'package:gofoodie/features/home/domain/usecases/get_vendors.dart';
+import 'package:gofoodie/features/vendor/domain/entities/vendor.dart';
+import 'package:gofoodie/features/vendor/domain/usecases/get_vendors.dart';
 
 part 'vendors_event.dart';
 part 'vendors_state.dart';

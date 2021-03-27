@@ -5,8 +5,8 @@ import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/widgets/image_from_network.dart';
 import 'package:gofoodie/core/widgets/loading_view.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
-import 'package:gofoodie/features/home/presentation/blocs/vendors/vendors_bloc.dart';
-import 'package:gofoodie/features/home/presentation/widgets/vendors/vendors_appbar.dart';
+import 'package:gofoodie/features/vendor/presentation/blocs/vendors/vendors_bloc.dart';
+import 'package:gofoodie/features/vendor/presentation/widgets/vendors/vendors_appbar.dart';
 
 class Vendors extends StatelessWidget {
   static const String routeName = '/vendors';

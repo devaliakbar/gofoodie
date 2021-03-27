@@ -29,7 +29,6 @@ dependencies:
   vibration: ^1.7.3
   percent_indicator:
   flutter_rating_bar:
-  flutter_staggered_grid_view:
 
 dev_dependencies:
   flutter_test:

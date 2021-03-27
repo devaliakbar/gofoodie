@@ -14,15 +14,18 @@ import 'package:gofoodie/features/home/data/datasource/home_remote_data_source.d
 import 'package:gofoodie/features/home/data/repositories/home_repository.dart';
 import 'package:gofoodie/features/home/domain/repositories/home_repository.dart';
 import 'package:gofoodie/features/home/domain/usecases/get_home_data.dart';
-import 'package:gofoodie/features/home/domain/usecases/get_vendors.dart';
+import 'package:gofoodie/features/vendor/data/datasource/vendor_remote_data_source.dart';
+import 'package:gofoodie/features/vendor/data/repositories/vendor_repository.dart';
+import 'package:gofoodie/features/vendor/domain/repositories/vendor_repository.dart';
+import 'package:gofoodie/features/vendor/domain/usecases/get_vendors.dart';
 import 'package:gofoodie/features/home/presentation/blocs/home/home_bloc.dart';
-import 'package:gofoodie/features/home/presentation/blocs/vendors/vendors_bloc.dart';
 import 'package:gofoodie/features/settings/data/datasource/settings_remote_data_source.dart';
 import 'package:gofoodie/features/settings/data/repositories/settings_repository.dart';
 import 'package:gofoodie/features/settings/domain/repositories/settings_repository.dart';
 import 'package:gofoodie/features/settings/domain/usecases/change_name.dart';
 import 'package:gofoodie/features/settings/domain/usecases/get_profile_detail.dart';
 import 'package:gofoodie/features/settings/presentation/blocs/profile/profile_bloc.dart';
+import 'package:gofoodie/features/vendor/presentation/blocs/vendors/vendors_bloc.dart';
 import 'package:gofoodie/features/welcome/data/datasource/welcome_local_data_source.dart';
 import 'package:gofoodie/features/welcome/data/repositories/welcome_repository.dart';
 import 'package:gofoodie/features/welcome/domain/repositories/welcome_repository.dart';
@@ -86,12 +89,8 @@ Future<void> init() async {
   sl.registerFactory<HomeBloc>(
     () => HomeBloc(getHomeData: sl()),
   );
-  sl.registerFactory<VendorsBloc>(
-    () => VendorsBloc(getVendors: sl()),
-  );
   // Use cases
   sl.registerLazySingleton(() => GetHomeData(sl()));
-  sl.registerLazySingleton(() => GetVendors(sl()));
   // Repository
   sl.registerLazySingleton<HomeRepository>(
     () => HomeRepositoryImpl(homeRemoteDataSource: sl()),
@@ -102,7 +101,7 @@ Future<void> init() async {
   );
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-  // 3 Settings
+  // 4 Settings
   // Bloc
   sl.registerFactory<ProfileBloc>(
     () => ProfileBloc(getProfileDetail: sl(), changeName: sl()),
@@ -117,5 +116,22 @@ Future<void> init() async {
   // Data sources
   sl.registerLazySingleton<SettingsRemoteDataSource>(
     () => SettingsRemoteDataSourceImpl(apiHelper: sl()),
+  );
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 5 Vendor
+  // Bloc
+  sl.registerFactory<VendorsBloc>(
+    () => VendorsBloc(getVendors: sl()),
+  );
+  // Use cases
+  sl.registerLazySingleton(() => GetVendors(sl()));
+  // Repository
+  sl.registerLazySingleton<VendorRepository>(
+    () => VendorRepositoryImpl(vendorRemoteDataSource: sl()),
+  );
+  // Data sources
+  sl.registerLazySingleton<VendorRemoteDataSource>(
+    () => VendorRemoteDataSourceImpl(apiHelper: sl()),
   );
 }

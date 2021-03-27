@@ -5,7 +5,7 @@ import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/image_from_network.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/home/domain/entities/home_category.dart';
-import 'package:gofoodie/features/home/presentation/pages/vendors.dart';
+import 'package:gofoodie/features/vendor/presentation/pages/vendors.dart';
 import 'package:gofoodie/features/vendor/presentation/pages/vendor_detail.dart';
 
 class HomeListView extends StatelessWidget {

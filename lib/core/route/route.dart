@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/features/authentication/presentation/pages/login_page.dart';
 import 'package:gofoodie/features/authentication/presentation/pages/signup_page.dart';
 import 'package:gofoodie/features/home/presentation/pages/home.dart';
-import 'package:gofoodie/features/home/presentation/pages/vendors.dart';
+import 'package:gofoodie/features/vendor/presentation/pages/vendors.dart';
 import 'package:gofoodie/features/order/presentation/pages/check_out_page.dart';
 import 'package:gofoodie/features/settings/presentation/pages/profile.dart';
 import 'package:gofoodie/features/vendor/presentation/pages/vendor_detail.dart';

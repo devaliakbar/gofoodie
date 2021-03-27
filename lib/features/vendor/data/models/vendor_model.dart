@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gofoodie/features/home/domain/entities/vendor.dart';
+import 'package:gofoodie/features/vendor/domain/entities/vendor.dart';
 
 class VendorModel extends Vendor {
   VendorModel({@required String id, @required String name, String imageUrl})
