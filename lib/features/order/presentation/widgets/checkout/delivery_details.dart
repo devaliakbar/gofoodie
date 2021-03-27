@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
+import 'package:gofoodie/core/widgets/custom_text_field.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 
 class DeliveryDetails extends StatelessWidget {
@@ -69,6 +70,22 @@ class DeliveryDetails extends StatelessWidget {
               color: AppColors.black,
               truncate: true,
             ),
+            SizedBox(
+              height: SizeConfig.height(1),
+            ),
+            NormalText(
+              "Order Notes",
+              color: AppColors.black,
+              boldText: true,
+            ),
+            SizedBox(
+              height: SizeConfig.height(1),
+            ),
+            CustomTextField(
+              label: "Order Note",
+              borderRadius: SizeConfig.width(2),
+              maxLine: 3,
+            )
           ],
         ),
       ),
