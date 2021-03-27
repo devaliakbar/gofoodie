@@ -18,7 +18,7 @@ class CustomTextField extends StatelessWidget {
       this.controller,
       this.obsecure = false,
       this.validator,
-      this.maxLine,
+      this.maxLine = 1,
       this.borderRadius});
 
   @override

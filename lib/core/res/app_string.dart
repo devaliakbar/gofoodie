@@ -113,8 +113,8 @@ class AppString {
     return tr("apply");
   }
 
-  static String get myProfile {
-    return tr("my_profile");
+  static String get profileSettings {
+    return tr("profile_settings");
   }
 
   static String get logout {

@@ -32,4 +32,8 @@ class IconSizes {
   static double get iconSizeXL {
     return SizeConfig.height(3.2);
   }
+
+  static double get successIconSize {
+    return SizeConfig.height(7);
+  }
 }

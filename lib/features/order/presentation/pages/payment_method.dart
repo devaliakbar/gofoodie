@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
+import 'package:gofoodie/core/widgets/success_dialogue.dart';
+import 'package:gofoodie/features/home/presentation/pages/home.dart';
 
 class PaymentMethod extends StatelessWidget {
   static const String routeName = '/payment_method';
@@ -36,7 +38,14 @@ class PaymentMethod extends StatelessWidget {
                   ),
                 ),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (_) => SuccessDialogue(),
+                    ).then((value) => Navigator.of(context)
+                        .pushNamedAndRemoveUntil(
+                            Home.routeName, (Route<dynamic> route) => false));
+                  },
                   child: Padding(
                     padding: EdgeInsets.all(
                       SizeConfig.width(5),

@@ -10,7 +10,7 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       iconTheme: IconThemeData(color: AppColors.black),
       title: NormalText(
-        AppString.myProfile,
+        AppString.profileSettings,
         color: AppColors.black,
         boldText: true,
       ),
