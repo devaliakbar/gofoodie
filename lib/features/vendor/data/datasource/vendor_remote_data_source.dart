@@ -34,49 +34,49 @@ class VendorRemoteDataSourceImpl extends VendorRemoteDataSource {
 
       [
         {
-          "id": "1",
+          "id": 1,
           "name": "XX",
           "imageUrl":
               "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
         },
         {
-          "id": "2",
+          "id": 2,
           "name": "YY",
           "imageUrl":
               "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
         },
         {
-          "id": "1",
+          "id": 1,
           "name": "XX",
           "imageUrl":
               "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
         },
         {
-          "id": "2",
+          "id": 2,
           "name": "YY",
           "imageUrl":
               "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
         },
         {
-          "id": "1",
+          "id": 1,
           "name": "XX",
           "imageUrl":
               "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
         },
         {
-          "id": "2",
+          "id": 2,
           "name": "YY",
           "imageUrl":
               "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
         },
         {
-          "id": "1",
+          "id": 1,
           "name": "XX",
           "imageUrl":
               "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"
         },
         {
-          "id": "2",
+          "id": 2,
           "name": "YY",
           "imageUrl":
               "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg"

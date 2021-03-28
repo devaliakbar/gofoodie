@@ -6,6 +6,7 @@ import 'package:gofoodie/core/widgets/image_from_network.dart';
 import 'package:gofoodie/core/widgets/loading_view.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/vendors/vendors_bloc.dart';
+import 'package:gofoodie/features/vendor/presentation/pages/vendor_detail.dart';
 import 'package:gofoodie/features/vendor/presentation/widgets/vendors/vendors_appbar.dart';
 
 class Vendors extends StatelessWidget {
@@ -50,25 +51,31 @@ class Vendors extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: EdgeInsets.only(left: 15, bottom: 15),
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: ImageFromNetwork(
-                                imageUrl:
-                                    "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg",
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, VendorDetail.routeName,
+                              arguments: state.vendors[index].id);
+                        },
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: ImageFromNetwork(
+                                  imageUrl:
+                                      "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg",
+                                ),
                               ),
                             ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: NormalText(
-                              "Marshall",
-                              color: AppColors.black,
-                            ),
-                          )
-                        ],
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: NormalText(
+                                "Marshall",
+                                color: AppColors.black,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },
