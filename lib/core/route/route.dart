@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/features/authentication/presentation/pages/login_page.dart';
 import 'package:gofoodie/features/authentication/presentation/pages/signup_page.dart';
 import 'package:gofoodie/features/home/presentation/pages/home.dart';
+import 'package:gofoodie/features/home/presentation/pages/search_page.dart';
 import 'package:gofoodie/features/order/presentation/pages/my_orders.dart';
 import 'package:gofoodie/features/order/presentation/pages/payment_method.dart';
 import 'package:gofoodie/features/profile/presentation/pages/edit_rating.dart';
@@ -92,6 +93,13 @@ class AppRouter {
       case EditRating.routeName:
         return PageTransition(
           child: EditRating(),
+          type: PageTransitionType.rightToLeft,
+          settings: settings,
+        );
+
+      case SearchPage.routeName:
+        return PageTransition(
+          child: SearchPage(),
           type: PageTransitionType.rightToLeft,
           settings: settings,
         );

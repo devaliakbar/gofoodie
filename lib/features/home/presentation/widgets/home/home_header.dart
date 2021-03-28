@@ -3,6 +3,7 @@ import 'package:gofoodie/core/animation/custom_animation.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
+import 'package:gofoodie/features/home/presentation/pages/search_page.dart';
 import 'package:gofoodie/features/home/presentation/widgets/home/home_special_card.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -42,37 +43,42 @@ class HomeHeader extends StatelessWidget {
                   size: FontSizes.fontSizeXL,
                 ),
               ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                height: SizeConfig.height(6.5),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    NormalText(
-                      AppString.search,
-                      color: AppColors.black,
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, SearchPage.routeName);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  height: SizeConfig.height(6.5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.red,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(6),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      NormalText(
+                        AppString.search,
+                        color: AppColors.black,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.red,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(6),
+                          ),
                         ),
-                      ),
-                      padding: EdgeInsets.all(SizeConfig.height(1)),
-                      child: Icon(
-                        Icons.search,
-                        size: IconSizes.iconSizeM,
-                        color: Colors.white,
-                      ),
-                    )
-                  ],
+                        padding: EdgeInsets.all(SizeConfig.height(1)),
+                        child: Icon(
+                          Icons.search,
+                          size: IconSizes.iconSizeM,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
               Container(
