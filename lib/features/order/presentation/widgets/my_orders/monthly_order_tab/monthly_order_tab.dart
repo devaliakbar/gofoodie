@@ -6,7 +6,7 @@ import 'package:gofoodie/features/order/presentation/widgets/my_orders/my_order_
 import 'package:gofoodie/features/order/presentation/widgets/my_orders/order_divider.dart';
 import 'package:gofoodie/features/order/presentation/widgets/my_orders/order_vendor_info.dart';
 
-class CurrentOrderTab extends StatelessWidget {
+class MonthlyOrderTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -4,9 +4,11 @@ import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/order/presentation/widgets/my_orders/my_order_content.dart';
 import 'package:gofoodie/features/order/presentation/widgets/my_orders/order_divider.dart';
+import 'package:gofoodie/features/order/presentation/widgets/my_orders/order_history_tab/order_rating.dart';
+import 'package:gofoodie/features/order/presentation/widgets/my_orders/order_history_tab/order_status.dart';
 import 'package:gofoodie/features/order/presentation/widgets/my_orders/order_vendor_info.dart';
 
-class CurrentOrderTab extends StatelessWidget {
+class OrderHistoryTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,9 +32,11 @@ class CurrentOrderTab extends StatelessWidget {
                 left: SizeConfig.width(5),
                 right: SizeConfig.width(5)),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 OrderVendorInfo(),
                 OrderDivider(),
+                OrderStatus(),
                 MyOrderContent(),
                 Container(
                   alignment: Alignment.topLeft,
@@ -54,20 +58,7 @@ class CurrentOrderTab extends StatelessWidget {
                   ),
                 ),
                 OrderDivider(),
-                Container(
-                  color: AppColors.lightGrey,
-                  width: double.infinity,
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: NormalText(
-                        "Cancel Order",
-                        color: AppColors.red,
-                      ),
-                    ),
-                  ),
-                )
+                OrderRating()
               ],
             ),
           );
