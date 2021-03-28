@@ -5,7 +5,7 @@ import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/authentication/presentation/pages/login_page.dart';
 import 'package:gofoodie/features/home/presentation/widgets/home/drawer_user_details.dart';
 import 'package:gofoodie/features/order/presentation/pages/my_orders.dart';
-import 'package:gofoodie/features/settings/presentation/pages/profile.dart';
+import 'package:gofoodie/features/profile/presentation/pages/profile_settings.dart';
 import 'package:gofoodie/injection_container.dart';
 
 class HomeDrawer extends StatelessWidget {
@@ -63,7 +63,7 @@ class HomeDrawer extends StatelessWidget {
                   FlatButton(
                     onPressed: () {
                       Navigator.pop(context);
-                      Navigator.pushNamed(context, Profile.routeName);
+                      Navigator.pushNamed(context, ProfileSettings.routeName);
                     },
                     child: Row(
                       children: [

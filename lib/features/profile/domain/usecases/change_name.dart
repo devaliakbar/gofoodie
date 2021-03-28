@@ -3,11 +3,11 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/error/failures.dart';
 import 'package:gofoodie/core/usecases/usecase.dart';
-import 'package:gofoodie/features/settings/domain/entities/profile_data.dart';
-import 'package:gofoodie/features/settings/domain/repositories/settings_repository.dart';
+import 'package:gofoodie/features/profile/domain/entities/profile_data.dart';
+import 'package:gofoodie/features/profile/domain/repositories/profile_repository.dart';
 
 class ChangeName implements UseCase<ProfileData, Params> {
-  final SettingsRepository repository;
+  final ProfileRepository repository;
 
   ChangeName({@required this.repository});
 

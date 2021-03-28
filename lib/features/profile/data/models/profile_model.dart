@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gofoodie/features/settings/domain/entities/profile_data.dart';
+import 'package:gofoodie/features/profile/domain/entities/profile_data.dart';
 
 class ProfileModel extends ProfileData {
   ProfileModel({@required String name, String email})

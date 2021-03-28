@@ -5,7 +5,7 @@ import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/custom_button.dart';
 import 'package:gofoodie/core/widgets/custom_text_field.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
-import 'package:gofoodie/features/settings/domain/entities/profile_data.dart';
+import 'package:gofoodie/features/profile/domain/entities/profile_data.dart';
 
 class EmailEditDialogue extends StatefulWidget {
   final ProfileData profile;

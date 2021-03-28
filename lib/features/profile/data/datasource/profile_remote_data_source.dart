@@ -2,17 +2,17 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/error/exceptions.dart';
 import 'package:gofoodie/core/services/network/api_helper.dart';
-import 'package:gofoodie/features/settings/data/models/profile_model.dart';
+import 'package:gofoodie/features/profile/data/models/profile_model.dart';
 
-abstract class SettingsRemoteDataSource {
+abstract class ProfileRemoteDataSource {
   Future<ProfileModel> getProfileDetails();
   Future<bool> changeName({String fullName, String email});
 }
 
-class SettingsRemoteDataSourceImpl extends SettingsRemoteDataSource {
+class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
   final ApiHelper apiHelper;
 
-  SettingsRemoteDataSourceImpl({@required this.apiHelper});
+  ProfileRemoteDataSourceImpl({@required this.apiHelper});
 
   @override
   Future<ProfileModel> getProfileDetails() async {

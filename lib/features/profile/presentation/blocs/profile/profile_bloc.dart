@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/core/error/failures.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/usecases/usecase.dart';
-import 'package:gofoodie/features/settings/domain/entities/profile_data.dart';
-import 'package:gofoodie/features/settings/domain/usecases/change_name.dart';
-import 'package:gofoodie/features/settings/domain/usecases/get_profile_detail.dart';
+import 'package:gofoodie/features/profile/domain/entities/profile_data.dart';
+import 'package:gofoodie/features/profile/domain/usecases/change_name.dart';
+import 'package:gofoodie/features/profile/domain/usecases/get_profile_detail.dart';
 
 part 'profile_event.dart';
 part 'profile_state.dart';

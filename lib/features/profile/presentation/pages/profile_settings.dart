@@ -4,15 +4,15 @@ import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/widgets/loading_view.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
-import 'package:gofoodie/features/settings/presentation/blocs/profile/profile_bloc.dart';
-import 'package:gofoodie/features/settings/presentation/widgets/profile_appbar.dart';
-import 'package:gofoodie/features/settings/presentation/widgets/profile_edit_dialogue_body/email_edit_dialogue.dart';
-import 'package:gofoodie/features/settings/presentation/widgets/profile_edit_dialogue_body/full_name_edit_dialogue.dart';
-import 'package:gofoodie/features/settings/presentation/widgets/profile_edit_dialogue_body/password_edit_dialogue.dart';
-import 'package:gofoodie/features/settings/presentation/widgets/profile_settings_field.dart';
+import 'package:gofoodie/features/profile/presentation/blocs/profile/profile_bloc.dart';
+import 'package:gofoodie/features/profile/presentation/widgets/profile_appbar.dart';
+import 'package:gofoodie/features/profile/presentation/widgets/profile_edit_dialogue_body/email_edit_dialogue.dart';
+import 'package:gofoodie/features/profile/presentation/widgets/profile_edit_dialogue_body/full_name_edit_dialogue.dart';
+import 'package:gofoodie/features/profile/presentation/widgets/profile_edit_dialogue_body/password_edit_dialogue.dart';
+import 'package:gofoodie/features/profile/presentation/widgets/profile_settings_field.dart';
 
-class Profile extends StatelessWidget {
-  static const String routeName = '/profile';
+class ProfileSettings extends StatelessWidget {
+  static const String routeName = '/profile_settings';
 
   @override
   Widget build(BuildContext context) {
