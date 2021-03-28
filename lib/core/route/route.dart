@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/features/authentication/presentation/pages/login_page.dart';
 import 'package:gofoodie/features/authentication/presentation/pages/signup_page.dart';
 import 'package:gofoodie/features/home/presentation/pages/home.dart';
+import 'package:gofoodie/features/order/presentation/pages/my_orders.dart';
 import 'package:gofoodie/features/order/presentation/pages/payment_method.dart';
 import 'package:gofoodie/features/vendor/presentation/pages/vendors.dart';
 import 'package:gofoodie/features/order/presentation/pages/check_out_page.dart';
@@ -68,6 +69,13 @@ class AppRouter {
       case PaymentMethod.routeName:
         return PageTransition(
           child: PaymentMethod(),
+          type: PageTransitionType.rightToLeft,
+          settings: settings,
+        );
+
+      case MyOrders.routeName:
+        return PageTransition(
+          child: MyOrders(),
           type: PageTransitionType.rightToLeft,
           settings: settings,
         );
