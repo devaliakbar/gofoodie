@@ -27,7 +27,8 @@ class VendorsBloc extends Bloc<VendorsEvent, VendorsState> {
     if (event is GetVendorsEvent) {
       yield VendorsLoadingState();
 
-      final Either result = await _getVendors(Params(query: event.query));
+      final Either result =
+          await _getVendors(Params(categoryId: event.categoryId));
 
       yield result.fold(
         (failure) => VendorsErrorState(message: _mapFailureToMessage(failure)),

@@ -9,7 +9,8 @@ class ApiHelper {
 
   ApiHelper({@required this.user});
 
-  static const String _BASE_SERVER_URL = "https://gofoodie.ae/api/";
+  static const String BASE_SERVER_URL = "https://gofoodie.ae/";
+  static const String _BASE_API_URL = BASE_SERVER_URL + "api/";
 
   Future<bool> isNetworkConnected() async {
     return DataConnectionChecker().hasConnection;
@@ -38,6 +39,6 @@ class ApiHelper {
   }
 
   String appendPath({@required String path}) {
-    return Uri.encodeFull(_BASE_SERVER_URL + path);
+    return Uri.encodeFull(_BASE_API_URL + path);
   }
 }

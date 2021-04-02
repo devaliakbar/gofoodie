@@ -8,10 +8,10 @@ abstract class VendorsEvent extends Equatable {
 }
 
 class GetVendorsEvent extends VendorsEvent {
-  final String query;
+  final int categoryId;
 
-  GetVendorsEvent({@required this.query});
+  GetVendorsEvent({@required this.categoryId});
 
   @override
-  List<Object> get props => [query];
+  List<Object> get props => [categoryId];
 }

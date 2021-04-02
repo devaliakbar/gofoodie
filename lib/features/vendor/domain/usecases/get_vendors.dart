@@ -13,15 +13,15 @@ class GetVendors implements UseCase<List<Vendor>, Params> {
 
   @override
   Future<Either<Failure, List<Vendor>>> call(Params params) async {
-    return await vendorRepository.getVendors(query: params.query);
+    return await vendorRepository.getVendors(categoryId: params.categoryId);
   }
 }
 
 class Params extends Equatable {
-  final String query;
+  final int categoryId;
 
-  Params({@required this.query});
+  Params({@required this.categoryId});
 
   @override
-  List<Object> get props => [query];
+  List<Object> get props => [categoryId];
 }

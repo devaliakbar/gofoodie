@@ -4,5 +4,5 @@ import 'package:gofoodie/core/error/failures.dart';
 import 'package:gofoodie/features/vendor/domain/entities/vendor.dart';
 
 abstract class VendorRepository {
-  Future<Either<Failure, List<Vendor>>> getVendors({@required String query});
+  Future<Either<Failure, List<Vendor>>> getVendors({@required int categoryId});
 }

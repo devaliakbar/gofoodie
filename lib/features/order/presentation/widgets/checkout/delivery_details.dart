@@ -38,11 +38,11 @@ class DeliveryDetails extends StatelessWidget {
               ],
             ),
             NormalText(
-              "Ali Akbar P A",
+              "Albert Einstein",
               color: AppColors.black,
             ),
             NormalText(
-              "+91 8547938611",
+              "+91 1234567890",
               color: AppColors.black,
             ),
             SizedBox(

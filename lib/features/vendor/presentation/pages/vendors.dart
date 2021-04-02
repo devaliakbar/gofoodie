@@ -18,7 +18,7 @@ class Vendors extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<VendorsBloc>(context).add(
-      GetVendorsEvent(query: "todo"),
+      GetVendorsEvent(categoryId: categoryId),
     );
 
     return Scaffold(
@@ -29,7 +29,7 @@ class Vendors extends StatelessWidget {
           padding: EdgeInsets.only(top: 15, right: 15, bottom: 10),
           child: BlocConsumer<VendorsBloc, VendorsState>(
             listener: (context, state) {
-              print("Home Screen State Changed");
+              print("Vendors Screen State Changed");
 
               if (state is VendorsErrorState) {
                 ShowToast(state.message);
@@ -45,7 +45,7 @@ class Vendors extends StatelessWidget {
             builder: (context, state) {
               if (state is VendorsLoadedState) {
                 return GridView.builder(
-                  itemCount: 10,
+                  itemCount: state.vendors.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, childAspectRatio: 1 / 1),
                   itemBuilder: (BuildContext context, int index) {
@@ -62,15 +62,14 @@ class Vendors extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: ImageFromNetwork(
-                                  imageUrl:
-                                      "https://media-cdn.tripadvisor.com/media/photo-s/05/18/4f/1e/getlstd-property-photo.jpg",
+                                  imageUrl: state.vendors[index].imageUrl,
                                 ),
                               ),
                             ),
                             Align(
                               alignment: Alignment.centerLeft,
                               child: NormalText(
-                                "Marshall",
+                                state.vendors[index].name,
                                 color: AppColors.black,
                               ),
                             )

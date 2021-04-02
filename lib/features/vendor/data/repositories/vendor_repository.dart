@@ -13,9 +13,10 @@ class VendorRepositoryImpl extends VendorRepository {
 
   @override
   Future<Either<Failure, List<Vendor>>> getVendors(
-      {@required String query}) async {
+      {@required int categoryId}) async {
     try {
-      return Right(await vendorRemoteDataSource.getVendors(query: query));
+      return Right(
+          await vendorRemoteDataSource.getVendors(categoryId: categoryId));
     } on NetworkNotAvaliableException {
       return Left(NetworkNotAvaliableFailure());
     } catch (e) {
