@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/error/exceptions.dart';
 import 'package:gofoodie/core/services/network/api_helper.dart';
-import 'package:gofoodie/features/home/data/models/home_model.dart';
 import 'package:gofoodie/features/vendor/data/models/vendor_model.dart';
 
 abstract class VendorRemoteDataSource {

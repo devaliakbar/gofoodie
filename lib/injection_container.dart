@@ -17,6 +17,7 @@ import 'package:gofoodie/features/home/domain/usecases/get_home_data.dart';
 import 'package:gofoodie/features/profile/data/datasource/profile_remote_data_source.dart';
 import 'package:gofoodie/features/profile/data/repositories/profile_repository.dart';
 import 'package:gofoodie/features/profile/domain/repositories/profile_repository.dart';
+import 'package:gofoodie/features/profile/domain/usecases/change_email.dart';
 import 'package:gofoodie/features/profile/domain/usecases/change_name.dart';
 import 'package:gofoodie/features/profile/domain/usecases/get_profile_detail.dart';
 import 'package:gofoodie/features/profile/presentation/blocs/profile/profile_bloc.dart';
@@ -104,11 +105,13 @@ Future<void> init() async {
   // 4 Settings
   // Bloc
   sl.registerFactory<ProfileBloc>(
-    () => ProfileBloc(getProfileDetail: sl(), changeName: sl()),
+    () => ProfileBloc(
+        getProfileDetail: sl(), changeName: sl(), changeEmail: sl()),
   );
   // Use cases
   sl.registerLazySingleton(() => GetProfileDetail(repository: sl()));
   sl.registerLazySingleton(() => ChangeName(repository: sl()));
+  sl.registerLazySingleton(() => ChangeEmail(repository: sl()));
   // Repository
   sl.registerLazySingleton<ProfileRepository>(
     () => ProfileRepositoryImpl(remoteDataSource: sl()),

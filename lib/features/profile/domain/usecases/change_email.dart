@@ -6,14 +6,14 @@ import 'package:gofoodie/core/usecases/usecase.dart';
 import 'package:gofoodie/features/profile/domain/entities/profile_data.dart';
 import 'package:gofoodie/features/profile/domain/repositories/profile_repository.dart';
 
-class ChangeName implements UseCase<ProfileData, Params> {
+class ChangeEmail implements UseCase<ProfileData, Params> {
   final ProfileRepository repository;
 
-  ChangeName({@required this.repository});
+  ChangeEmail({@required this.repository});
 
   @override
   Future<Either<Failure, ProfileData>> call(Params params) async {
-    final Either result = await repository.changeName(
+    final Either result = await repository.changeEmail(
         fullName: params.fullName, email: params.email);
 
     return result.fold((l) => Left(l), (r) async {

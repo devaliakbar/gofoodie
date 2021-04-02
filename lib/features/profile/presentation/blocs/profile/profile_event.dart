@@ -18,3 +18,13 @@ class ChangeNameEvent extends ProfileEvent {
   @override
   List<Object> get props => [fullName, email];
 }
+
+class ChangeEmailEvent extends ProfileEvent {
+  final String fullName;
+  final String email;
+
+  ChangeEmailEvent({@required this.fullName, @required this.email});
+
+  @override
+  List<Object> get props => [fullName, email];
+}

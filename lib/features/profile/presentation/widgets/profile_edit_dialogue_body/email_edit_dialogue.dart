@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:gofoodie/core/res/app_resources.dart';
+import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/custom_button.dart';
 import 'package:gofoodie/core/widgets/custom_text_field.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/profile/domain/entities/profile_data.dart';
+import 'package:gofoodie/features/profile/presentation/blocs/profile/profile_bloc.dart';
 
 class EmailEditDialogue extends StatefulWidget {
   final ProfileData profile;
@@ -69,11 +72,42 @@ class _EmailEditDialogueState extends State<EmailEditDialogue> {
                     SizedBox(
                       height: 15,
                     ),
-                    CustomButton(
-                      onClick: () {},
-                      title: "Save",
-                      width: double.infinity,
-                    )
+                    BlocConsumer<ProfileBloc, ProfileState>(
+                      listener: (context, state) {
+                        if (state is ProfileSavingErrorState) {
+                          ShowToast(state.message);
+                        }
+
+                        if (state is ProfileLoadedState) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      builder: (context, state) {
+                        if (state is ProfileLoadedState) {
+                          return CustomButton(
+                            onClick: () {
+                              if (emailController.text.trim() != "") {
+                                BlocProvider.of<ProfileBloc>(context).add(
+                                  ChangeEmailEvent(
+                                    fullName: state.profileData.name,
+                                    email: emailController.text.trim(),
+                                  ),
+                                );
+                              }
+                            },
+                            title: "Save",
+                            width: double.infinity,
+                            isLoading: state is ProfileLoadingState,
+                          );
+                        }
+                        return CustomButton(
+                          onClick: () {},
+                          title: "Save",
+                          width: double.infinity,
+                          isLoading: true,
+                        );
+                      },
+                    ),
                   ],
                 )),
           ),

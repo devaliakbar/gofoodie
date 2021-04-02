@@ -38,4 +38,21 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return Left(UnExpectedFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> changeEmail(
+      {String fullName, String email}) async {
+    try {
+      return Right(
+          await remoteDataSource.changeEmail(fullName: fullName, email: email));
+    } on RequiredFieldException catch (e) {
+      return Left(RequiredFieldFailure(e.cause));
+    } on NetworkNotAvaliableException {
+      return Left(NetworkNotAvaliableFailure());
+    } on AuthenticationException {
+      return Left(AuthenticationFailure());
+    } catch (e) {
+      return Left(UnExpectedFailure());
+    }
+  }
 }
