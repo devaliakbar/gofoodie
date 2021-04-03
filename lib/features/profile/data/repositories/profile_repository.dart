@@ -55,4 +55,27 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return Left(UnExpectedFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> changePassword(
+      {String fullName,
+      String email,
+      String oldPassword,
+      String newPassword}) async {
+    try {
+      return Right(await remoteDataSource.changePassword(
+          fullName: fullName,
+          email: email,
+          oldPassword: oldPassword,
+          newPassword: newPassword));
+    } on RequiredFieldException catch (e) {
+      return Left(RequiredFieldFailure(e.cause));
+    } on NetworkNotAvaliableException {
+      return Left(NetworkNotAvaliableFailure());
+    } on AuthenticationException {
+      return Left(AuthenticationFailure());
+    } catch (e) {
+      return Left(UnExpectedFailure());
+    }
+  }
 }

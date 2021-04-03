@@ -28,3 +28,17 @@ class ChangeEmailEvent extends ProfileEvent {
   @override
   List<Object> get props => [email, profileData];
 }
+
+class ChangePasswordEvent extends ProfileEvent {
+  final String oldPassword;
+  final String newPassword;
+  final ProfileData profileData;
+
+  ChangePasswordEvent(
+      {@required this.oldPassword,
+      @required this.newPassword,
+      @required this.profileData});
+
+  @override
+  List<Object> get props => [oldPassword, newPassword, profileData];
+}

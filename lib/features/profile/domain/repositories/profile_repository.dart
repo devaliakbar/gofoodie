@@ -9,4 +9,9 @@ abstract class ProfileRepository {
       {@required String fullName, @required String email});
   Future<Either<Failure, bool>> changeEmail(
       {@required String fullName, @required String email});
+  Future<Either<Failure, bool>> changePassword(
+      {@required String fullName,
+      @required String email,
+      @required String oldPassword,
+      @required String newPassword});
 }

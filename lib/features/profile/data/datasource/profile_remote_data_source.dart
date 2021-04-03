@@ -8,6 +8,8 @@ abstract class ProfileRemoteDataSource {
   Future<ProfileModel> getProfileDetails();
   Future<bool> changeName({String fullName, String email});
   Future<bool> changeEmail({String fullName, String email});
+  Future<bool> changePassword(
+      {String fullName, String email, String oldPassword, String newPassword});
 }
 
 class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
@@ -75,6 +77,46 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
           apiHelper.appendPath(path: "customer/settings"),
           options: await apiHelper.getHeaders(),
           data: {"name": fullName, "email": email});
+
+      var jsonResponce = await response.data;
+      if (jsonResponce['error'] != null) {
+        throw RequiredFieldException(jsonResponce['error']);
+      }
+
+      return true;
+    } on DioError catch (e) {
+      if (e.response.statusCode == 401) {
+        throw AuthenticationException();
+      } else {
+        throw UnExpectedException();
+      }
+    }
+  }
+
+  @override
+  Future<bool> changePassword(
+      {String fullName,
+      String email,
+      String oldPassword,
+      String newPassword}) async {
+    bool result = await apiHelper.isNetworkConnected();
+
+    if (!result) {
+      throw NetworkNotAvaliableException();
+    }
+
+    try {
+      Response response = await Dio().post(
+        apiHelper.appendPath(path: "customer/settings"),
+        options: await apiHelper.getHeaders(),
+        data: {
+          "name": fullName,
+          "email": email,
+          "current_password": oldPassword,
+          "password": newPassword,
+          "password_confirmation": newPassword
+        },
+      );
 
       var jsonResponce = await response.data;
       if (jsonResponce['error'] != null) {
