@@ -84,21 +84,10 @@ class _EmailEditDialogueState extends State<EmailEditDialogue> {
                       },
                       builder: (context, state) {
                         if (state is ProfileLoadedState) {
-                          return CustomButton(
-                            onClick: () {
-                              if (emailController.text.trim() != "") {
-                                BlocProvider.of<ProfileBloc>(context).add(
-                                  ChangeEmailEvent(
-                                    fullName: state.profileData.name,
-                                    email: emailController.text.trim(),
-                                  ),
-                                );
-                              }
-                            },
-                            title: "Save",
-                            width: double.infinity,
-                            isLoading: state is ProfileLoadingState,
-                          );
+                          return _buildSaveButton(state.profileData);
+                        }
+                        if (state is ProfileSavingErrorState) {
+                          return _buildSaveButton(state.profileData);
                         }
                         return CustomButton(
                           onClick: () {},
@@ -113,6 +102,21 @@ class _EmailEditDialogueState extends State<EmailEditDialogue> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildSaveButton(ProfileData profileData) {
+    return CustomButton(
+      onClick: () {
+        if (emailController.text.trim() != "") {
+          BlocProvider.of<ProfileBloc>(context).add(
+            ChangeEmailEvent(
+                email: emailController.text.trim(), profileData: profileData),
+          );
+        }
+      },
+      title: "Save",
+      width: double.infinity,
     );
   }
 }

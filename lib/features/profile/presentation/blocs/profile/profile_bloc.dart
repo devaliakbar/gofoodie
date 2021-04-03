@@ -51,22 +51,24 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       yield ProfileSavingState();
 
       final Either result = await _changeName(NameChangeUserCase.Params(
-          fullName: event.fullName, email: event.email));
+          fullName: event.fullName, email: event.profileData.email));
 
       yield result.fold(
-        (failure) =>
-            ProfileSavingErrorState(message: _mapFailureToMessage(failure)),
+        (failure) => ProfileSavingErrorState(
+            message: _mapFailureToMessage(failure),
+            profileData: event.profileData),
         (profileData) => ProfileLoadedState(profileData: profileData),
       );
     } else if (event is ChangeEmailEvent) {
       yield ProfileSavingState();
 
       final Either result = await _changeEmail(EmailChangeUseCase.Params(
-          fullName: event.fullName, email: event.email));
+          fullName: event.profileData.name, email: event.email));
 
       yield result.fold(
-        (failure) =>
-            ProfileSavingErrorState(message: _mapFailureToMessage(failure)),
+        (failure) => ProfileSavingErrorState(
+            message: _mapFailureToMessage(failure),
+            profileData: event.profileData),
         (profileData) => ProfileLoadedState(profileData: profileData),
       );
     }

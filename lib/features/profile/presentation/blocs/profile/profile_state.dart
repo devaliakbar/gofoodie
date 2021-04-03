@@ -32,9 +32,10 @@ class ProfileErrorState extends ProfileState {
 
 class ProfileSavingErrorState extends ProfileState {
   final String message;
+  final ProfileData profileData;
 
-  ProfileSavingErrorState({@required this.message});
+  ProfileSavingErrorState({@required this.message, @required this.profileData});
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [message, profileData];
 }

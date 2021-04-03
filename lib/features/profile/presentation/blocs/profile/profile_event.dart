@@ -11,20 +11,20 @@ class ProfileLoadEvent extends ProfileEvent {}
 
 class ChangeNameEvent extends ProfileEvent {
   final String fullName;
-  final String email;
+  final ProfileData profileData;
 
-  ChangeNameEvent({@required this.fullName, @required this.email});
+  ChangeNameEvent({@required this.fullName, @required this.profileData});
 
   @override
-  List<Object> get props => [fullName, email];
+  List<Object> get props => [fullName, profileData];
 }
 
 class ChangeEmailEvent extends ProfileEvent {
-  final String fullName;
   final String email;
+  final ProfileData profileData;
 
-  ChangeEmailEvent({@required this.fullName, @required this.email});
+  ChangeEmailEvent({@required this.email, @required this.profileData});
 
   @override
-  List<Object> get props => [fullName, email];
+  List<Object> get props => [email, profileData];
 }

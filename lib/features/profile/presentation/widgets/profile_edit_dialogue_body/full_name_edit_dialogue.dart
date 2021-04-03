@@ -84,21 +84,11 @@ class _FullNameEditDialogueState extends State<FullNameEditDialogue> {
                       },
                       builder: (context, state) {
                         if (state is ProfileLoadedState) {
-                          return CustomButton(
-                            onClick: () {
-                              if (fullNameController.text.trim() != "") {
-                                BlocProvider.of<ProfileBloc>(context).add(
-                                  ChangeNameEvent(
-                                    fullName: fullNameController.text.trim(),
-                                    email: state.profileData.email,
-                                  ),
-                                );
-                              }
-                            },
-                            title: "Save",
-                            width: double.infinity,
-                            isLoading: state is ProfileLoadingState,
-                          );
+                          return _buildSaveButton(state.profileData);
+                        }
+                        if (state is ProfileSavingErrorState) {
+                          print("ALI");
+                          return _buildSaveButton(state.profileData);
                         }
                         return CustomButton(
                           onClick: () {},
@@ -113,6 +103,22 @@ class _FullNameEditDialogueState extends State<FullNameEditDialogue> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildSaveButton(ProfileData profileData) {
+    return CustomButton(
+      onClick: () {
+        if (fullNameController.text.trim() != "") {
+          BlocProvider.of<ProfileBloc>(context).add(
+            ChangeNameEvent(
+                fullName: fullNameController.text.trim(),
+                profileData: profileData),
+          );
+        }
+      },
+      title: "Save",
+      width: double.infinity,
     );
   }
 }
