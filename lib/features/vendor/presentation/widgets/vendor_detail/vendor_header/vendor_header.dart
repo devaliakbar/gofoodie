@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
+import 'package:gofoodie/features/vendor/domain/entities/vendor_info.dart';
 import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_header/vendor_header_actions.dart';
 
 class VendorHeader extends StatelessWidget {
+  final VendorInfo vendorInfo;
+  VendorHeader({@required this.vendorInfo});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -32,11 +36,14 @@ class VendorHeader extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      NormalText(
-                        "More Cafe",
-                        color: Colors.white,
-                        size: FontSizes.fontSizeL,
-                        boldText: true,
+                      Flexible(
+                        child: NormalText(
+                          vendorInfo.name,
+                          color: Colors.white,
+                          truncate: true,
+                          size: FontSizes.fontSizeL,
+                          boldText: true,
+                        ),
                       ),
                       SizedBox(
                         width: SizeConfig.width(2),
@@ -58,17 +65,21 @@ class VendorHeader extends StatelessWidget {
                     ],
                   ),
                   NormalText(
-                    "Dubai",
+                    vendorInfo.address,
                     color: Colors.white.withOpacity(0.81),
                     size: FontSizes.fontSizeS,
+                    maxLine: 2,
+                    truncate: true,
                   ),
                   SizedBox(
                     height: SizeConfig.height(0.4),
                   ),
                   NormalText(
-                    "Gardenia Building, Al Murooj Rotana Complex, Financial Centre Street, Downtown Dubai, Duba1",
+                    vendorInfo.addressLine,
                     color: Colors.white.withOpacity(0.81),
                     size: FontSizes.fontSizeS,
+                    maxLine: 2,
+                    truncate: true,
                   ),
                   SizedBox(
                     height: SizeConfig.height(2),

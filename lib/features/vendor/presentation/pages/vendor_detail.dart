@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gofoodie/core/services/show_toast.dart';
+import 'package:gofoodie/core/widgets/loading_view.dart';
+import 'package:gofoodie/features/vendor/presentation/blocs/vendor_details/vendor_details_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_body.dart';
 import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_header/vendor_header.dart';
 import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_tabs.dart';
@@ -17,34 +21,62 @@ class _VendorDetailState extends State<VendorDetail> {
   int selectedTab = VendorTabs.TAB_ONLINE_ORDER;
 
   @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<VendorDetailsBloc>(context).add(
+      GetVendorDetailsEvent(vendorId: widget.vendorId),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          VendorHeader(),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      body: BlocConsumer<VendorDetailsBloc, VendorDetailsState>(
+        listener: (BuildContext context, state) {
+          print("VendorDetails Screen State Changed");
+
+          if (state is VendorDetailsErrorState) {
+            ShowToast(state.message);
+          }
+        },
+        builder: (BuildContext context, state) {
+          if (state is VendorDetailsLoadedState) {
+            return Column(
               children: [
-                VendorTabs(
-                  selectedTab: selectedTab,
-                  onVendorTabSelect: (int mSelectedTab) {
-                    setState(() {
-                      selectedTab = mSelectedTab;
-                    });
-                  },
+                VendorHeader(
+                  vendorInfo: state.vendorDetailsEntity.vendorInfo,
                 ),
                 Expanded(
-                  child: VendorBody(selectedTab: selectedTab),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      VendorTabs(
+                        selectedTab: selectedTab,
+                        onVendorTabSelect: (int mSelectedTab) {
+                          setState(() {
+                            selectedTab = mSelectedTab;
+                          });
+                        },
+                      ),
+                      Expanded(
+                        child: VendorBody(selectedTab: selectedTab),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).padding.bottom,
                 )
               ],
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).padding.bottom,
-          )
-        ],
+            );
+          }
+
+          return Center(
+            child: LoadingView(),
+          );
+        },
       ),
     );
   }
