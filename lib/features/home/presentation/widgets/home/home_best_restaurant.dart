@@ -5,6 +5,7 @@ import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/image_from_network.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/home/domain/entities/home_category.dart';
+import 'package:gofoodie/features/vendor/presentation/pages/vendor_detail.dart';
 
 class HomeBestRestaurant extends StatelessWidget {
   final List<HomeCategory> categories;
@@ -34,32 +35,38 @@ class HomeBestRestaurant extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: categories.length,
             itemBuilder: (BuildContext context, int index) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                        bottom: SizeConfig.height(1),
-                        right: SizeConfig.height(1)),
-                    width: SizeConfig.width(25),
-                    height: SizeConfig.width(30),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: ImageFromNetwork(
-                        imageUrl: categories[index].imageUrl,
+              return InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, VendorDetail.routeName,
+                      arguments: categories[index].id);
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                          bottom: SizeConfig.height(1),
+                          right: SizeConfig.height(1)),
+                      width: SizeConfig.width(25),
+                      height: SizeConfig.width(30),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: ImageFromNetwork(
+                          imageUrl: categories[index].imageUrl,
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    width: SizeConfig.width(25),
-                    child: NormalText(
-                      categories[index].name,
-                      size: FontSizes.fontSizeBSM,
-                      color: AppColors.black,
-                      truncate: true,
-                    ),
-                  )
-                ],
+                    Container(
+                      width: SizeConfig.width(25),
+                      child: NormalText(
+                        categories[index].name,
+                        size: FontSizes.fontSizeBSM,
+                        color: AppColors.black,
+                        truncate: true,
+                      ),
+                    )
+                  ],
+                ),
               );
             },
           ),
