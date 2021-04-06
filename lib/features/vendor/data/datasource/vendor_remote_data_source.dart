@@ -8,6 +8,13 @@ import 'package:gofoodie/features/vendor/data/models/vendor_model.dart';
 abstract class VendorRemoteDataSource {
   Future<List<VendorModel>> getVendors({@required int categoryId});
   Future<VendorDetailsModel> getVendorDetails({@required int vendorId});
+  Future<bool> bookTable(
+      {@required int numberOfGuest,
+      @required String dateOfBooking,
+      @required String name,
+      @required String email,
+      @required String phone,
+      @required int vendorId});
 }
 
 class VendorRemoteDataSourceImpl extends VendorRemoteDataSource {
@@ -62,5 +69,41 @@ class VendorRemoteDataSourceImpl extends VendorRemoteDataSource {
       return VendorDetailsModel.fromJson(jsonResponce);
     }
     throw UnExpectedException();
+  }
+
+  @override
+  Future<bool> bookTable(
+      {int numberOfGuest,
+      String dateOfBooking,
+      String name,
+      String email,
+      String phone,
+      int vendorId}) async {
+    bool result = await apiHelper.isNetworkConnected();
+
+    if (!result) {
+      throw NetworkNotAvaliableException();
+    }
+
+    try {
+      await Dio().post(apiHelper.appendPath(path: "customer/table/booking"),
+          options: await apiHelper.getHeaders(),
+          data: {
+            "number_of_gutes": numberOfGuest,
+            "date": dateOfBooking,
+            "name": name,
+            "email": email,
+            "mobile": phone,
+            "vendor_id": vendorId
+          });
+
+      return true;
+    } on DioError catch (e) {
+      if (e.response.statusCode == 401) {
+        throw AuthenticationException();
+      } else {
+        throw UnExpectedException();
+      }
+    }
   }
 }

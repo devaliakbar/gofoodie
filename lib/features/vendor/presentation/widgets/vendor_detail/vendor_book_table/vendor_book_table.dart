@@ -1,10 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/services/size_config.dart';
+import 'package:gofoodie/core/utils/utils.dart';
 import 'package:gofoodie/core/widgets/custom_button.dart';
 import 'package:gofoodie/core/widgets/custom_text_field.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 
-class VendorBookTable extends StatelessWidget {
+class VendorBookTable extends StatefulWidget {
+  @override
+  _VendorBookTableState createState() => _VendorBookTableState();
+}
+
+class _VendorBookTableState extends State<VendorBookTable> {
+  DateTime selectedDate = DateTime.now();
+
+  final TextEditingController numberOfGuestController = TextEditingController();
+  final TextEditingController dateController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    dateController.text = Utils.getFormattedDate(selectedDate);
+  }
+
+  @override
+  void dispose() {
+    numberOfGuestController.dispose();
+    nameController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    dateController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,14 +58,22 @@ class VendorBookTable extends StatelessWidget {
               label: "Number of Guests",
               inputType: TextInputType.number,
               borderRadius: SizeConfig.width(2),
+              controller: numberOfGuestController,
             ),
             SizedBox(
               height: SizeConfig.height(2),
             ),
-            CustomTextField(
-              label: "Date Of Booking",
-              inputType: TextInputType.datetime,
-              borderRadius: SizeConfig.width(2),
+            InkWell(
+              onTap: () {
+                _selectDate(context);
+              },
+              child: CustomTextField(
+                label: "Date Of Booking",
+                inputType: TextInputType.datetime,
+                borderRadius: SizeConfig.width(2),
+                controller: dateController,
+                enabled: false,
+              ),
             ),
             SizedBox(
               height: SizeConfig.height(3),
@@ -49,6 +89,7 @@ class VendorBookTable extends StatelessWidget {
               label: "Name",
               inputType: TextInputType.name,
               borderRadius: SizeConfig.width(2),
+              controller: nameController,
             ),
             SizedBox(
               height: SizeConfig.height(2),
@@ -57,6 +98,7 @@ class VendorBookTable extends StatelessWidget {
               label: "Email",
               inputType: TextInputType.emailAddress,
               borderRadius: SizeConfig.width(2),
+              controller: emailController,
             ),
             SizedBox(
               height: SizeConfig.height(2),
@@ -65,6 +107,7 @@ class VendorBookTable extends StatelessWidget {
               label: "Phone",
               inputType: TextInputType.phone,
               borderRadius: SizeConfig.width(2),
+              controller: phoneController,
             ),
             SizedBox(
               height: SizeConfig.height(2),
@@ -89,5 +132,19 @@ class VendorBookTable extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    FocusScope.of(context).requestFocus(FocusNode());
+
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate) {
+      selectedDate = picked;
+      dateController.text = Utils.getFormattedDate(selectedDate);
+    }
   }
 }

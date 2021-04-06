@@ -11,6 +11,7 @@ class CustomTextField extends StatelessWidget {
   final FormFieldValidator<String> validator;
   final int maxLine;
   final double borderRadius;
+  final bool enabled;
 
   CustomTextField(
       {this.label,
@@ -19,12 +20,14 @@ class CustomTextField extends StatelessWidget {
       this.obsecure = false,
       this.validator,
       this.maxLine = 1,
-      this.borderRadius});
+      this.borderRadius,
+      this.enabled = true});
 
   @override
   Widget build(BuildContext context) {
     return EnsureVisibleWhenFocused(
       child: TextFormField(
+        enabled: enabled,
         maxLines: maxLine,
         controller: controller,
         keyboardType: inputType,
@@ -60,7 +63,8 @@ class CustomTextField extends StatelessWidget {
             ),
           ),
           disabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.lightBlack, width: 1.0),
+            borderSide: BorderSide(
+                color: AppColors.lightBlack.withOpacity(0.5), width: 1.0),
             borderRadius: BorderRadius.all(
               Radius.circular(
                   borderRadius == null ? SizeConfig.width(50) : borderRadius),

@@ -14,4 +14,12 @@ class Utils {
     }
     return double.parse(s, (e) => null) != null;
   }
+
+  static String getFormattedDate(DateTime date) {
+    return "${twoDigitInt(date.day)}/${Utils.twoDigitInt(date.month)}/${date.year}";
+  }
+
+  static String twoDigitInt(int number) {
+    return number.toString().padLeft(2, '0');
+  }
 }

@@ -37,4 +37,29 @@ class VendorRepositoryImpl extends VendorRepository {
       return Left(UnExpectedFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> bookTable(
+      {int numberOfGuest,
+      String dateOfBooking,
+      String name,
+      String email,
+      String phone,
+      int vendorId}) async {
+    try {
+      return Right(await vendorRemoteDataSource.bookTable(
+          numberOfGuest: numberOfGuest,
+          dateOfBooking: dateOfBooking,
+          name: name,
+          email: email,
+          phone: phone,
+          vendorId: vendorId));
+    } on NetworkNotAvaliableException {
+      return Left(NetworkNotAvaliableFailure());
+    } on AuthenticationException {
+      return Left(AuthenticationFailure());
+    } catch (e) {
+      return Left(UnExpectedFailure());
+    }
+  }
 }

@@ -8,4 +8,12 @@ abstract class VendorRepository {
   Future<Either<Failure, List<Vendor>>> getVendors({@required int categoryId});
   Future<Either<Failure, VendorDetailsEntity>> getVendorDetails(
       {@required int vendorId});
+
+  Future<Either<Failure, bool>> bookTable(
+      {@required int numberOfGuest,
+      @required String dateOfBooking,
+      @required String name,
+      @required String email,
+      @required String phone,
+      @required int vendorId});
 }
