@@ -61,7 +61,10 @@ class _VendorDetailState extends State<VendorDetail> {
                         },
                       ),
                       Expanded(
-                        child: VendorBody(selectedTab: selectedTab),
+                        child: VendorBody(
+                          selectedTab: selectedTab,
+                          vendorId: widget.vendorId,
+                        ),
                       )
                     ],
                   ),

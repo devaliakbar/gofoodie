@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
+import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/utils/utils.dart';
 import 'package:gofoodie/core/widgets/custom_button.dart';
@@ -9,6 +10,9 @@ import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/book_table/book_table_bloc.dart';
 
 class VendorBookTable extends StatefulWidget {
+  final int vendorId;
+  VendorBookTable({@required this.vendorId});
+
   @override
   _VendorBookTableState createState() => _VendorBookTableState();
 }
@@ -132,7 +136,18 @@ class _VendorBookTableState extends State<VendorBookTable> {
                 height: SizeConfig.height(3),
               ),
               BlocConsumer<BookTableBloc, BookTableState>(
-                listener: (context, state) {},
+                listener: (context, state) {
+                  if (state is BookTableErrorState) {
+                    ShowToast(state.message);
+                  } else if (state is BookTableInitialState) {
+                    ShowToast("Table Booked Successfully");
+
+                    numberOfGuestController.text = "";
+                    nameController.text = "";
+                    emailController.text = "";
+                    phoneController.text = "";
+                  }
+                },
                 builder: (context, state) {
                   return CustomButton(
                     onClick: onSave,
@@ -214,5 +229,13 @@ class _VendorBookTableState extends State<VendorBookTable> {
     if (!_formKey.currentState.validate()) {
       return;
     }
+
+    BlocProvider.of<BookTableBloc>(context).add(BookEvent(
+        numberOfGuest: int.parse(numberOfGuestController.text.trim()),
+        dateOfBooking: Utils.getFormattedDate(selectedDate),
+        name: nameController.text.trim(),
+        email: emailController.text.trim(),
+        phone: phoneController.text.trim(),
+        vendorId: widget.vendorId));
   }
 }

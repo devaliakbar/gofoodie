@@ -8,7 +8,8 @@ import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vend
 
 class VendorBody extends StatelessWidget {
   final int selectedTab;
-  VendorBody({@required this.selectedTab});
+  final int vendorId;
+  VendorBody({@required this.selectedTab, @required this.vendorId});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,9 @@ class VendorBody extends StatelessWidget {
       case VendorTabs.TAB_GALLERY:
         return VendorGallery();
       case VendorTabs.TAB_BOOKING:
-        return VendorBookTable();
+        return VendorBookTable(
+          vendorId: vendorId,
+        );
       case VendorTabs.TAB_RATING:
         return VendorRating();
       default:

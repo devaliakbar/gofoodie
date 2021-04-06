@@ -15,7 +15,7 @@ class BookTableBloc extends Bloc<BookTableEvent, BookTableState> {
   final BookTable _bookTable;
 
   BookTableBloc({BookTable bookTable})
-      : assert(_bookTable != null),
+      : assert(bookTable != null),
         _bookTable = bookTable,
         super(BookTableInitialState());
 

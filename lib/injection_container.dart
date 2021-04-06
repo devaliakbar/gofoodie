@@ -25,9 +25,11 @@ import 'package:gofoodie/features/profile/presentation/blocs/profile/profile_blo
 import 'package:gofoodie/features/vendor/data/datasource/vendor_remote_data_source.dart';
 import 'package:gofoodie/features/vendor/data/repositories/vendor_repository.dart';
 import 'package:gofoodie/features/vendor/domain/repositories/vendor_repository.dart';
+import 'package:gofoodie/features/vendor/domain/usecases/book_table.dart';
 import 'package:gofoodie/features/vendor/domain/usecases/get_vendor_details.dart';
 import 'package:gofoodie/features/vendor/domain/usecases/get_vendors.dart';
 import 'package:gofoodie/features/home/presentation/blocs/home/home_bloc.dart';
+import 'package:gofoodie/features/vendor/presentation/blocs/book_table/book_table_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/vendor_details/vendor_details_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/vendors/vendors_bloc.dart';
 import 'package:gofoodie/features/welcome/data/datasource/welcome_local_data_source.dart';
@@ -137,9 +139,13 @@ Future<void> init() async {
   sl.registerFactory<VendorDetailsBloc>(
     () => VendorDetailsBloc(getVendorDetails: sl()),
   );
+  sl.registerFactory<BookTableBloc>(
+    () => BookTableBloc(bookTable: sl()),
+  );
   // Use cases
   sl.registerLazySingleton(() => GetVendors(sl()));
   sl.registerLazySingleton(() => GetVendorDetails(sl()));
+  sl.registerLazySingleton(() => BookTable(sl()));
   // Repository
   sl.registerLazySingleton<VendorRepository>(
     () => VendorRepositoryImpl(vendorRemoteDataSource: sl()),

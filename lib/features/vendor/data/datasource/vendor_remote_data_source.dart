@@ -87,7 +87,7 @@ class VendorRemoteDataSourceImpl extends VendorRemoteDataSource {
 
     try {
       await Dio().post(apiHelper.appendPath(path: "customer/table/booking"),
-          options: await apiHelper.getHeaders(),
+          options: await apiHelper.getHeaders(withToken: false),
           data: {
             "number_of_gutes": numberOfGuest,
             "date": dateOfBooking,
