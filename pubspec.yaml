@@ -29,6 +29,7 @@ dependencies:
   vibration: ^1.7.3
   percent_indicator:
   flutter_rating_bar:
+  rxdart:
 
 dev_dependencies:
   flutter_test:

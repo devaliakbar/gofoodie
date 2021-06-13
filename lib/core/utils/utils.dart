@@ -22,4 +22,8 @@ class Utils {
   static String twoDigitInt(int number) {
     return number.toString().padLeft(2, '0');
   }
+
+  static String getCurrencyFormat(double amount) {
+    return "AED $amount";
+  }
 }

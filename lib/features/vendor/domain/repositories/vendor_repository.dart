@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/core/error/failures.dart';
 import 'package:gofoodie/features/vendor/domain/entities/vendor.dart';
 import 'package:gofoodie/features/vendor/domain/entities/vendor_details_entity.dart';
+import 'package:gofoodie/features/vendor/domain/entities/vendor_online_products.dart';
 
 abstract class VendorRepository {
   Future<Either<Failure, List<Vendor>>> getVendors({@required int categoryId});
@@ -16,4 +17,7 @@ abstract class VendorRepository {
       @required String email,
       @required String phone,
       @required int vendorId});
+
+  Future<Either<Failure, VendorOnlineProducts>> getProducts(
+      {@required String apiUrl});
 }

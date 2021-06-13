@@ -4,6 +4,7 @@ import 'package:gofoodie/core/error/exceptions.dart';
 import 'package:gofoodie/core/services/network/api_helper.dart';
 import 'package:gofoodie/features/vendor/data/models/vendor_details_model.dart';
 import 'package:gofoodie/features/vendor/data/models/vendor_model.dart';
+import 'package:gofoodie/features/vendor/data/models/vendor_online_products_model.dart';
 
 abstract class VendorRemoteDataSource {
   Future<List<VendorModel>> getVendors({@required int categoryId});
@@ -15,6 +16,9 @@ abstract class VendorRemoteDataSource {
       @required String email,
       @required String phone,
       @required int vendorId});
+
+  Future<VendorOnlineProductsModel> getVendorProducts(
+      {@required String apiUrl});
 }
 
 class VendorRemoteDataSourceImpl extends VendorRemoteDataSource {
@@ -104,6 +108,42 @@ class VendorRemoteDataSourceImpl extends VendorRemoteDataSource {
       } else {
         throw UnExpectedException();
       }
+    }
+  }
+
+  @override
+  Future<VendorOnlineProductsModel> getVendorProducts({String apiUrl}) async {
+    bool result = await apiHelper.isNetworkConnected();
+
+    if (!result) {
+      throw NetworkNotAvaliableException();
+    }
+    await Future.delayed(Duration(seconds: 2));
+    try {
+      // TODO
+      // Response response = await Dio().get(
+      //   apiUrl,
+      //   options: await apiHelper.getHeaders(withToken: false),
+      // );
+
+      List<Map<String, dynamic>> prods = [];
+
+      for (int i = 0; i < 12; i++) {
+        prods.add({
+          "id": (i + 1),
+          "name": "Product ${(i + 1)}",
+          "imageUrl":
+              "https://www.esquireme.com/public/styles/full_img/public/images/2016/08/25/Burger.jpg?itok=UeqqTuYy",
+          "price": 32.00,
+          "description":
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+        });
+      }
+
+      return VendorOnlineProductsModel.fromJson(
+          {"next_page": "***", "products": prods});
+    } catch (e) {
+      throw UnExpectedException();
     }
   }
 }

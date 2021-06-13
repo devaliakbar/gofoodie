@@ -9,6 +9,7 @@ import 'package:gofoodie/features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:gofoodie/features/profile/presentation/blocs/profile/profile_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/book_table/book_table_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/vendor_details/vendor_details_bloc.dart';
+import 'package:gofoodie/features/vendor/presentation/blocs/vendor_online_order/vendor_online_order_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/vendors/vendors_bloc.dart';
 import 'package:gofoodie/features/welcome/presentation/blocs/splash_screen/splash_screen_bloc.dart';
 import 'package:gofoodie/features/welcome/presentation/pages/splash_screen.dart';
@@ -34,6 +35,8 @@ void main() async {
         BlocProvider<ProfileBloc>(create: (context) => di.sl<ProfileBloc>()),
         BlocProvider<BookTableBloc>(
             create: (context) => di.sl<BookTableBloc>()),
+        BlocProvider<VendorOnlineOrderBloc>(
+            create: (context) => di.sl<VendorOnlineOrderBloc>()),
       ],
       child: EasyLocalization(
         child: MyApp(),

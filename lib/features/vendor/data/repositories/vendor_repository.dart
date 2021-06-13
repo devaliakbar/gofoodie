@@ -5,6 +5,7 @@ import 'package:gofoodie/core/error/failures.dart';
 import 'package:gofoodie/features/vendor/data/datasource/vendor_remote_data_source.dart';
 import 'package:gofoodie/features/vendor/domain/entities/vendor.dart';
 import 'package:gofoodie/features/vendor/domain/entities/vendor_details_entity.dart';
+import 'package:gofoodie/features/vendor/domain/entities/vendor_online_products.dart';
 import 'package:gofoodie/features/vendor/domain/repositories/vendor_repository.dart';
 
 class VendorRepositoryImpl extends VendorRepository {
@@ -58,6 +59,20 @@ class VendorRepositoryImpl extends VendorRepository {
       return Left(NetworkNotAvaliableFailure());
     } on AuthenticationException {
       return Left(AuthenticationFailure());
+    } catch (e) {
+      return Left(UnExpectedFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, VendorOnlineProducts>> getProducts(
+      {String apiUrl}) async {
+    try {
+      return Right(
+        await vendorRemoteDataSource.getVendorProducts(apiUrl: apiUrl),
+      );
+    } on NetworkNotAvaliableException {
+      return Left(NetworkNotAvaliableFailure());
     } catch (e) {
       return Left(UnExpectedFailure());
     }

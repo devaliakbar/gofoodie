@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/widgets/loading_view.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/vendor_details/vendor_details_bloc.dart';
+import 'package:gofoodie/features/vendor/presentation/blocs/vendor_online_order/vendor_online_order_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_body.dart';
 import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_header/vendor_header.dart';
 import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_tabs.dart';
@@ -26,6 +27,10 @@ class _VendorDetailState extends State<VendorDetail> {
 
     BlocProvider.of<VendorDetailsBloc>(context).add(
       GetVendorDetailsEvent(vendorId: widget.vendorId),
+    );
+
+    BlocProvider.of<VendorOnlineOrderBloc>(context, listen: false).add(
+      GetVendorProductsEvent(categoryId: null),
     );
   }
 

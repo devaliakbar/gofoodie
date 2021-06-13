@@ -27,10 +27,12 @@ import 'package:gofoodie/features/vendor/data/repositories/vendor_repository.dar
 import 'package:gofoodie/features/vendor/domain/repositories/vendor_repository.dart';
 import 'package:gofoodie/features/vendor/domain/usecases/book_table.dart';
 import 'package:gofoodie/features/vendor/domain/usecases/get_vendor_details.dart';
+import 'package:gofoodie/features/vendor/domain/usecases/get_vendor_products.dart';
 import 'package:gofoodie/features/vendor/domain/usecases/get_vendors.dart';
 import 'package:gofoodie/features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/book_table/book_table_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/vendor_details/vendor_details_bloc.dart';
+import 'package:gofoodie/features/vendor/presentation/blocs/vendor_online_order/vendor_online_order_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/vendors/vendors_bloc.dart';
 import 'package:gofoodie/features/welcome/data/datasource/welcome_local_data_source.dart';
 import 'package:gofoodie/features/welcome/data/repositories/welcome_repository.dart';
@@ -142,10 +144,14 @@ Future<void> init() async {
   sl.registerFactory<BookTableBloc>(
     () => BookTableBloc(bookTable: sl()),
   );
+  sl.registerFactory<VendorOnlineOrderBloc>(
+    () => VendorOnlineOrderBloc(getVendorProducts: sl()),
+  );
   // Use cases
   sl.registerLazySingleton(() => GetVendors(sl()));
   sl.registerLazySingleton(() => GetVendorDetails(sl()));
   sl.registerLazySingleton(() => BookTable(sl()));
+  sl.registerLazySingleton(() => GetVendorProducts(sl()));
   // Repository
   sl.registerLazySingleton<VendorRepository>(
     () => VendorRepositoryImpl(vendorRemoteDataSource: sl()),

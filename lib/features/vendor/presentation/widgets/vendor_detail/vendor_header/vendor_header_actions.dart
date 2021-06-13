@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
+import 'package:gofoodie/core/widgets/tapped.dart';
 
 class VendorHeaderActions extends StatelessWidget {
   @override
@@ -7,7 +8,7 @@ class VendorHeaderActions extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        InkWell(
+        Tapped(
           onTap: () {
             Navigator.pop(context);
           },
@@ -26,7 +27,7 @@ class VendorHeaderActions extends StatelessWidget {
             ),
           ),
         ),
-        InkWell(
+        Tapped(
           onTap: () {},
           child: Container(
             padding: EdgeInsets.all(8),
