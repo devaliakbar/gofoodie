@@ -29,7 +29,7 @@ class VendorOnlineOrderTab extends StatelessWidget {
               ),
               Expanded(
                 flex: 8,
-                child: VendorOnlineOrderBody(),
+                child: VendorOnlineOrderBody(vendorId: vendorId),
               )
             ],
           ),

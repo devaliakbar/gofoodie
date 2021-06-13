@@ -9,10 +9,15 @@ import 'package:gofoodie/core/widgets/image_from_network.dart';
 import 'package:gofoodie/core/widgets/loading_view.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/core/widgets/quantity_button.dart';
+import 'package:gofoodie/features/order/presentation/blocs/cart/cart_bloc.dart';
 import 'package:gofoodie/features/vendor/domain/entities/vendor_product.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/vendor_online_order/vendor_online_order_bloc.dart';
 
 class VendorOnlineOrderBody extends StatelessWidget {
+  final int vendorId;
+
+  VendorOnlineOrderBody({@required this.vendorId});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<VendorOnlineOrderBloc, VendorOnlineOrderState>(
@@ -95,7 +100,36 @@ class VendorOnlineOrderBody extends StatelessWidget {
                   Positioned(
                     right: SizeConfig.height(0.4),
                     bottom: 0,
-                    child: QuantityButton(),
+                    child: BlocBuilder<CartBloc, CartState>(
+                        builder: (BuildContext context, CartState cartState) {
+                      int qty = 0;
+
+                      if (cartState is CartLoadedState) {
+                        try {
+                          qty = cartState.cart.products
+                              .firstWhere((element) => element.id == product.id)
+                              .qty;
+                        } catch (_) {
+                          qty = 0;
+                        }
+                      }
+
+                      return QuantityButton(
+                        qty: qty,
+                        onIncrement: () {
+                          BlocProvider.of<CartBloc>(context).add(
+                            AddToCartEvent(
+                                vendorId: vendorId, vendorProduct: product),
+                          );
+                        },
+                        onDecrement: () {
+                          BlocProvider.of<CartBloc>(context).add(
+                            RemoveFromCartEvent(
+                                vendorId: vendorId, vendorProduct: product),
+                          );
+                        },
+                      );
+                    }),
                   )
                 ],
               );

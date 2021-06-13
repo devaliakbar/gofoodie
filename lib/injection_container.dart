@@ -14,6 +14,8 @@ import 'package:gofoodie/features/home/data/datasource/home_remote_data_source.d
 import 'package:gofoodie/features/home/data/repositories/home_repository.dart';
 import 'package:gofoodie/features/home/domain/repositories/home_repository.dart';
 import 'package:gofoodie/features/home/domain/usecases/get_home_data.dart';
+import 'package:gofoodie/features/order/domain/usecases/cart_usecase.dart';
+import 'package:gofoodie/features/order/presentation/blocs/cart/cart_bloc.dart';
 import 'package:gofoodie/features/profile/data/datasource/profile_remote_data_source.dart';
 import 'package:gofoodie/features/profile/data/repositories/profile_repository.dart';
 import 'package:gofoodie/features/profile/domain/repositories/profile_repository.dart';
@@ -160,4 +162,13 @@ Future<void> init() async {
   sl.registerLazySingleton<VendorRemoteDataSource>(
     () => VendorRemoteDataSourceImpl(apiHelper: sl()),
   );
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // 6 Order
+  // Bloc
+  sl.registerFactory<CartBloc>(
+    () => CartBloc(cartUsecase: sl()),
+  );
+  // Use cases
+  sl.registerLazySingleton(() => CartUsecase());
 }

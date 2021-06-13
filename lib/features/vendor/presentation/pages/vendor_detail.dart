@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/widgets/loading_view.dart';
+import 'package:gofoodie/features/order/presentation/blocs/cart/cart_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/vendor_details/vendor_details_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/vendor_online_order/vendor_online_order_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_body.dart';
@@ -25,13 +26,15 @@ class _VendorDetailState extends State<VendorDetail> {
   void initState() {
     super.initState();
 
-    BlocProvider.of<VendorDetailsBloc>(context).add(
+    BlocProvider.of<VendorDetailsBloc>(context, listen: false).add(
       GetVendorDetailsEvent(vendorId: widget.vendorId),
     );
 
     BlocProvider.of<VendorOnlineOrderBloc>(context, listen: false).add(
       GetVendorProductsEvent(vendorId: widget.vendorId, categoryId: null),
     );
+
+    BlocProvider.of<CartBloc>(context, listen: false).add(ResetCart());
   }
 
   @override

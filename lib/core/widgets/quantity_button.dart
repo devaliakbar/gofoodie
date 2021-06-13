@@ -6,15 +6,22 @@ import 'package:gofoodie/core/widgets/normal_text.dart';
 
 class QuantityButton extends StatelessWidget {
   final int qty;
+  final Function onIncrement;
+  final Function onDecrement;
 
-  QuantityButton({this.qty});
+  QuantityButton(
+      {@required this.qty,
+      @required this.onIncrement,
+      @required this.onDecrement});
 
   @override
   Widget build(BuildContext context) {
-    if (qty == null) {
+    if (qty == 0) {
       return InkWell(
         onTap: () {
           AppVibration();
+
+          onIncrement();
         },
         child: Card(
           margin: EdgeInsets.all(0),
@@ -55,6 +62,7 @@ class QuantityButton extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   AppVibration();
+                  onDecrement();
                 },
                 child: Center(
                   child: Icon(
@@ -79,6 +87,7 @@ class QuantityButton extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   AppVibration();
+                  onIncrement();
                 },
                 child: Center(
                   child: Icon(

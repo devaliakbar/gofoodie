@@ -6,6 +6,7 @@ import 'package:gofoodie/core/services/local_storage/local_storage.dart';
 import 'package:gofoodie/features/authentication/presentation/blocs/login/login_bloc.dart';
 import 'package:gofoodie/features/authentication/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:gofoodie/features/home/presentation/blocs/home/home_bloc.dart';
+import 'package:gofoodie/features/order/presentation/blocs/cart/cart_bloc.dart';
 import 'package:gofoodie/features/profile/presentation/blocs/profile/profile_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/book_table/book_table_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/vendor_details/vendor_details_bloc.dart';
@@ -37,6 +38,7 @@ void main() async {
             create: (context) => di.sl<BookTableBloc>()),
         BlocProvider<VendorOnlineOrderBloc>(
             create: (context) => di.sl<VendorOnlineOrderBloc>()),
+        BlocProvider<CartBloc>(create: (context) => di.sl<CartBloc>()),
       ],
       child: EasyLocalization(
         child: MyApp(),
