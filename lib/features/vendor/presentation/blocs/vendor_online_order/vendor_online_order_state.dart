@@ -25,15 +25,6 @@ class VendorProductsLoadedState extends VendorOnlineOrderState {
   List<Object> get props => [products];
 }
 
-class VendorMoreProductsLoadingState extends VendorOnlineOrderState {
-  final List<VendorProduct> products;
-
-  VendorMoreProductsLoadingState({@required this.products});
-
-  @override
-  List<Object> get props => [products];
-}
-
 class VendorProductsLoadingFailedState extends VendorOnlineOrderState {
   final String message;
 

@@ -8,6 +8,9 @@ import 'package:gofoodie/features/vendor/presentation/blocs/vendor_details/vendo
 import 'package:gofoodie/features/vendor/presentation/blocs/vendor_online_order/vendor_online_order_bloc.dart';
 
 class VendorOnlineOrderFilter extends StatelessWidget {
+  final int vendorId;
+  VendorOnlineOrderFilter({@required this.vendorId});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<VendorDetailsBloc, VendorDetailsState>(
@@ -38,7 +41,7 @@ class VendorOnlineOrderFilter extends StatelessWidget {
       return InkWell(
         onTap: () {
           BlocProvider.of<VendorOnlineOrderBloc>(context, listen: false).add(
-            GetVendorProductsEvent(categoryId: null),
+            GetVendorProductsEvent(vendorId: vendorId, categoryId: null),
           );
         },
         child: Padding(
@@ -61,6 +64,7 @@ class VendorOnlineOrderFilter extends StatelessWidget {
       onTap: () {
         BlocProvider.of<VendorOnlineOrderBloc>(context, listen: false).add(
           GetVendorProductsEvent(
+              vendorId: vendorId,
               categoryId:
                   state.vendorDetailsEntity.vendorCategories[index - 1].id),
         );

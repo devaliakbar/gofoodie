@@ -8,7 +8,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:gofoodie/core/error/failures.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
-import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/features/vendor/domain/entities/vendor_product.dart';
 import 'package:gofoodie/features/vendor/domain/usecases/get_vendor_products.dart';
 
@@ -20,7 +19,6 @@ class VendorOnlineOrderBloc
   final GetVendorProducts _getVendorProducts;
 
   int categoryId;
-  String _nextPage;
 
   VendorOnlineOrderBloc({@required GetVendorProducts getVendorProducts})
       : assert(getVendorProducts != null),
@@ -39,45 +37,20 @@ class VendorOnlineOrderBloc
   ) async* {
     if (event is GetVendorProductsEvent) {
       categoryId = event.categoryId;
-      String url = "";
 
       yield new VendorProductsLoadingState(categoryId: categoryId);
 
       final Either result = await _getVendorProducts(
-        Params(apiUrl: url),
+        Params(vendorId: event.vendorId, categoryId: event.categoryId),
       );
 
       yield result.fold(
         (failure) => VendorProductsLoadingFailedState(
             message: _mapFailureToMessage(failure)),
-        (success) {
-          _nextPage = success.nextPage;
-          return VendorProductsLoadedState(products: success.products);
+        (products) {
+          return VendorProductsLoadedState(products: products);
         },
       );
-    } else if (event is LoadMoreVendorProductsEvent) {
-      if (_nextPage == null) {
-        yield VendorProductsLoadedState(products: event.products);
-      } else {
-        yield VendorMoreProductsLoadingState(products: event.products);
-
-        final Either result = await _getVendorProducts(
-          Params(apiUrl: _nextPage),
-        );
-
-        yield result.fold(
-          (failure) {
-            ShowToast(_mapFailureToMessage(failure));
-            return VendorProductsLoadedState(products: event.products);
-          },
-          (success) {
-            _nextPage = success.nextPage;
-
-            success.products.insertAll(0, event.products);
-            return VendorProductsLoadedState(products: success.products);
-          },
-        );
-      }
     }
   }
 

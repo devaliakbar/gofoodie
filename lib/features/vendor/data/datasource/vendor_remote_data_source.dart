@@ -4,7 +4,7 @@ import 'package:gofoodie/core/error/exceptions.dart';
 import 'package:gofoodie/core/services/network/api_helper.dart';
 import 'package:gofoodie/features/vendor/data/models/vendor_details_model.dart';
 import 'package:gofoodie/features/vendor/data/models/vendor_model.dart';
-import 'package:gofoodie/features/vendor/data/models/vendor_online_products_model.dart';
+import 'package:gofoodie/features/vendor/data/models/vendor_product_model.dart';
 
 abstract class VendorRemoteDataSource {
   Future<List<VendorModel>> getVendors({@required int categoryId});
@@ -17,8 +17,8 @@ abstract class VendorRemoteDataSource {
       @required String phone,
       @required int vendorId});
 
-  Future<VendorOnlineProductsModel> getVendorProducts(
-      {@required String apiUrl});
+  Future<List<VendorProductModel>> getVendorProducts(
+      {@required int vendorId, @required int categoryId});
 }
 
 class VendorRemoteDataSourceImpl extends VendorRemoteDataSource {
@@ -112,7 +112,8 @@ class VendorRemoteDataSourceImpl extends VendorRemoteDataSource {
   }
 
   @override
-  Future<VendorOnlineProductsModel> getVendorProducts({String apiUrl}) async {
+  Future<List<VendorProductModel>> getVendorProducts(
+      {@required int vendorId, @required int categoryId}) async {
     bool result = await apiHelper.isNetworkConnected();
 
     if (!result) {
@@ -140,8 +141,12 @@ class VendorRemoteDataSourceImpl extends VendorRemoteDataSource {
         });
       }
 
-      return VendorOnlineProductsModel.fromJson(
-          {"next_page": "***", "products": prods});
+      final List<VendorProductModel> products = [];
+      prods.forEach((element) {
+        products.add(VendorProductModel.fromJson(element));
+      });
+
+      return products;
     } catch (e) {
       throw UnExpectedException();
     }

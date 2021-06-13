@@ -8,19 +8,11 @@ abstract class VendorOnlineOrderEvent extends Equatable {
 }
 
 class GetVendorProductsEvent extends VendorOnlineOrderEvent {
+  final int vendorId;
   final int categoryId;
 
-  GetVendorProductsEvent({@required this.categoryId});
+  GetVendorProductsEvent({@required this.vendorId, @required this.categoryId});
 
   @override
-  List<Object> get props => [categoryId];
-}
-
-class LoadMoreVendorProductsEvent extends VendorOnlineOrderEvent {
-  final List<VendorProduct> products;
-
-  LoadMoreVendorProductsEvent({@required this.products});
-
-  @override
-  List<Object> get props => [products];
+  List<Object> get props => [vendorId, categoryId];
 }

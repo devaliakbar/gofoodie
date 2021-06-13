@@ -25,7 +25,9 @@ class VendorBody extends StatelessWidget {
       case VendorTabs.TAB_RATING:
         return VendorRating();
       default:
-        return VendorOnlineOrderTab();
+        return VendorOnlineOrderTab(
+          vendorId: vendorId,
+        );
     }
   }
 }

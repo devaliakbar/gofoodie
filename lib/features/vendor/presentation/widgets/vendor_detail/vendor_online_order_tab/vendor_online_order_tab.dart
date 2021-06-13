@@ -6,6 +6,9 @@ import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vend
 import 'package:gofoodie/features/vendor/presentation/widgets/vendor_detail/vendor_online_order_tab/vendor_online_order_filter.dart';
 
 class VendorOnlineOrderTab extends StatelessWidget {
+  final int vendorId;
+  VendorOnlineOrderTab({@required this.vendorId});
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -18,7 +21,7 @@ class VendorOnlineOrderTab extends StatelessWidget {
             children: [
               Expanded(
                 flex: 4,
-                child: VendorOnlineOrderFilter(),
+                child: VendorOnlineOrderFilter(vendorId: vendorId),
               ),
               Container(
                 color: AppColors.lightBlack.withOpacity(0.12),

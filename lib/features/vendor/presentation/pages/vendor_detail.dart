@@ -30,7 +30,7 @@ class _VendorDetailState extends State<VendorDetail> {
     );
 
     BlocProvider.of<VendorOnlineOrderBloc>(context, listen: false).add(
-      GetVendorProductsEvent(categoryId: null),
+      GetVendorProductsEvent(vendorId: widget.vendorId, categoryId: null),
     );
   }
 
