@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Tapped extends StatefulWidget {
-  Tapped({this.child, this.onTap, this.onLongTap});
+  Tapped({@required this.child, this.onTap, this.onLongTap});
   final Widget child;
   final Function onTap;
   final Function onLongTap;

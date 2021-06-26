@@ -3,6 +3,7 @@ import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/custom_button.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
+import 'package:gofoodie/core/widgets/tapped.dart';
 import 'package:gofoodie/features/order/presentation/pages/payment_method.dart';
 import 'package:gofoodie/features/order/presentation/widgets/checkout/coupon_apply.dart';
 
@@ -51,21 +52,23 @@ class AmountDetails extends StatelessWidget {
                     "Coupon Offer",
                     color: AppColors.red,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      left: SizeConfig.width(1),
+                  Tapped(
+                    child: Container(
+                      margin: EdgeInsets.only(
+                        left: SizeConfig.width(1),
+                      ),
+                      padding: EdgeInsets.all(
+                        SizeConfig.width(0.2),
+                      ),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle, color: AppColors.red),
+                      child: Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: FontSizes.fontSizeS,
+                      ),
                     ),
-                    padding: EdgeInsets.all(
-                      SizeConfig.width(0.2),
-                    ),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: AppColors.red),
-                    child: Icon(
-                      Icons.close,
-                      color: Colors.white,
-                      size: FontSizes.fontSizeS,
-                    ),
-                  ),
+                  )
                 ],
               ),
               NormalText("- ₹10.00", color: AppColors.red),
