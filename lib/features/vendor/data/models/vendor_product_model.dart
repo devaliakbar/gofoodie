@@ -16,12 +16,13 @@ class VendorProductModel extends VendorProduct {
             description: description);
 
   factory VendorProductModel.fromJson(Map<String, dynamic> json) {
-    //TODO
     return VendorProductModel(
         id: json['id'],
-        name: json['name'],
-        imageUrl: json['imageUrl'],
-        price: json['price'],
-        description: json['description']);
+        name: json['title'],
+        imageUrl: json['preview']['content'],
+        price: json["price"]['price'] == null
+            ? 0.0
+            : double.parse(json["price"]['price'].toString()),
+        description: "");
   }
 }

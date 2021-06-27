@@ -119,32 +119,37 @@ class VendorRemoteDataSourceImpl extends VendorRemoteDataSource {
     if (!result) {
       throw NetworkNotAvaliableException();
     }
-    await Future.delayed(Duration(seconds: 2));
+
+    String api = apiHelper.appendPath(path: "productlist/$vendorId");
+    if (categoryId != null) {
+      api += "?category_id=$categoryId";
+    }
+
     try {
-      // TODO
-      // Response response = await Dio().get(
-      //   apiUrl,
-      //   options: await apiHelper.getHeaders(withToken: false),
-      // );
+      Response response = await Dio().get(
+        api,
+        options: await apiHelper.getHeaders(withToken: false),
+      );
 
-      List<Map<String, dynamic>> prods = [];
-
-      for (int i = 0; i < 12; i++) {
-        prods.add({
-          "id": (i + 1),
-          "name": "Product ${(i + 1)}",
-          "imageUrl":
-              "https://www.esquireme.com/public/styles/full_img/public/images/2016/08/25/Burger.jpg?itok=UeqqTuYy",
-          "price": 32.00,
-          "description":
-              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
-        });
+      if (response.statusCode != 200) {
+        throw UnExpectedException();
       }
 
+      var jsonResponce = await response.data;
+
       final List<VendorProductModel> products = [];
-      prods.forEach((element) {
-        products.add(VendorProductModel.fromJson(element));
-      });
+
+      if (categoryId != null) {
+        jsonResponce['products'][0]['products'].forEach((element) {
+          products.add(VendorProductModel.fromJson(element));
+        });
+      } else {
+        jsonResponce['products'].forEach((element) {
+          element['products'].forEach((element) {
+            products.add(VendorProductModel.fromJson(element));
+          });
+        });
+      }
 
       return products;
     } catch (e) {
