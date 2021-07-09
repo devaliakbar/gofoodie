@@ -3,6 +3,7 @@ import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/custom_text_field.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
+import 'package:gofoodie/core/widgets/tapped.dart';
 
 class DeliveryDetails extends StatelessWidget {
   @override
@@ -30,10 +31,12 @@ class DeliveryDetails extends StatelessWidget {
                 SizedBox(
                   width: SizeConfig.width(1),
                 ),
-                NormalText(
-                  "(Edit)",
-                  color: AppColors.red,
-                  size: FontSizes.fontSizeXS,
+                Tapped(
+                  child: NormalText(
+                    "(Edit)",
+                    color: AppColors.red,
+                    size: FontSizes.fontSizeXS,
+                  ),
                 )
               ],
             ),
@@ -58,10 +61,12 @@ class DeliveryDetails extends StatelessWidget {
                 SizedBox(
                   width: SizeConfig.width(1),
                 ),
-                NormalText(
-                  "(Edit)",
-                  color: AppColors.red,
-                  size: FontSizes.fontSizeXS,
+                Tapped(
+                  child: NormalText(
+                    "(Edit)",
+                    color: AppColors.red,
+                    size: FontSizes.fontSizeXS,
+                  ),
                 )
               ],
             ),
@@ -74,7 +79,7 @@ class DeliveryDetails extends StatelessWidget {
               height: SizeConfig.height(1),
             ),
             NormalText(
-              "Order Notes",
+              "Landmark / Order Notes",
               color: AppColors.black,
               boldText: true,
             ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
+import 'package:gofoodie/features/order/presentation/blocs/cart/cart_bloc.dart';
 
 class OrderContent extends StatelessWidget {
   @override
@@ -23,82 +25,51 @@ class OrderContent extends StatelessWidget {
               boldText: true,
             ),
             Divider(),
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            BlocBuilder<CartBloc, CartState>(
+              builder: (BuildContext context, CartState cartState) {
+                if (cartState is CartLoadedState) {
+                  return Column(
                     children: [
-                      NormalText(
-                        "Arabian Honey Cake",
-                        color: AppColors.black,
-                      ),
-                      NormalText(
-                        "1  *  ₹10.00",
-                      )
+                      for (int index = 0;
+                          index < cartState.cart.products.length;
+                          index++)
+                        Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      NormalText(
+                                        cartState.cart.products[index].name,
+                                        color: AppColors.black,
+                                      ),
+                                      NormalText(
+                                        "${cartState.cart.products[index].qty}  *  AED ${cartState.cart.products[index].price}",
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: SizeConfig.width(3),
+                                ),
+                                NormalText(
+                                  "AED ${cartState.cart.products[index].price * cartState.cart.products[index].qty}",
+                                  boldText: true,
+                                )
+                              ],
+                            ),
+                            if (index < cartState.cart.products.length - 1)
+                              Divider(),
+                          ],
+                        )
                     ],
-                  ),
-                ),
-                SizedBox(
-                  width: SizeConfig.width(3),
-                ),
-                NormalText(
-                  "₹10.00",
-                  boldText: true,
-                )
-              ],
-            ),
-            Divider(),
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      NormalText(
-                        "Arabian Honey Cake",
-                        color: AppColors.black,
-                      ),
-                      NormalText(
-                        "1  *  ₹10.00",
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: SizeConfig.width(3),
-                ),
-                NormalText(
-                  "₹10.00",
-                  boldText: true,
-                )
-              ],
-            ),
-            Divider(),
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      NormalText(
-                        "Arabian Honey Cake",
-                        color: AppColors.black,
-                      ),
-                      NormalText(
-                        "1  *  ₹10.00",
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: SizeConfig.width(3),
-                ),
-                NormalText(
-                  "₹10.00",
-                  boldText: true,
-                )
-              ],
+                  );
+                }
+                return Container();
+              },
             ),
           ],
         ),

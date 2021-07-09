@@ -28,3 +28,5 @@ class RemoveFromCartEvent extends CartEvent {
   @override
   List<Object> get props => [vendorId, vendorProduct];
 }
+
+class TogglePickUpEvent extends CartEvent {}

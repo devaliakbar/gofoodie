@@ -22,7 +22,7 @@ class VendorProductModel extends VendorProduct {
         imageUrl: json['preview']['content'],
         price: json["price"]['price'] == null
             ? 0.0
-            : double.parse(json["price"]['price'].toString()),
+            : double.parse(json['price']['price'].toString()),
         description: "");
   }
 }

@@ -23,19 +23,29 @@ class CheckOutPage extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    DeliveryDetails(),
-                    OrderContent(),
-                  ],
+            Column(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        DeliveryDetails(),
+                        OrderContent(),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+                AmountDetails(),
+              ],
             ),
-            AmountDetails(),
+            // Container(
+            //   color: Colors.white.withOpacity(0.6),
+            //   child: Center(
+            //     child: CircularProgressIndicator(),
+            //   ),
+            // )
           ],
         ),
       ),

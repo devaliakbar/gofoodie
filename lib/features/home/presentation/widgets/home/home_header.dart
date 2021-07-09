@@ -3,8 +3,10 @@ import 'package:gofoodie/core/animation/custom_animation.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
+import 'package:gofoodie/core/widgets/tapped.dart';
 import 'package:gofoodie/features/home/presentation/pages/search_page.dart';
 import 'package:gofoodie/features/home/presentation/widgets/home/home_special_card.dart';
+import 'package:gofoodie/features/location/presentation/pages/location_page.dart';
 
 class HomeHeader extends StatelessWidget {
   final AnimationController animationController;
@@ -83,18 +85,23 @@ class HomeHeader extends StatelessWidget {
               ),
               Container(
                 margin: EdgeInsets.only(top: 15),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.location_on_outlined,
-                      color: AppColors.black,
-                      size: IconSizes.iconSizeS,
-                    ),
-                    NormalText(
-                      AppString.nearbyLocation,
-                      size: FontSizes.fontSizeS,
-                    )
-                  ],
+                child: Tapped(
+                  onTap: () {
+                    Navigator.pushNamed(context, LocationPage.routeName);
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.location_on_outlined,
+                        color: AppColors.black,
+                        size: IconSizes.iconSizeS,
+                      ),
+                      NormalText(
+                        AppString.nearbyLocation,
+                        size: FontSizes.fontSizeS,
+                      )
+                    ],
+                  ),
                 ),
               )
             ],

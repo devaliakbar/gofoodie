@@ -30,6 +30,8 @@ dependencies:
   percent_indicator:
   flutter_rating_bar:
   rxdart:
+  flutter_google_places:
+  geolocator: 
 
 dev_dependencies:
   flutter_test:
@@ -47,6 +49,7 @@ flutter:
     - assets/images/vendor_backgound.png
     - assets/images/no_image.jpg
     - assets/images/drawer.jpg
+    - assets/images/user-icon.png
 
   fonts:
     - family: Poppins

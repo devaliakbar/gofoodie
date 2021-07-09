@@ -120,13 +120,13 @@ class VendorRemoteDataSourceImpl extends VendorRemoteDataSource {
       throw NetworkNotAvaliableException();
     }
 
-    String api = apiHelper.appendPath(path: "productlist/$vendorId");
+    String api = apiHelper.appendPath(path: "products?vendor_id=$vendorId");
     if (categoryId != null) {
-      api += "?category_id=$categoryId";
+      api += "&category_id=$categoryId";
     }
 
     try {
-      Response response = await Dio().get(
+      Response response = await Dio().post(
         api,
         options: await apiHelper.getHeaders(withToken: false),
       );
@@ -139,17 +139,10 @@ class VendorRemoteDataSourceImpl extends VendorRemoteDataSource {
 
       final List<VendorProductModel> products = [];
 
-      if (categoryId != null) {
-        jsonResponce['products'][0]['products'].forEach((element) {
-          products.add(VendorProductModel.fromJson(element));
-        });
-      } else {
-        jsonResponce['products'].forEach((element) {
-          element['products'].forEach((element) {
-            products.add(VendorProductModel.fromJson(element));
-          });
-        });
-      }
+      jsonResponce['products'].forEach((element) {
+        print(element);
+        products.add(VendorProductModel.fromJson(element));
+      });
 
       return products;
     } catch (e) {

@@ -7,6 +7,6 @@ class VendorCategoryModel extends VendorCategory {
 
   factory VendorCategoryModel.fromJson(Map<String, dynamic> json) {
     return VendorCategoryModel(
-        id: json['pivot']['category_id'], name: json['name']);
+        id: json['category_id'], name: json['category_name']);
   }
 }

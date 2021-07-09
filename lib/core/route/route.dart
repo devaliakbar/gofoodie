@@ -3,6 +3,7 @@ import 'package:gofoodie/features/authentication/presentation/pages/login_page.d
 import 'package:gofoodie/features/authentication/presentation/pages/signup_page.dart';
 import 'package:gofoodie/features/home/presentation/pages/home.dart';
 import 'package:gofoodie/features/home/presentation/pages/search_page.dart';
+import 'package:gofoodie/features/location/presentation/pages/location_page.dart';
 import 'package:gofoodie/features/order/presentation/pages/my_orders.dart';
 import 'package:gofoodie/features/order/presentation/pages/payment_method.dart';
 import 'package:gofoodie/features/profile/presentation/pages/edit_rating.dart';
@@ -100,6 +101,13 @@ class AppRouter {
       case SearchPage.routeName:
         return PageTransition(
           child: SearchPage(),
+          type: PageTransitionType.rightToLeft,
+          settings: settings,
+        );
+
+      case LocationPage.routeName:
+        return PageTransition(
+          child: LocationPage(),
           type: PageTransitionType.rightToLeft,
           settings: settings,
         );

@@ -53,6 +53,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           cart: cart,
         );
       }
+    } else if (event is TogglePickUpEvent) {
+      cart.doesUserPickUp = !cart.doesUserPickUp;
+      yield CartLoadedState(
+        cart: cart,
+      );
     }
   }
 }

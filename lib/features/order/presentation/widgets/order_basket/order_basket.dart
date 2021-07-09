@@ -66,7 +66,9 @@ class OrderBasket {
                               cartState.cart.vendorId),
                         ),
                       ),
-                      OrderBasketButton()
+                      OrderBasketButton(
+                        totalAmount: cartState.cart.totalAmount,
+                      )
                     ],
                   );
                 }
@@ -97,7 +99,7 @@ class OrderBasket {
                   color: AppColors.black,
                 ),
                 NormalText(
-                  "₹${cartProducts.price}",
+                  "AED ${cartProducts.price}",
                   size: FontSizes.fontSizeM,
                   color: AppColors.black,
                 )
@@ -129,7 +131,7 @@ class OrderBasket {
                 height: SizeConfig.height(0.5),
               ),
               NormalText(
-                "₹${cartProducts.qty * cartProducts.price}",
+                "AED ${cartProducts.qty * cartProducts.price}",
                 size: FontSizes.fontSizeM,
                 color: AppColors.black,
               )

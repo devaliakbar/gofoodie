@@ -5,6 +5,9 @@ import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/features/order/presentation/pages/check_out_page.dart';
 
 class OrderBasketButton extends StatelessWidget {
+  final double totalAmount;
+  OrderBasketButton({@required this.totalAmount});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,7 +49,7 @@ class OrderBasketButton extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     NormalText(
-                      "₹1660",
+                      "AED $totalAmount",
                       color: Colors.white,
                       boldText: true,
                     ),

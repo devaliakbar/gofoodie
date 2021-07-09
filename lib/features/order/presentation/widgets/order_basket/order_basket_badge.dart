@@ -56,7 +56,7 @@ class OrderBasketBadge extends StatelessWidget {
                           Row(
                             children: [
                               NormalText(
-                                "₹${cartState.cart.totalAmount}",
+                                "AED ${cartState.cart.totalAmount}",
                                 color: Colors.white,
                               ),
                               NormalText(
