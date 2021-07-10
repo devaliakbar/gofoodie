@@ -11,7 +11,7 @@ import 'package:gofoodie/features/authentication/presentation/widgets/auth_botto
 
 import 'package:gofoodie/features/authentication/presentation/widgets/login_food_image.dart';
 import 'package:gofoodie/features/authentication/presentation/widgets/login_form.dart';
-import 'package:gofoodie/features/home/presentation/pages/home.dart';
+import 'package:gofoodie/features/location/presentation/pages/location_page.dart';
 
 class LoginPage extends StatefulWidget {
   static const String routeName = '/login_page';
@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                     _animationController2.reverse().whenComplete(() =>
                         _animationController1.reverse().whenComplete(() =>
                             Navigator.of(context).pushNamedAndRemoveUntil(
-                                Home.routeName,
+                                LocationPage.routeName,
                                 (Route<dynamic> route) => false)));
                   } else if (state is LoginErrorState) {
                     ShowToast(state.message);
