@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gofoodie/core/animation/custom_animation.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
@@ -6,6 +7,7 @@ import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/core/widgets/tapped.dart';
 import 'package:gofoodie/features/home/presentation/pages/search_page.dart';
 import 'package:gofoodie/features/home/presentation/widgets/home/home_special_card.dart';
+import 'package:gofoodie/features/location/presentation/blocs/bloc/location_bloc.dart';
 import 'package:gofoodie/features/location/presentation/pages/location_page.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -96,9 +98,22 @@ class HomeHeader extends StatelessWidget {
                         color: AppColors.black,
                         size: IconSizes.iconSizeS,
                       ),
-                      NormalText(
-                        AppString.nearbyLocation,
-                        size: FontSizes.fontSizeS,
+                      Expanded(
+                        child: BlocBuilder<LocationBloc, LocationState>(
+                          builder: (context, state) {
+                            String location = "Loading...";
+                            if (state is LocationLoadedState) {
+                              location = state.location.locationName;
+                            }
+
+                            return NormalText(
+                              location,
+                              maxLine: 1,
+                              truncate: true,
+                              size: FontSizes.fontSizeS,
+                            );
+                          },
+                        ),
                       )
                     ],
                   ),

@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:gofoodie/features/location/domain/entities/location_model.dart';
 import 'package:hive/hive.dart';
 
 class LSUser {
@@ -24,6 +27,30 @@ class LSUser {
     Box userBox = await Hive.openBox(_BOX_NAME);
 
     await userBox.put(_USER_STATUS_KEY, isLoggedIn);
+    await Hive.close();
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  static const String _USER_LOCATION_KEY = "user_location ";
+  Future<LocationModel> getUserLocation() async {
+    Box userBox = await Hive.openBox(_BOX_NAME);
+
+    final String userLocation = userBox.get(_USER_LOCATION_KEY);
+
+    await Hive.close();
+
+    if (userLocation == null) {
+      return null;
+    }
+
+    return LocationModel.fromJson(jsonDecode(userLocation));
+  }
+
+  Future<void> saveUserLocation({@required LocationModel locationModel}) async {
+    Box userBox = await Hive.openBox(_BOX_NAME);
+
+    await userBox.put(
+        _USER_LOCATION_KEY, jsonEncode(LocationModel.toJson(locationModel)));
     await Hive.close();
   }
 

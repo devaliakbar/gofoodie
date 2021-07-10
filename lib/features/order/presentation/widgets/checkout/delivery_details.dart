@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/custom_text_field.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/core/widgets/tapped.dart';
+import 'package:gofoodie/features/location/presentation/blocs/bloc/location_bloc.dart';
+import 'package:gofoodie/features/location/presentation/pages/location_page.dart';
 
 class DeliveryDetails extends StatelessWidget {
   @override
@@ -21,12 +24,20 @@ class DeliveryDetails extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            NormalText(
+              "Personal Details",
+              color: AppColors.black,
+              boldText: true,
+            ),
+            NormalText(
+              "Albert Einstein",
+              color: AppColors.black,
+            ),
             Row(
               children: [
                 NormalText(
-                  "Personal Details",
+                  "+91 1234567890",
                   color: AppColors.black,
-                  boldText: true,
                 ),
                 SizedBox(
                   width: SizeConfig.width(1),
@@ -39,14 +50,6 @@ class DeliveryDetails extends StatelessWidget {
                   ),
                 )
               ],
-            ),
-            NormalText(
-              "Albert Einstein",
-              color: AppColors.black,
-            ),
-            NormalText(
-              "+91 1234567890",
-              color: AppColors.black,
             ),
             SizedBox(
               height: SizeConfig.height(1),
@@ -62,6 +65,9 @@ class DeliveryDetails extends StatelessWidget {
                   width: SizeConfig.width(1),
                 ),
                 Tapped(
+                  onTap: () {
+                    Navigator.pushNamed(context, LocationPage.routeName);
+                  },
                   child: NormalText(
                     "(Edit)",
                     color: AppColors.red,
@@ -70,10 +76,19 @@ class DeliveryDetails extends StatelessWidget {
                 )
               ],
             ),
-            NormalText(
-              "123 Main Street, New York, NY 10030",
-              color: AppColors.black,
-              truncate: true,
+            BlocBuilder<LocationBloc, LocationState>(
+              builder: (context, state) {
+                String location = "Loading...";
+                if (state is LocationLoadedState) {
+                  location = state.location.locationName;
+                }
+
+                return NormalText(
+                  location,
+                  color: AppColors.black,
+                  truncate: true,
+                );
+              },
             ),
             SizedBox(
               height: SizeConfig.height(1),

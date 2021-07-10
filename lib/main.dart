@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gofoodie/core/route/route.dart';
 import 'package:gofoodie/core/services/local_storage/local_storage.dart';
+import 'package:gofoodie/core/services/track_context.dart';
 import 'package:gofoodie/features/authentication/presentation/blocs/login/login_bloc.dart';
 import 'package:gofoodie/features/authentication/presentation/blocs/sign_up/sign_up_bloc.dart';
 import 'package:gofoodie/features/home/presentation/blocs/home/home_bloc.dart';
+import 'package:gofoodie/features/location/presentation/blocs/bloc/location_bloc.dart';
 import 'package:gofoodie/features/order/presentation/blocs/cart/cart_bloc.dart';
 import 'package:gofoodie/features/profile/presentation/blocs/profile/profile_bloc.dart';
 import 'package:gofoodie/features/vendor/presentation/blocs/book_table/book_table_bloc.dart';
@@ -39,6 +41,7 @@ void main() async {
         BlocProvider<VendorOnlineOrderBloc>(
             create: (context) => di.sl<VendorOnlineOrderBloc>()),
         BlocProvider<CartBloc>(create: (context) => di.sl<CartBloc>()),
+        BlocProvider<LocationBloc>(create: (context) => di.sl<LocationBloc>()),
       ],
       child: EasyLocalization(
         child: MyApp(),
@@ -58,6 +61,8 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
+      key: TrackContext.key,
+      navigatorKey: TrackContext.navigatorKey,
       theme: ThemeData(
         fontFamily: 'Poppins',
         splashColor: Colors.transparent,
