@@ -30,3 +30,11 @@ class RemoveFromCartEvent extends CartEvent {
 }
 
 class TogglePickUpEvent extends CartEvent {}
+
+class AddPhoneEvent extends CartEvent {
+  final String phone;
+  AddPhoneEvent({@required this.phone});
+
+  @override
+  List<Object> get props => [phone];
+}

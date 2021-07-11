@@ -1,14 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
+import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/custom_text_field.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
 import 'package:gofoodie/core/widgets/tapped.dart';
 import 'package:gofoodie/features/location/presentation/blocs/bloc/location_bloc.dart';
 import 'package:gofoodie/features/location/presentation/pages/location_page.dart';
+import 'package:gofoodie/features/order/presentation/blocs/cart/cart_bloc.dart';
+import 'package:gofoodie/features/order/presentation/widgets/checkout/edit_phone_number_dialogue.dart';
+import 'package:gofoodie/features/profile/presentation/blocs/profile/profile_bloc.dart';
 
-class DeliveryDetails extends StatelessWidget {
+class DeliveryDetails extends StatefulWidget {
+  final TextEditingController deliveryNoteEditingController;
+
+  DeliveryDetails({@required this.deliveryNoteEditingController});
+
+  @override
+  _DeliveryDetailsState createState() => _DeliveryDetailsState();
+}
+
+class _DeliveryDetailsState extends State<DeliveryDetails> {
+  @override
+  void dispose() {
+    widget.deliveryNoteEditingController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -29,27 +48,78 @@ class DeliveryDetails extends StatelessWidget {
               color: AppColors.black,
               boldText: true,
             ),
-            NormalText(
-              "Albert Einstein",
-              color: AppColors.black,
-            ),
-            Row(
-              children: [
-                NormalText(
-                  "+91 1234567890",
+            BlocConsumer<ProfileBloc, ProfileState>(
+              listener: (context, state) {
+                print("Profile Screen State Changed");
+
+                if (state is ProfileErrorState) {
+                  ShowToast(state.message);
+                }
+              },
+              builder: (context, state) {
+                String userName = "Loading...";
+                if (state is ProfileLoadedState) {
+                  userName = state.profileData.name;
+                } else if (state is ProfileInitialState) {
+                  BlocProvider.of<ProfileBloc>(context).add(
+                    ProfileLoadEvent(),
+                  );
+                }
+
+                return NormalText(
+                  userName,
                   color: AppColors.black,
-                ),
-                SizedBox(
-                  width: SizeConfig.width(1),
-                ),
-                Tapped(
-                  child: NormalText(
-                    "(Edit)",
-                    color: AppColors.red,
-                    size: FontSizes.fontSizeXS,
-                  ),
-                )
-              ],
+                );
+              },
+            ),
+            BlocBuilder<CartBloc, CartState>(
+              builder: (BuildContext context, CartState cartState) {
+                if (cartState is CartLoadedState) {
+                  return cartState.cart.phone != null
+                      ? Row(
+                          children: [
+                            NormalText(
+                              cartState.cart.phone,
+                              color: AppColors.black,
+                            ),
+                            SizedBox(
+                              width: SizeConfig.width(1),
+                            ),
+                            Tapped(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  child: EditPhoneNumberDialogue(
+                                    phone: cartState.cart.phone,
+                                  ),
+                                );
+                              },
+                              child: NormalText(
+                                "(Edit)",
+                                color: AppColors.red,
+                                size: FontSizes.fontSizeXS,
+                              ),
+                            )
+                          ],
+                        )
+                      : Tapped(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              child: EditPhoneNumberDialogue(
+                                phone: null,
+                              ),
+                            );
+                          },
+                          child: NormalText(
+                            "Add Phone",
+                            color: AppColors.red,
+                          ),
+                        );
+                }
+
+                return Container();
+              },
             ),
             SizedBox(
               height: SizeConfig.height(1),
@@ -102,6 +172,7 @@ class DeliveryDetails extends StatelessWidget {
               height: SizeConfig.height(1),
             ),
             CustomTextField(
+              controller: widget.deliveryNoteEditingController,
               borderRadius: SizeConfig.width(2),
               maxLine: 3,
             )

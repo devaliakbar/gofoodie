@@ -8,6 +8,9 @@ import 'package:gofoodie/features/order/presentation/widgets/checkout/order_cont
 class CheckOutPage extends StatelessWidget {
   static const String routeName = '/check_out_page';
 
+  final TextEditingController deliveryNoteEditingController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,13 +34,18 @@ class CheckOutPage extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        DeliveryDetails(),
+                        DeliveryDetails(
+                          deliveryNoteEditingController:
+                              deliveryNoteEditingController,
+                        ),
                         OrderContent(),
                       ],
                     ),
                   ),
                 ),
-                AmountDetails(),
+                AmountDetails(
+                  deliveryNoteEditingController: deliveryNoteEditingController,
+                ),
               ],
             ),
             // Container(

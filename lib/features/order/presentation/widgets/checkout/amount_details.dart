@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
+import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/custom_button.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
@@ -9,6 +10,10 @@ import 'package:gofoodie/features/order/presentation/pages/payment_method.dart';
 import 'package:gofoodie/features/order/presentation/widgets/checkout/coupon_apply.dart';
 
 class AmountDetails extends StatelessWidget {
+  final TextEditingController deliveryNoteEditingController;
+
+  AmountDetails({@required this.deliveryNoteEditingController});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CartBloc, CartState>(
@@ -126,6 +131,17 @@ class AmountDetails extends StatelessWidget {
                 ),
                 CustomButton(
                   onClick: () {
+                    if (cartState.cart.phone == null) {
+                      return ShowToast("Please enter phone");
+                    }
+
+                    if (deliveryNoteEditingController.text.trim() == "") {
+                      cartState.cart.note = null;
+                    } else {
+                      cartState.cart.note =
+                          deliveryNoteEditingController.text.trim();
+                    }
+
                     Navigator.pushNamed(context, PaymentMethod.routeName);
                   },
                   title: "Select Payment Method",

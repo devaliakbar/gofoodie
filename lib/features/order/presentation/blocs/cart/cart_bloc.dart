@@ -58,6 +58,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       yield CartLoadedState(
         cart: cart,
       );
+    } else if (event is AddPhoneEvent) {
+      cart.phone = event.phone;
+      yield CartLoadedState(
+        cart: cart,
+      );
     }
   }
 }

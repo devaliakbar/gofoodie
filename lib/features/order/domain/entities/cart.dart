@@ -7,6 +7,8 @@ class Cart {
   int totalItems;
   double totalAmount;
   bool doesUserPickUp;
+  String phone;
+  String note;
 
   Cart(
       {@required this.vendorId,
