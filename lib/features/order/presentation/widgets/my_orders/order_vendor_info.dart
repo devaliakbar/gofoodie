@@ -3,8 +3,13 @@ import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/image_from_network.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
+import 'package:gofoodie/features/order/data/models/order_model.dart';
 
 class OrderVendorInfo extends StatelessWidget {
+  final OrderModel orderModel;
+
+  OrderVendorInfo({@required this.orderModel});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +27,7 @@ class OrderVendorInfo extends StatelessWidget {
                 SizeConfig.height(0.5),
               ),
               child: ImageFromNetwork(
-                imageUrl: "https://gofoodie.ae/uploads/2203211616393295.jpg",
+                imageUrl: orderModel.imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -39,7 +44,7 @@ class OrderVendorInfo extends StatelessWidget {
                     children: [
                       Expanded(
                         child: NormalText(
-                          "Cafe D Arabia",
+                          orderModel.name,
                           truncate: true,
                           color: AppColors.black,
                         ),
@@ -48,14 +53,14 @@ class OrderVendorInfo extends StatelessWidget {
                         width: SizeConfig.height(2),
                       ),
                       NormalText(
-                        "Total ₹350.00",
+                        "Total AED ${orderModel.total}",
                         truncate: true,
                         color: AppColors.black,
                       ),
                     ],
                   ),
                   NormalText(
-                    "Lulu Mall Edapally Kochi",
+                    orderModel.address ?? "",
                     truncate: true,
                     size: FontSizes.fontSizeBSM,
                   ),

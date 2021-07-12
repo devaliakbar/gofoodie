@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:gofoodie/core/res/app_resources.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
+import 'package:gofoodie/features/order/data/models/order_model.dart';
 
 class MyOrderContent extends StatelessWidget {
+  final OrderModel order;
+
+  MyOrderContent({@required this.order});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,26 +31,17 @@ class MyOrderContent extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  bottom: SizeConfig.height(1),
+              for (int index = 0; index < order.orderItems.length; index++)
+                Padding(
+                  padding: EdgeInsets.only(
+                    bottom: SizeConfig.height(1),
+                  ),
+                  child: NormalText(
+                    "${order.orderItems[index].quantity} * ${order.orderItems[index].productName}",
+                    size: FontSizes.fontSizeBSM,
+                    color: AppColors.black,
+                  ),
                 ),
-                child: NormalText(
-                  "2 * Maggi",
-                  size: FontSizes.fontSizeBSM,
-                  color: AppColors.black,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  bottom: SizeConfig.height(1),
-                ),
-                child: NormalText(
-                  "2 * Maggi",
-                  size: FontSizes.fontSizeBSM,
-                  color: AppColors.black,
-                ),
-              )
             ],
           ),
         ),

@@ -33,6 +33,7 @@ dependencies:
   flutter_google_places:
   geolocator: 
   geocoder: ^0.2.1
+  intl:
 
 dev_dependencies:
   flutter_test:

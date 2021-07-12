@@ -10,7 +10,7 @@ class MyOrders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 1,
       child: Scaffold(
         appBar: MyOrdersAppbar(),
         body: SafeArea(
@@ -19,12 +19,12 @@ class MyOrders extends StatelessWidget {
               Tab(
                 child: CurrentOrderTab(),
               ),
-              Tab(
-                child: OrderHistoryTab(),
-              ),
-              Tab(
-                child: MonthlyOrderTab(),
-              ),
+              // Tab(
+              //   child: OrderHistoryTab(),
+              // ),
+              // Tab(
+              //   child: MonthlyOrderTab(),
+              // ),
             ],
           ),
         ),

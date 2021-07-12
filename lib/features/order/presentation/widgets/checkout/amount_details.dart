@@ -5,9 +5,12 @@ import 'package:gofoodie/core/services/show_toast.dart';
 import 'package:gofoodie/core/services/size_config.dart';
 import 'package:gofoodie/core/widgets/custom_button.dart';
 import 'package:gofoodie/core/widgets/normal_text.dart';
+import 'package:gofoodie/features/location/domain/entities/location_model.dart';
+import 'package:gofoodie/features/location/presentation/blocs/bloc/location_bloc.dart';
 import 'package:gofoodie/features/order/presentation/blocs/cart/cart_bloc.dart';
 import 'package:gofoodie/features/order/presentation/pages/payment_method.dart';
 import 'package:gofoodie/features/order/presentation/widgets/checkout/coupon_apply.dart';
+import 'package:gofoodie/features/profile/presentation/blocs/profile/profile_bloc.dart';
 
 class AmountDetails extends StatelessWidget {
   final TextEditingController deliveryNoteEditingController;
@@ -142,7 +145,57 @@ class AmountDetails extends StatelessWidget {
                           deliveryNoteEditingController.text.trim();
                     }
 
-                    Navigator.pushNamed(context, PaymentMethod.routeName);
+                    final LocationState locationState =
+                        BlocProvider.of<LocationBloc>(context).state;
+
+                    LocationModel locationModel;
+
+                    if (locationState is LocationLoadedState) {
+                      locationModel = locationState.location;
+                    } else {
+                      return ShowToast("Select Location");
+                    }
+
+                    final ProfileState profileState =
+                        BlocProvider.of<ProfileBloc>(context).state;
+
+                    String userName;
+
+                    if (profileState is ProfileLoadedState) {
+                      userName = profileState.profileData.name;
+                    } else {
+                      return ShowToast("Failed to get user name");
+                    }
+
+                    final List<Map<String, dynamic>> products = [];
+                    cartState.cart.products.forEach((element) {
+                      products.add({
+                        'product_id': element.id,
+                        'qty': element.qty,
+                        'price': element.price
+                      });
+                    });
+
+                    final Map<String, dynamic> form = {
+                      "vendor_id": cartState.cart.vendorId,
+                      "order_type": 1,
+                      "payment_method": "cod",
+                      "payment_status": 0,
+                      "total": cartState.cart.totalAmount,
+                      "shipping": cartState.cart.doesUserPickUp ? 0 : 5,
+                      "commission": 0,
+                      "discount": 0,
+                      "status": 2,
+                      "name": userName,
+                      "phone": cartState.cart.phone,
+                      "delivery_address": locationModel.locationName,
+                      "latitude": locationModel.latitude,
+                      "longitude": locationModel.longitude,
+                      "order_note": cartState.cart.note ?? "",
+                      "datacart": products
+                    };
+                    Navigator.pushNamed(context, PaymentMethod.routeName,
+                        arguments: form);
                   },
                   title: "Select Payment Method",
                   width: double.infinity,

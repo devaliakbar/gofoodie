@@ -71,6 +71,8 @@ class Vendors extends StatelessWidget {
                               child: NormalText(
                                 state.vendors[index].name,
                                 color: AppColors.black,
+                                maxLine: 1,
+                                truncate: true,
                               ),
                             )
                           ],

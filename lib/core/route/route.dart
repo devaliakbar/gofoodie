@@ -72,7 +72,9 @@ class AppRouter {
 
       case PaymentMethod.routeName:
         return PageTransition(
-          child: PaymentMethod(),
+          child: PaymentMethod(
+            form: settings.arguments,
+          ),
           type: PageTransitionType.rightToLeft,
           settings: settings,
         );

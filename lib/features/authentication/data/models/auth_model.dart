@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class AuthModel {
-  final String loginId;
+  final int userId;
   final String token;
   final String error;
 
   AuthModel({
-    @required this.loginId,
+    @required this.userId,
     @required this.token,
     @required this.error,
   });
 
   factory AuthModel.fromJson(Map<String, dynamic> json) {
     return AuthModel(
-        loginId: json['login_id'], token: json['token'], error: json['errors']);
+        userId: json['user_id'], token: json['token'], error: json['errors']);
   }
 }

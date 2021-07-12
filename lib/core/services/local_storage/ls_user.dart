@@ -31,7 +31,7 @@ class LSUser {
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
-  static const String _USER_LOCATION_KEY = "user_location ";
+  static const String _USER_LOCATION_KEY = "user_location";
   Future<LocationModel> getUserLocation() async {
     Box userBox = await Hive.openBox(_BOX_NAME);
 
@@ -51,6 +51,25 @@ class LSUser {
 
     await userBox.put(
         _USER_LOCATION_KEY, jsonEncode(LocationModel.toJson(locationModel)));
+    await Hive.close();
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  static const String _USER_ID_KEY = "user_id";
+  Future<int> getUserId() async {
+    Box userBox = await Hive.openBox(_BOX_NAME);
+
+    final int userId = userBox.get(_USER_ID_KEY);
+
+    await Hive.close();
+
+    return userId;
+  }
+
+  Future<void> saveUserId({@required int userId}) async {
+    Box userBox = await Hive.openBox(_BOX_NAME);
+
+    await userBox.put(_USER_ID_KEY, userId);
     await Hive.close();
   }
 

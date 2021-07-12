@@ -20,7 +20,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     try {
       AuthModel response =
           await remoteDataSource.login(email: email, password: password);
-      await localDataSource.saveToken(response.token);
+      await localDataSource.saveTokenAndUserId(
+          token: response.token, userId: response.userId);
       await localDataSource.setUserLoginStatus();
       return Right(true);
     } on NetworkNotAvaliableException {
@@ -45,7 +46,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
         return Left(RequiredFieldFailure(response.error));
       }
 
-      await localDataSource.saveToken(response.token);
+      await localDataSource.saveTokenAndUserId(
+          token: response.token, userId: response.userId);
       await localDataSource.setUserLoginStatus();
       return Right(true);
     } on NetworkNotAvaliableException {

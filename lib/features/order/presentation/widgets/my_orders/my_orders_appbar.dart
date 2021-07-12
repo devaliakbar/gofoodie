@@ -25,18 +25,18 @@ class MyOrdersAppbar extends StatelessWidget with PreferredSizeWidget {
               style: TextStyle(fontSize: FontSizes.fontSizeM),
             ),
           ),
-          Tab(
-            child: Text(
-              "Order History",
-              style: TextStyle(fontSize: FontSizes.fontSizeM),
-            ),
-          ),
-          Tab(
-            child: Text(
-              "Monthly Order",
-              style: TextStyle(fontSize: FontSizes.fontSizeM),
-            ),
-          )
+          // Tab(
+          //   child: Text(
+          //     "Order History",
+          //     style: TextStyle(fontSize: FontSizes.fontSizeM),
+          //   ),
+          // ),
+          // Tab(
+          //   child: Text(
+          //     "Monthly Order",
+          //     style: TextStyle(fontSize: FontSizes.fontSizeM),
+          //   ),
+          // )
         ],
       ),
     );
