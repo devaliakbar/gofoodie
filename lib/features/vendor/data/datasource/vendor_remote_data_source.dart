@@ -140,7 +140,6 @@ class VendorRemoteDataSourceImpl extends VendorRemoteDataSource {
       final List<VendorProductModel> products = [];
 
       jsonResponce['products'].forEach((element) {
-        print(element);
         products.add(VendorProductModel.fromJson(element));
       });
 

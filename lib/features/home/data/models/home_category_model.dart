@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gofoodie/core/services/network/api_helper.dart';
 import 'package:gofoodie/features/home/domain/entities/home_category.dart';
 
 class HomeCategoryModel extends HomeCategory {
@@ -9,7 +10,8 @@ class HomeCategoryModel extends HomeCategory {
     return HomeCategoryModel(
         id: json['userwithpreview']['id'],
         name: json['userwithpreview']['name'],
-        imageUrl: json['userwithpreview']['avatar']);
+        imageUrl:
+            ApiHelper.BASE_SERVER_URL + json['userwithpreview']['avatar']);
   }
 
   factory HomeCategoryModel.fromTopRatedJson(Map<String, dynamic> json) {
